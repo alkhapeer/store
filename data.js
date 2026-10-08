@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-08T21:58:29.344Z",
+  "updatedAt": "2026-10-08T22:08:34.186Z",
   "categories": [
     {
       "id": "games",
@@ -42,7 +42,7 @@ window.HERO_DATA = {
       "category": "tools",
       "description": "أداة تصنع الريلز في ثواني",
       "emoji": "📦",
-      "image": "https://github.com/alkhapeer/store/blob/main/assets/images/123.png",
+      "image": "assets/images/123.png",
       "c1": "#6366f1",
       "c2": "#a855f7",
       "price": "أربعة دولار و99 سنت",
