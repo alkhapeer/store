@@ -1,0 +1,93 @@
+{
+  "currency": "USD",
+  "categories": [
+    { "id": "games",            "name": "الألعاب",         "icon": "🎮" },
+    { "id": "tools",            "name": "الأدوات",          "icon": "🛠️" },
+    { "id": "education",        "name": "التعليم",          "icon": "📚" },
+    { "id": "design",           "name": "التصميم",          "icon": "🎨" },
+    { "id": "digital-products", "name": "منتجات رقمية",     "icon": "📦" },
+    { "id": "services",         "name": "الخدمات",          "icon": "💼" }
+  ],
+  "products": [
+    {
+      "id": "trend-studio", "name": "Trend Studio", "seller": "HERO",
+      "category": "tools", "description": "أداة لإنشاء محتوى فيديو احترافي للسوشيال ميديا.",
+      "image": "/assets/images/trend-studio.webp", "emoji": "🎬", "c1": "#5B3DF5", "c2": "#8B5CF6",
+      "price": "$9", "priceValue": 9, "rating": 4.8, "reviews": 124,
+      "featured": true, "new": true, "tags": ["video","reels","social media"],
+      "url": "/products/trend-studio/"
+    },
+    {
+      "id": "nabd", "name": "نبض التميز", "seller": "HERO",
+      "category": "education", "description": "برنامج تدريبي متكامل لبناء عقلية التميز والإنتاجية.",
+      "image": "/assets/images/nabd.webp", "emoji": "💡", "c1": "#FF5C8A", "c2": "#FF9A6B",
+      "price": "$19", "priceValue": 19, "rating": 4.9, "reviews": 89,
+      "featured": true, "new": false, "tags": ["self","productivity","course"],
+      "url": "/products/nabd/"
+    },
+    {
+      "id": "pixel-forge", "name": "Pixel Forge", "seller": "HERO",
+      "category": "design", "description": "مجموعة أدوات تصميم جاهزة للمصممين والمبتدئين.",
+      "image": "/assets/images/pixel-forge.webp", "emoji": "🎨", "c1": "#00C2A8", "c2": "#4FD1C5",
+      "price": "$12", "priceValue": 12, "rating": 4.7, "reviews": 67,
+      "featured": true, "new": false, "tags": ["design","ui","assets"],
+      "url": "/products/pixel-forge/"
+    },
+    {
+      "id": "task-flow", "name": "Task Flow", "seller": "HERO",
+      "category": "tools", "description": "نظام بسيط لتنظيم المهام اليومية وزيادة التركيز.",
+      "image": "/assets/images/task-flow.webp", "emoji": "⚡", "c1": "#3B82F6", "c2": "#6366F1",
+      "price": "$7", "priceValue": 7, "rating": 4.6, "reviews": 152,
+      "featured": true, "new": true, "tags": ["tasks","productivity","app"],
+      "url": "/products/task-flow/"
+    },
+    {
+      "id": "star-quest", "name": "Star Quest", "seller": "HERO",
+      "category": "games", "description": "لعبة مغامرات فضائية بأسلوب بيكسل ممتع.",
+      "image": "/assets/images/star-quest.webp", "emoji": "🎮", "c1": "#8B5CF6", "c2": "#EC4899",
+      "price": "مجاني", "priceValue": 0, "rating": 4.5, "reviews": 210,
+      "featured": false, "new": true, "tags": ["game","web","pixel"],
+      "url": "/products/star-quest/"
+    },
+    {
+      "id": "code-academy", "name": "Code Academy", "seller": "HERO",
+      "category": "education", "description": "دورة شاملة لتعلّم البرمجة من الصفر حتى الاحتراف.",
+      "image": "/assets/images/code-academy.webp", "emoji": "📚", "c1": "#F59E0B", "c2": "#F97316",
+      "price": "$29", "priceValue": 29, "rating": 4.8, "reviews": 340,
+      "featured": false, "new": false, "tags": ["code","course","programming"],
+      "url": "/products/code-academy/"
+    },
+    {
+      "id": "sound-kit", "name": "Sound Kit", "seller": "HERO",
+      "category": "digital-products", "description": "حزمة مؤثرات صوتية وموسيقى للمونتاج.",
+      "image": "/assets/images/sound-kit.webp", "emoji": "🎧", "c1": "#06B6D4", "c2": "#0EA5E9",
+      "price": "$15", "priceValue": 15, "rating": 4.4, "reviews": 58,
+      "featured": false, "new": false, "tags": ["audio","sfx","video"],
+      "url": "/products/sound-kit/"
+    },
+    {
+      "id": "ui-blocks", "name": "UI Blocks", "seller": "HERO",
+      "category": "design", "description": "مكوّنات واجهات جاهزة لبناء المواقع بسرعة.",
+      "image": "/assets/images/ui-blocks.webp", "emoji": "🧩", "c1": "#A855F7", "c2": "#D946EF",
+      "price": "$24", "priceValue": 24, "rating": 4.7, "reviews": 41,
+      "featured": false, "new": true, "tags": ["ui","components","web"],
+      "url": "/products/ui-blocks/"
+    },
+    {
+      "id": "seo-boost", "name": "SEO Boost", "seller": "HERO",
+      "category": "services", "description": "خدمة تحسين محركات البحث لموقعك أو متجرك.",
+      "image": "/assets/images/seo-boost.webp", "emoji": "📈", "c1": "#10B981", "c2": "#34D399",
+      "price": "$49", "priceValue": 49, "rating": 4.9, "reviews": 27,
+      "featured": false, "new": false, "tags": ["seo","marketing","service"],
+      "url": "/products/seo-boost/"
+    },
+    {
+      "id": "arabic-fonts", "name": "Arabic Fonts Pack", "seller": "HERO",
+      "category": "digital-products", "description": "مجموعة خطوط عربية احترافية للتصميم.",
+      "image": "/assets/images/arabic-fonts.webp", "emoji": "✍️", "c1": "#EF4444", "c2": "#F97316",
+      "price": "$11", "priceValue": 11, "rating": 4.6, "reviews": 96,
+      "featured": false, "new": false, "tags": ["fonts","arabic","design"],
+      "url": "/products/arabic-fonts/"
+    }
+  ]
+}
