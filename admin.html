@@ -535,8 +535,11 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
             <div class="field"><label>Repository *</label><input id="g-repo" placeholder="my-store"></div>
             <div class="field"><label>Branch</label><input id="g-branch" placeholder="main" value="main"></div>
             <div class="field"><label>File Path</label><input id="g-path" placeholder="data.js" value="data.js"></div>
-            <div class="field full"><label>Personal Access Token *</label><input id="g-token" type="password" placeholder="github_pat_..."></div>
-          </div>
+            <div class="field full"><label>Personal Access Token *</label>
+  <form onsubmit="return false;" style="margin:0">
+    <input id="g-token" type="password" placeholder="github_pat_..." autocomplete="new-password">
+  </form>
+</div>
 
           <div style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap">
             <button class="btn btn-primary" onclick="ADMIN.saveGitHub()">💾 حفظ الإعدادات</button>
@@ -656,20 +659,64 @@ function setGH(c){ localStorage.setItem(GH_KEY, JSON.stringify(c)); }
 function delGH(){ localStorage.removeItem(GH_KEY); }
 
 async function ghGet(cfg){
-  var url = 'https://api.github.com/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+encodeURIComponent(cfg.path)+'?ref='+cfg.branch+'&t='+Date.now();
-  var r = await fetch(url, { headers:{'Authorization':'token '+cfg.token,'Accept':'application/vnd.github.v3+json'} });
+  var url = 'https://api.github.com/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+encodeURIComponent(cfg.path)+'?ref='+cfg.branch+'&t='+Date.now()+Math.random();
+  var r = await fetch(url, {
+    headers:{
+      'Authorization':'token '+cfg.token,
+      'Accept':'application/vnd.github.v3+json',
+      'Cache-Control':'no-cache, no-store, must-revalidate',
+      'Pragma':'no-cache'
+    },
+    cache:'no-store'
+  });
   if (r.status === 404) return { exists:false, sha:null };
-  if (!r.ok){ throw new Error('GitHub GET '+r.status); }
-  var d = await r.json(); return { exists:true, sha:d.sha };
+  if (r.status === 401) throw new Error('التوكن غير صالح أو منتهي (401)');
+  if (r.status === 403) throw new Error('لا توجد صلاحية كتابة على هذا المستودع (403)');
+  if (!r.ok){ var t = await r.text(); throw new Error('GitHub GET '+r.status+': '+t.slice(0,200)); }
+  var d = await r.json();
+  return { exists:true, sha:d.sha, content:d.content };
 }
-async function ghPut(cfg, content, msg){
+
+async function ghPut(cfg, content, msg, attempt){
+  attempt = attempt || 1;
+  var MAX_ATTEMPTS = 4;
+
+  // جلب SHA الحالي
   var m = await ghGet(cfg);
-  var body = { message: msg||('Update '+cfg.path), content: utf8ToBase64(content), branch: cfg.branch };
+
+  var body = {
+    message: msg || ('Update '+cfg.path),
+    content: utf8ToBase64(content),
+    branch: cfg.branch
+  };
   if (m.exists) body.sha = m.sha;
+
   var r = await fetch('https://api.github.com/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+encodeURIComponent(cfg.path), {
-    method:'PUT', headers:{'Authorization':'token '+cfg.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},
+    method:'PUT',
+    headers:{
+      'Authorization':'token '+cfg.token,
+      'Accept':'application/vnd.github.v3+json',
+      'Content-Type':'application/json'
+    },
+    cache:'no-store',
     body: JSON.stringify(body)
   });
+
+  // 409 Conflict → الملف تغيّر، أعد المحاولة
+  if (r.status === 409){
+    if (attempt >= MAX_ATTEMPTS){
+      var t409 = await r.text();
+      throw new Error('تعارض متكرر بعد '+MAX_ATTEMPTS+' محاولات. أغلق أي تبويب آخر للوحة التحكم وحاول مرة أخرى.\n'+t409.slice(0,200));
+    }
+    console.warn('[publish] 409 Conflict — إعادة المحاولة رقم '+(attempt+1));
+    // انتظر قليلًا ثم أعد المحاولة
+    await new Promise(function(res){ setTimeout(res, 800 * attempt); });
+    return ghPut(cfg, content, msg, attempt + 1);
+  }
+
+  if (r.status === 401) throw new Error('التوكن غير صالح (401)');
+  if (r.status === 403) throw new Error('صلاحية الكتابة مرفوضة (403). تأكد من نطاق repo في التوكن.');
+  if (r.status === 404) throw new Error('المستودع أو الفرع غير موجود (404). تحقق من Username/Repo/Branch.');
   if (!r.ok){ var t = await r.text(); throw new Error('GitHub PUT '+r.status+': '+t.slice(0,200)); }
   return await r.json();
 }
@@ -711,17 +758,26 @@ function updatePublishStatus(){
 async function publish(){
   var cfg = getGH();
   if (!cfg || !cfg.token){ toast('اضبط إعدادات GitHub أولًا','err'); return; }
-  var btn = $('#publish-btn'); var orig = btn.textContent;
-  btn.disabled = true; btn.innerHTML = '<span class="loader"></span> جاري النشر';
+
+  var btn = $('#publish-btn');
+  var orig = btn.textContent;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loader"></span> جاري النشر';
+
   try {
-    await ghPut(cfg, generateDataJs(), 'Publish from admin — '+new Date().toISOString());
+    var content = generateDataJs();
+    var res = await ghPut(cfg, content, 'Publish from admin — '+new Date().toISOString());
     DIRTY = false;
     updatePublishStatus();
+    updateStats();
     toast('✅ تم النشر — سيظهر للزوار خلال دقيقة','ok');
+    console.log('[publish] success', res && res.commit && res.commit.sha);
   } catch(e){
-    console.error(e);
-    toast('❌ فشل النشر: '+(e.message||'').slice(0,140),'err');
-    btn.textContent = orig; btn.disabled = false;
+    console.error('[publish] error:', e);
+    var msg = (e.message || 'فشل غير معروف').slice(0, 220);
+    toast('❌ فشل النشر: ' + msg, 'err');
+    btn.textContent = orig;
+    btn.disabled = false;
   }
 }
 
