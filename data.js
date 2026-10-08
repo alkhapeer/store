@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-08T18:47:51.586Z",
+  "updatedAt": "2026-10-08T21:58:29.346Z",
   "categories": [
     {
       "id": "games",
@@ -36,7 +36,7 @@ window.HERO_DATA = {
   ],
   "products": [
     {
-      "id": "ts001",
+      "id": "ts003",
       "name": "استديو الترند",
       "seller": "HERO",
       "category": "tools",
