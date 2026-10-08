@@ -659,15 +659,13 @@ function setGH(c){ localStorage.setItem(GH_KEY, JSON.stringify(c)); }
 function delGH(){ localStorage.removeItem(GH_KEY); }
 
 async function ghGet(cfg){
-  var url = 'https://api.github.com/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+encodeURIComponent(cfg.path)+'?ref='+cfg.branch+'&t='+Date.now()+Math.random();
+  var url = 'https://api.github.com/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+encodeURIComponent(cfg.path)+'?ref='+cfg.branch+'&t='+Date.now();
   var r = await fetch(url, {
-    headers:{
-      'Authorization':'token '+cfg.token,
-      'Accept':'application/vnd.github.v3+json',
-      'Cache-Control':'no-cache, no-store, must-revalidate',
-      'Pragma':'no-cache'
-    },
-    cache:'no-store'
+    method: 'GET',
+    headers: {
+      'Authorization': 'token ' + cfg.token,
+      'Accept': 'application/vnd.github.v3+json'
+    }
   });
   if (r.status === 404) return { exists:false, sha:null };
   if (r.status === 401) throw new Error('التوكن غير صالح أو منتهي (401)');
@@ -681,7 +679,6 @@ async function ghPut(cfg, content, msg, attempt){
   attempt = attempt || 1;
   var MAX_ATTEMPTS = 4;
 
-  // جلب SHA الحالي
   var m = await ghGet(cfg);
 
   var body = {
@@ -692,31 +689,28 @@ async function ghPut(cfg, content, msg, attempt){
   if (m.exists) body.sha = m.sha;
 
   var r = await fetch('https://api.github.com/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+encodeURIComponent(cfg.path), {
-    method:'PUT',
-    headers:{
-      'Authorization':'token '+cfg.token,
-      'Accept':'application/vnd.github.v3+json',
-      'Content-Type':'application/json'
+    method: 'PUT',
+    headers: {
+      'Authorization': 'token ' + cfg.token,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
     },
-    cache:'no-store',
     body: JSON.stringify(body)
   });
 
-  // 409 Conflict → الملف تغيّر، أعد المحاولة
   if (r.status === 409){
     if (attempt >= MAX_ATTEMPTS){
       var t409 = await r.text();
-      throw new Error('تعارض متكرر بعد '+MAX_ATTEMPTS+' محاولات. أغلق أي تبويب آخر للوحة التحكم وحاول مرة أخرى.\n'+t409.slice(0,200));
+      throw new Error('تعارض متكرر بعد '+MAX_ATTEMPTS+' محاولات. أغلق أي تبويب آخر للوحة التحكم.\n'+t409.slice(0,200));
     }
-    console.warn('[publish] 409 Conflict — إعادة المحاولة رقم '+(attempt+1));
-    // انتظر قليلًا ثم أعد المحاولة
+    console.warn('[publish] 409 — إعادة المحاولة رقم '+(attempt+1));
     await new Promise(function(res){ setTimeout(res, 800 * attempt); });
     return ghPut(cfg, content, msg, attempt + 1);
   }
 
   if (r.status === 401) throw new Error('التوكن غير صالح (401)');
-  if (r.status === 403) throw new Error('صلاحية الكتابة مرفوضة (403). تأكد من نطاق repo في التوكن.');
-  if (r.status === 404) throw new Error('المستودع أو الفرع غير موجود (404). تحقق من Username/Repo/Branch.');
+  if (r.status === 403) throw new Error('صلاحية الكتابة مرفوضة (403). تأكد من نطاق repo.');
+  if (r.status === 404) throw new Error('المستودع أو الفرع غير موجود (404).');
   if (!r.ok){ var t = await r.text(); throw new Error('GitHub PUT '+r.status+': '+t.slice(0,200)); }
   return await r.json();
 }
