@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-08T22:08:34.185Z",
+  "updatedAt": "2026-10-08T22:51:38.018Z",
   "categories": [
     {
       "id": "games",
@@ -72,7 +72,7 @@ window.HERO_DATA = {
     "storeName": "HERO",
     "storeTag": "STORE",
     "logoEmoji": "H",
-    "logoImage": "",
+    "logoImage": "assets/logo.png",
     "heroTitle": "اكتشف منتجات وأدوات رقمية مميزة",
     "heroSub": "تطبيقات، ألعاب، أدوات، دورات ومنتجات رقمية في مكان واحد.",
     "heroBadge": "✨ جديد — منتجات مختارة بعناية",
