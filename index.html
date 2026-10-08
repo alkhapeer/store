@@ -3,102 +3,242 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HERO Store — منتجات وأدوات رقمية مميزة</title>
-<meta name="description" content="اكتشف منتجات وأدوات رقمية مميزة: تطبيقات، ألعاب، أدوات، دورات ومنتجات رقمية في مكان واحد.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>HERO Store — منتجات وأدوات رقمية</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body data-page="home">
+<style>
+:root{
+  --bg:#F7F7FB;--surface:#fff;--text:#0F0F1A;--muted:#6B6B80;--line:#ECECF4;
+  --primary:#6366F1;--primary-2:#A855F7;--accent:#EC4899;--success:#10B981;
+  --radius:22px;--radius-sm:14px;
+  --shadow-sm:0 2px 10px rgba(15,15,26,.05);
+  --shadow:0 12px 34px rgba(15,15,26,.09);
+  --shadow-lg:0 28px 70px rgba(99,102,241,.22);
+  --header-h:66px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font:inherit;font-family:inherit}
+.container{width:100%;max-width:1220px;margin-inline:auto;padding-inline:18px}
+.muted{color:var(--muted)}
+[hidden]{display:none !important}
 
-<!-- ================= HEADER ================= -->
+.site-header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid var(--line)}
+.header-inner{height:var(--header-h);display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0;cursor:pointer}
+.brand-mark{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;font-weight:800;font-size:18px;box-shadow:0 8px 20px rgba(99,102,241,.4);overflow:hidden}
+.brand-mark img{width:100%;height:100%;object-fit:cover}
+.brand-text{font-weight:800;font-size:15px;letter-spacing:.5px;line-height:1}
+.brand-text small{display:block;font-size:9px;font-weight:600;color:var(--muted);letter-spacing:3px;margin-top:2px}
+.search{flex:1;position:relative;max-width:520px;margin-inline:auto}
+.search input{width:100%;height:44px;border-radius:14px;border:1px solid var(--line);background:#F2F2F8;padding:0 44px 0 16px;outline:none;font-size:14.5px;transition:.2s}
+.search input:focus{background:#fff;border-color:var(--primary);box-shadow:0 0 0 4px rgba(99,102,241,.12)}
+.search-icon{position:absolute;top:50%;right:15px;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.menu-btn{width:44px;height:44px;border-radius:13px;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:#fff;flex-shrink:0;transition:.2s}
+.menu-btn span{width:18px;height:2px;background:var(--text);border-radius:2px;transition:.25s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+.cats{border-top:1px solid var(--line);background:rgba(255,255,255,.7)}
+.cats-scroll{display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:none;-ms-overflow-style:none}
+.cats-scroll::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:999px;font-size:13.5px;font-weight:600;border:1px solid var(--line);background:#fff;color:var(--muted);transition:.2s;white-space:nowrap}
+.chip:hover{border-color:#d8d8ea;color:var(--text)}
+.chip.active{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(99,102,241,.35)}
+
+.hero{position:relative;overflow:hidden;margin-top:22px;border-radius:28px;padding:52px 40px;background:linear-gradient(135deg,var(--primary) 0%,var(--primary-2) 45%,var(--accent) 100%);color:#fff;box-shadow:var(--shadow-lg)}
+.hero.has-image{background-size:cover;background-position:center}
+.hero.has-image::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.55),rgba(0,0,0,.15));pointer-events:none}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(560px 260px at 85% 15%,rgba(255,255,255,.28),transparent 60%),radial-gradient(420px 240px at 10% 90%,rgba(255,255,255,.16),transparent 60%);pointer-events:none}
+.hero-inner{position:relative;max-width:640px;z-index:1}
+.hero .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);padding:5px 13px;border-radius:999px;font-size:12.5px;font-weight:700;backdrop-filter:blur(8px);margin-bottom:18px}
+.hero h1{margin:0 0 12px;font-size:clamp(26px,4.2vw,44px);font-weight:800;line-height:1.25;letter-spacing:-.5px}
+.hero p{margin:0 0 26px;font-size:clamp(14.5px,1.6vw,17px);opacity:.94;max-width:520px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:46px;padding:0 22px;border-radius:14px;font-weight:700;font-size:14.5px;transition:.18s;white-space:nowrap;border:1px solid transparent;text-decoration:none}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;box-shadow:0 10px 24px rgba(99,102,241,.35)}
+.btn-light{background:#fff;color:var(--primary);box-shadow:0 10px 24px rgba(0,0,0,.15)}
+.btn-ghost{background:rgba(255,255,255,.16);color:#fff;border-color:rgba(255,255,255,.36)}
+.btn-outline{background:#fff;border-color:var(--line);color:var(--text)}
+.btn-lg{height:52px;padding:0 28px;font-size:15.5px}
+.btn-block{width:100%}
+
+.section{margin-top:46px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px}
+.section-head h2{margin:0;font-size:clamp(18px,2.2vw,23px);font-weight:800;letter-spacing:-.3px}
+.link-more{font-size:14px;font-weight:700;color:var(--primary);display:inline-flex;align-items:center;gap:5px;cursor:pointer}
+
+.grid{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:660px){.grid{grid-template-columns:repeat(3,1fr);gap:18px}}
+@media(min-width:1000px){.grid{grid-template-columns:repeat(4,1fr);gap:22px}}
+
+.card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column;transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,border-color .28s;position:relative;cursor:pointer}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:#DFDFF0}
+.card-media{position:relative;aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,var(--c1,#6366F1),var(--c2,#A855F7));display:grid;place-items:center}
+.card-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card-emoji{font-size:52px;filter:drop-shadow(0 8px 18px rgba(0,0,0,.25));transition:transform .35s}
+.card:hover .card-emoji{transform:scale(1.14) rotate(-5deg)}
+.card-badge{position:absolute;top:10px;right:10px;z-index:2;background:rgba(255,255,255,.96);color:var(--primary);font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px);box-shadow:0 4px 10px rgba(0,0,0,.12)}
+.card-badge.new{background:var(--accent);color:#fff}
+.card-body{padding:14px 14px 16px;display:flex;flex-direction:column;flex:1;gap:7px}
+.card-seller{font-size:11.5px;color:var(--muted);font-weight:600}
+.card-title{font-size:15px;font-weight:800;margin:0;line-height:1.4;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.card-desc{font-size:12.8px;color:var(--muted);margin:0;line-height:1.55;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.card-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:2px}
+.rating{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:700;color:#8B6D00}
+.rating svg{color:#F5B301}
+.price{font-size:15px;font-weight:800;color:var(--primary)}
+.price.free{color:var(--success)}
+
+.cat-grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:660px){.cat-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1000px){.cat-grid{grid-template-columns:repeat(6,1fr)}}
+.cat-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius-sm);padding:18px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;transition:.25s;text-align:center;cursor:pointer}
+.cat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#DFDFF0}
+.cat-icon{font-size:30px}
+.cat-name{font-size:13.5px;font-weight:700}
+.cat-count{font-size:11.5px;color:var(--muted)}
+
+#results{padding-top:26px}
+.results-head h2{margin:0 0 4px;font-size:clamp(20px,2.6vw,26px);font-weight:800}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:14px 0 22px}
+.field{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}
+.field select{height:38px;border-radius:11px;border:1px solid var(--line);background:#fff;padding:0 12px;font-size:13.5px;font-weight:600;color:var(--text);outline:none;cursor:pointer}
+.empty{text-align:center;padding:70px 20px;color:var(--muted)}
+.empty .big{font-size:52px;margin-bottom:12px}
+.empty h3{margin:0 0 6px;color:var(--text);font-size:19px}
+
+.overlay{position:fixed;inset:0;background:rgba(15,15,26,.45);opacity:0;pointer-events:none;transition:.3s;z-index:80;backdrop-filter:blur(2px)}
+.overlay.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(320px,86vw);background:#fff;z-index:90;transform:translateX(100%);transition:transform .34s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:-16px 0 50px rgba(0,0,0,.12)}
+.drawer.open{transform:translateX(0)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
+.drawer-close{width:34px;height:34px;border-radius:10px;background:#F2F2F8;display:grid;place-items:center;font-size:15px}
+.drawer-nav{padding:14px;display:flex;flex-direction:column;gap:2px;overflow-y:auto}
+.drawer-nav a{padding:11px 14px;border-radius:11px;font-size:14.5px;font-weight:600;cursor:pointer}
+.drawer-nav a:hover{background:#F2F2F8;color:var(--primary)}
+.drawer-sep{padding:14px 14px 6px;font-size:11.5px;font-weight:800;color:var(--muted);letter-spacing:1.5px}
+
+.pdp{padding-top:22px}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:var(--muted);margin-bottom:20px;cursor:pointer}
+.pdp-hero{display:grid;gap:26px;grid-template-columns:1fr;background:#fff;border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:var(--shadow-sm)}
+@media(min-width:900px){.pdp-hero{grid-template-columns:1.05fr 1fr;padding:32px;gap:36px}}
+.pdp-media{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(135deg,var(--c1,#6366F1),var(--c2,#A855F7));display:grid;place-items:center}
+.pdp-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pdp-emoji{font-size:120px;filter:drop-shadow(0 16px 34px rgba(0,0,0,.3))}
+.pdp-info{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.pdp-cat{align-self:flex-start;font-size:12px;font-weight:800;padding:5px 12px;border-radius:999px;background:rgba(99,102,241,.1);color:var(--primary)}
+.pdp-title{margin:0;font-size:clamp(24px,3.4vw,36px);font-weight:800;letter-spacing:-.6px;line-height:1.25}
+.pdp-desc{margin:0;font-size:15.5px;color:var(--muted);line-height:1.8}
+.pdp-price{font-size:30px;font-weight:800;color:var(--primary)}
+.pdp-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.pdp-trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;font-size:12.8px;color:var(--muted);font-weight:600}
+.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;margin-top:20px}
+.panel h3{margin:0 0 16px;font-size:19px;font-weight:800}
+.features{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:640px){.features{grid-template-columns:1fr 1fr}}
+.feature{display:flex;gap:11px;align-items:flex-start;padding:14px;border-radius:14px;background:#F8F8FD}
+.feature .tick{width:24px;height:24px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800}
+.feature b{display:block;font-size:14.5px;margin-bottom:2px}
+.feature p{margin:0;font-size:13px;color:var(--muted);line-height:1.6}
+.seller-box{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.seller-avatar{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;font-weight:800;font-size:22px}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.faq details:last-child{border-bottom:0}
+.faq summary{font-weight:700;font-size:14.5px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--primary);font-weight:800;font-size:18px;transition:.2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:10px 0 0;font-size:13.5px;color:var(--muted);line-height:1.8}
+.custom-landing{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;margin-top:20px;line-height:1.9}
+.custom-landing img{border-radius:14px;margin:14px 0}
+
+.site-footer{margin-top:70px;border-top:1px solid var(--line);background:#fff;padding:44px 0 26px}
+.footer-grid{display:grid;gap:30px;grid-template-columns:1fr}
+@media(min-width:640px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr}}
+.footer-grid h4{margin:0 0 12px;font-size:14px;font-weight:800}
+.footer-grid a{display:block;font-size:13.8px;color:var(--muted);padding:4px 0;cursor:pointer}
+.footer-grid a:hover{color:var(--primary)}
+.footer-bottom{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);text-align:center}
+.social-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.social-row a{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:#F2F2F8;font-size:16px;transition:.2s}
+.social-row a:hover{background:var(--primary);color:#fff}
+
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,140%);background:var(--text);color:#fff;padding:11px 20px;border-radius:12px;font-size:13.5px;font-weight:600;z-index:120;transition:transform .35s;box-shadow:0 14px 30px rgba(0,0,0,.25);max-width:90vw;text-align:center}
+.toast.show{transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="index.html" aria-label="HERO Store">
-      <span class="brand-mark">H</span>
-      <span class="brand-text" dir="ltr">HERO<small>STORE</small></span>
-    </a>
-
-    <form class="search" role="search" onsubmit="return false;">
-      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
-      <input id="search-input" type="search" placeholder="ابحث عن منتج، أداة، لعبة..." autocomplete="off" aria-label="بحث">
-    </form>
-
-    <button class="menu-btn" id="menu-btn" aria-label="القائمة" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-
-  <div class="cats">
-    <div class="container">
-      <div class="cats-scroll" id="chips"></div>
+    <div class="brand" onclick="HERO.goHome()">
+      <span class="brand-mark" id="brand-mark">H</span>
+      <span class="brand-text" dir="ltr"><span id="brand-name">HERO</span><small id="brand-tag">STORE</small></span>
     </div>
+    <form class="search" onsubmit="return false;">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+      <input id="search-input" type="search" placeholder="ابحث عن منتج، أداة، لعبة..." autocomplete="off">
+    </form>
+    <button class="menu-btn" id="menu-btn" aria-label="القائمة"><span></span><span></span><span></span></button>
   </div>
+  <div class="cats"><div class="container"><div class="cats-scroll" id="chips"></div></div></div>
 </header>
 
-<!-- ================= DRAWER ================= -->
 <div class="overlay" id="overlay"></div>
-<aside class="drawer" id="drawer" aria-hidden="true">
+<aside class="drawer" id="drawer">
   <div class="drawer-head">
-    <span class="brand-text" dir="ltr">HERO<small>STORE</small></span>
-    <button class="drawer-close" id="drawer-close" aria-label="إغلاق">✕</button>
+    <span class="brand-text" dir="ltr"><span id="drawer-brand">HERO</span><small>STORE</small></span>
+    <button class="drawer-close" id="drawer-close">✕</button>
   </div>
   <nav class="drawer-nav">
-    <a href="index.html">الرئيسية</a>
-    <a href="index.html?all=1">كل المنتجات</a>
+    <a onclick="HERO.goHome()">الرئيسية</a>
+    <a onclick="HERO.goAll()">كل المنتجات</a>
     <div class="drawer-sep">التصنيفات</div>
     <div id="drawer-cats"></div>
-    <div class="drawer-sep">المتجر</div>
-    <a href="#">عن المتجر</a>
-    <a href="#">تواصل معنا</a>
   </nav>
 </aside>
 
-<!-- ================= MAIN ================= -->
 <main>
   <div class="container">
 
-    <!-- HOME VIEW -->
     <section id="home">
-      <div class="hero">
+      <div class="hero" id="hero-box">
         <div class="hero-inner">
-          <span class="badge">✨ جديد — منتجات مختارة بعناية</span>
-          <h1>اكتشف منتجات وأدوات رقمية مميزة</h1>
-          <p>تطبيقات، ألعاب، أدوات، دورات ومنتجات رقمية في مكان واحد — بتجربة تصفح حديثة وسريعة.</p>
+          <span class="badge" id="hero-badge"></span>
+          <h1 id="hero-title"></h1>
+          <p id="hero-sub"></p>
           <div class="hero-actions">
-            <button class="btn btn-light btn-lg" id="hero-cta">اكتشف المنتجات</button>
-            <button class="btn btn-ghost btn-lg" id="hero-cats">تصفّح التصنيفات</button>
+            <button class="btn btn-light btn-lg" onclick="HERO.goAll()" id="hero-cta">اكتشف المنتجات</button>
+            <button class="btn btn-ghost btn-lg" onclick="document.getElementById('cats-section').scrollIntoView({behavior:'smooth'})" id="hero-cta-2">تصفّح التصنيفات</button>
           </div>
         </div>
       </div>
-
-      <section class="section">
-        <div class="section-head"><h2>منتجات مميزة</h2></div>
+      <section class="section" id="featured-section">
+        <div class="section-head"><h2 id="featured-title">منتجات مميزة</h2></div>
         <div class="grid" id="featured-grid"></div>
       </section>
-
-      <section class="section">
-        <div class="section-head">
-          <h2>أحدث المنتجات</h2>
-          <button class="link-more" id="show-all">عرض الكل ←</button>
-        </div>
+      <section class="section" id="latest-section">
+        <div class="section-head"><h2 id="latest-title">أحدث المنتجات</h2><span class="link-more" onclick="HERO.goAll()">عرض الكل ←</span></div>
         <div class="grid" id="latest-grid"></div>
       </section>
-
       <section class="section" id="cats-section">
-        <div class="section-head"><h2>تصفّح التصنيفات</h2></div>
+        <div class="section-head"><h2 id="cats-title">تصفّح التصنيفات</h2></div>
         <div class="cat-grid" id="cat-grid"></div>
       </section>
     </section>
 
-    <!-- RESULTS VIEW -->
     <section id="results" hidden>
       <div class="results-head"><h2 id="results-title"></h2></div>
       <div class="toolbar">
         <span id="results-count" class="muted"></span>
-        <label class="field">
-          <span>ترتيب حسب</span>
+        <label class="field"><span>ترتيب حسب</span>
           <select id="sort-select">
             <option value="featured">المميزة أولًا</option>
             <option value="newest">الأحدث</option>
@@ -111,70 +251,357 @@
       <div class="grid" id="results-grid"></div>
     </section>
 
+    <section id="pdp" hidden><div class="pdp" id="pdp-root"></div></section>
+
   </div>
 </main>
 
-<!-- ================= FOOTER ================= -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="brand" style="margin-bottom:12px">
-          <span class="brand-mark">H</span>
-          <span class="brand-text" dir="ltr">HERO<small>STORE</small></span>
+        <div class="brand" style="margin-bottom:12px" onclick="HERO.goHome()">
+          <span class="brand-mark" id="footer-brand-mark">H</span>
+          <span class="brand-text" dir="ltr"><span id="footer-brand-name">HERO</span><small>STORE</small></span>
         </div>
-        <p class="muted" style="margin:0;font-size:13.5px;max-width:300px">
-          كتالوج منتجات رقمية: أدوات، ألعاب، دورات، تصاميم وخدمات — بتجربة تصفح حديثة.
-        </p>
+        <p class="muted" style="margin:0;font-size:13.5px;max-width:300px" id="footer-about"></p>
+        <div class="social-row" id="footer-social"></div>
       </div>
       <div>
         <h4>المتجر</h4>
-        <a href="index.html?all=1">كل المنتجات</a>
-        <a href="index.html?category=tools">الأدوات</a>
-        <a href="index.html?category=games">الألعاب</a>
-        <a href="index.html?category=services">الخدمات</a>
+        <div id="footer-cats"></div>
       </div>
       <div>
         <h4>روابط</h4>
-        <a href="#">عن المتجر</a>
-        <a href="#">تواصل معنا</a>
-        <a href="#">سياسة الخصوصية</a>
-        <a href="#">الشروط</a>
+        <div id="footer-links"></div>
       </div>
     </div>
-    <div class="footer-bottom">© 2026 HERO — جميع الحقوق محفوظة.</div>
+    <div class="footer-bottom" id="footer-copyright"></div>
   </div>
 </footer>
 
 <div class="toast" id="toast"></div>
 
-<!-- Fallback data (works even without a server) -->
-<script type="application/json" id="products-fallback">
-{
-  "categories": [
-    {"id":"games","name":"الألعاب","icon":"🎮"},
-    {"id":"tools","name":"الأدوات","icon":"🛠️"},
-    {"id":"education","name":"التعليم","icon":"📚"},
-    {"id":"design","name":"التصميم","icon":"🎨"},
-    {"id":"digital-products","name":"منتجات رقمية","icon":"📦"},
-    {"id":"services","name":"الخدمات","icon":"💼"}
-  ],
-  "products": [
-    {"id":"trend-studio","name":"Trend Studio","seller":"HERO","category":"tools","description":"أداة لإنشاء محتوى فيديو احترافي للسوشيال ميديا.","emoji":"🎬","c1":"#5B3DF5","c2":"#8B5CF6","price":"$9","priceValue":9,"rating":4.8,"reviews":124,"featured":true,"new":true,"tags":["video","reels","social media"],"url":"/products/trend-studio/"},
-    {"id":"nabd","name":"نبض التميز","seller":"HERO","category":"education","description":"برنامج تدريبي متكامل لبناء عقلية التميز والإنتاجية.","emoji":"💡","c1":"#FF5C8A","c2":"#FF9A6B","price":"$19","priceValue":19,"rating":4.9,"reviews":89,"featured":true,"new":false,"tags":["self","productivity","course"],"url":"/products/nabd/"},
-    {"id":"pixel-forge","name":"Pixel Forge","seller":"HERO","category":"design","description":"مجموعة أدوات تصميم جاهزة للمصممين والمبتدئين.","emoji":"🎨","c1":"#00C2A8","c2":"#4FD1C5","price":"$12","priceValue":12,"rating":4.7,"reviews":67,"featured":true,"new":false,"tags":["design","ui","assets"],"url":"/products/pixel-forge/"},
-    {"id":"task-flow","name":"Task Flow","seller":"HERO","category":"tools","description":"نظام بسيط لتنظيم المهام اليومية وزيادة التركيز.","emoji":"⚡","c1":"#3B82F6","c2":"#6366F1","price":"$7","priceValue":7,"rating":4.6,"reviews":152,"featured":true,"new":true,"tags":["tasks","productivity","app"],"url":"/products/task-flow/"},
-    {"id":"star-quest","name":"Star Quest","seller":"HERO","category":"games","description":"لعبة مغامرات فضائية بأسلوب بيكسل ممتع.","emoji":"🎮","c1":"#8B5CF6","c2":"#EC4899","price":"مجاني","priceValue":0,"rating":4.5,"reviews":210,"featured":false,"new":true,"tags":["game","web","pixel"],"url":"/products/star-quest/"},
-    {"id":"code-academy","name":"Code Academy","seller":"HERO","category":"education","description":"دورة شاملة لتعلّم البرمجة من الصفر حتى الاحتراف.","emoji":"📚","c1":"#F59E0B","c2":"#F97316","price":"$29","priceValue":29,"rating":4.8,"reviews":340,"featured":false,"new":false,"tags":["code","course","programming"],"url":"/products/code-academy/"},
-    {"id":"sound-kit","name":"Sound Kit","seller":"HERO","category":"digital-products","description":"حزمة مؤثرات صوتية وموسيقى للمونتاج.","emoji":"🎧","c1":"#06B6D4","c2":"#0EA5E9","price":"$15","priceValue":15,"rating":4.4,"reviews":58,"featured":false,"new":false,"tags":["audio","sfx","video"],"url":"/products/sound-kit/"},
-    {"id":"ui-blocks","name":"UI Blocks","seller":"HERO","category":"design","description":"مكوّنات واجهات جاهزة لبناء المواقع بسرعة.","emoji":"🧩","c1":"#A855F7","c2":"#D946EF","price":"$24","priceValue":24,"rating":4.7,"reviews":41,"featured":false,"new":true,"tags":["ui","components","web"],"url":"/products/ui-blocks/"},
-    {"id":"seo-boost","name":"SEO Boost","seller":"HERO","category":"services","description":"خدمة تحسين محركات البحث لموقعك أو متجرك.","emoji":"📈","c1":"#10B981","c2":"#34D399","price":"$49","priceValue":49,"rating":4.9,"reviews":27,"featured":false,"new":false,"tags":["seo","marketing","service"],"url":"/products/seo-boost/"},
-    {"id":"arabic-fonts","name":"Arabic Fonts Pack","seller":"HERO","category":"digital-products","description":"مجموعة خطوط عربية احترافية للتصميم.","emoji":"✍️","c1":"#EF4444","c2":"#F97316","price":"$11","priceValue":11,"rating":4.6,"reviews":96,"featured":false,"new":false,"tags":["fonts","arabic","design"],"url":"/products/arabic-fonts/"}
-  ]
-}
-</script>
+<script src="data.js"></script>
+<script>
+(function(){
+'use strict';
 
-<script src="assets/js/analytics.js"></script>
-<script src="assets/js/app.js"></script>
+function $(s,c){ return (c||document).querySelector(s); }
+function $$(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); }
+function escapeHtml(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(m){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m];}); }
+function toast(msg){ var t=$('#toast'); if(!t)return; t.textContent=msg; t.classList.add('show'); clearTimeout(t._id); t._id=setTimeout(function(){t.classList.remove('show');},2400); }
+
+var FALLBACK = {
+  categories: [],
+  products: [],
+  settings: {
+    storeName:'HERO', storeTag:'STORE', logoEmoji:'H', logoImage:'',
+    heroTitle:'اكتشف منتجات وأدوات رقمية مميزة',
+    heroSub:'تطبيقات، ألعاب، أدوات، دورات ومنتجات رقمية في مكان واحد.',
+    heroBadge:'✨ جديد — منتجات مختارة بعناية',
+    heroCta:'اكتشف المنتجات', heroCta2:'تصفّح التصنيفات',
+    heroImage:'',
+    primaryColor:'#6366F1', secondaryColor:'#A855F7', accentColor:'#EC4899',
+    featuredTitle:'منتجات مميزة', latestTitle:'أحدث المنتجات', catsTitle:'تصفّح التصنيفات',
+    showFeatured:true, showLatest:true, showCats:true,
+    footerAbout:'كتالوج منتجات رقمية: أدوات، ألعاب، دورات، تصاميم وخدمات.',
+    footerCopyright:'© 2026 HERO — جميع الحقوق محفوظة.',
+    social:{ twitter:'', instagram:'', youtube:'', tiktok:'', facebook:'', whatsapp:'', email:'', website:'' },
+    metaTitle:'', metaDescription:''
+  },
+  analytics:{ GA4_ID:'', GTM_ID:'', ADS_ID:'', ADS_CONVERSION_LABEL:'' }
+};
+
+var D = window.HERO_DATA || {};
+var STATE = {
+  categories: D.categories || [],
+  products: D.products || [],
+  settings: Object.assign({}, FALLBACK.settings, D.settings || {}),
+  analytics: Object.assign({}, FALLBACK.analytics, D.analytics || {})
+};
+
+/* Apply theme colors + meta */
+(function applyTheme(){
+  var s = STATE.settings;
+  var r = document.documentElement.style;
+  if (s.primaryColor)   r.setProperty('--primary', s.primaryColor);
+  if (s.secondaryColor) r.setProperty('--primary-2', s.secondaryColor);
+  if (s.accentColor)    r.setProperty('--accent', s.accentColor);
+  if (s.metaTitle) document.title = s.metaTitle;
+  else if (s.storeName) document.title = s.storeName + ' Store';
+  if (s.metaDescription){
+    var m = document.querySelector('meta[name="description"]') || document.createElement('meta');
+    m.setAttribute('name','description'); m.setAttribute('content', s.metaDescription);
+    if (!m.parentNode) document.head.appendChild(m);
+  }
+})();
+
+/* Analytics */
+var A = STATE.analytics;
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = window.gtag || gtag;
+if (A.GTM_ID){
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+    var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;
+    j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',A.GTM_ID);
+}
+if (A.GA4_ID || A.ADS_ID){
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + (A.GA4_ID||A.ADS_ID);
+  document.head.appendChild(s);
+  if (A.GA4_ID){ gtag('js', new Date()); gtag('config', A.GA4_ID, {send_page_view:false}); }
+  if (A.ADS_ID) gtag('config', A.ADS_ID);
+}
+function track(n,p){ p=p||{}; window.dataLayer.push(Object.assign({event:n},p)); if (A.GA4_ID) gtag('event',n,p); }
+function gaItem(p){ return {item_id:p.id,item_name:p.name,item_category:p.category,item_brand:p.seller||'',price:p.priceValue||0,currency:'USD'}; }
+var TRACK = {
+  pageView: function(){ track('page_view',{page_title:document.title,page_location:location.href}); },
+  viewItemList: function(n,items){ track('view_item_list',{item_list_name:n,items:items.map(gaItem)}); },
+  viewItem: function(p){ track('view_item',{value:p.priceValue||0,currency:'USD',items:[gaItem(p)]}); },
+  selectItem: function(p,l){ track('select_item',{item_list_name:l,items:[gaItem(p)]}); },
+  search: function(t,c){ track('search',{search_term:t,results_count:c}); },
+  clickBuy: function(p,u){
+    track('click_buy',{value:p.priceValue||0,currency:'USD',items:[gaItem(p)],outbound_url:u||''});
+    if (A.ADS_ID && A.ADS_CONVERSION_LABEL) gtag('event','conversion',{send_to:A.ADS_ID+'/'+A.ADS_CONVERSION_LABEL,value:p.priceValue||0,currency:'USD',transaction_id:p.id+'-'+Date.now()});
+  },
+  viewSeller: function(p){ track('view_seller',{seller:p.seller,items:[gaItem(p)]}); }
+};
+
+function catOf(id){ for(var i=0;i<STATE.categories.length;i++) if(STATE.categories[i].id===id) return STATE.categories[i]; return {id:id,name:id,icon:'📦'}; }
+function starRow(r){ var f=Math.round(r),s=''; for(var i=0;i<5;i++) s+=(i<f?'★':'☆'); return s; }
+
+function applyBrand(){
+  var s = STATE.settings;
+  $('#brand-name').textContent = s.storeName || 'HERO';
+  $('#brand-tag').textContent = s.storeTag || 'STORE';
+  $('#drawer-brand').textContent = s.storeName || 'HERO';
+  $('#footer-brand-name').textContent = s.storeName || 'HERO';
+  var mark = $('#brand-mark'), fm = $('#footer-brand-mark');
+  if (s.logoImage){ mark.innerHTML = '<img src="'+escapeHtml(s.logoImage)+'" alt="">'; fm.innerHTML = '<img src="'+escapeHtml(s.logoImage)+'" alt="">'; }
+  else { mark.textContent = s.logoEmoji || 'H'; fm.textContent = s.logoEmoji || 'H'; }
+  $('#hero-badge').textContent = s.heroBadge || '';
+  $('#hero-title').textContent = s.heroTitle || '';
+  $('#hero-sub').textContent = s.heroSub || '';
+  $('#hero-cta').textContent = s.heroCta || 'اكتشف المنتجات';
+  $('#hero-cta-2').textContent = s.heroCta2 || 'تصفّح التصنيفات';
+  $('#featured-title').textContent = s.featuredTitle || 'منتجات مميزة';
+  $('#latest-title').textContent = s.latestTitle || 'أحدث المنتجات';
+  $('#cats-title').textContent = s.catsTitle || 'تصفّح التصنيفات';
+  $('#footer-about').textContent = s.footerAbout || '';
+  $('#footer-copyright').textContent = s.footerCopyright || '';
+  if (s.heroImage){ var h = $('#hero-box'); h.style.backgroundImage='url('+s.heroImage+')'; h.classList.add('has-image'); }
+  $('#featured-section').hidden = s.showFeatured === false;
+  $('#latest-section').hidden = s.showLatest === false;
+  $('#cats-section').hidden = s.showCats === false;
+  // social
+  var soc = s.social || {};
+  var icons = { twitter:'𝕏', instagram:'📷', youtube:'▶️', tiktok:'🎵', facebook:'f', whatsapp:'💬', email:'✉️', website:'🔗' };
+  var html = '';
+  Object.keys(icons).forEach(function(k){
+    if (soc[k]){
+      var url = (k==='email') ? ('mailto:'+soc[k]) : soc[k];
+      html += '<a href="'+escapeHtml(url)+'" target="_blank" rel="noopener" title="'+k+'">'+icons[k]+'</a>';
+    }
+  });
+  $('#footer-social').innerHTML = html;
+  // footer cats
+  $('#footer-cats').innerHTML = STATE.categories.slice(0,4).map(function(c){
+    return '<a onclick="HERO.goCat(\''+escapeHtml(c.id)+'\')">'+c.icon+' '+escapeHtml(c.name)+'</a>';
+  }).join('');
+  $('#footer-links').innerHTML = '<a onclick="HERO.goAll()">كل المنتجات</a><a onclick="HERO.goHome()">الرئيسية</a>';
+}
+
+function cardHTML(p, listName){
+  var badge = p.new ? '<span class="card-badge new">جديد</span>' : (p.featured ? '<span class="card-badge">مميز</span>' : '');
+  var priceCls = (p.priceValue===0) ? 'price free' : 'price';
+  var img = p.image ? '<img src="'+escapeHtml(p.image)+'" alt="" loading="lazy" onerror="this.remove()">' : '';
+  return '<article class="card" data-id="'+escapeHtml(p.id)+'" onclick="HERO.openProduct(\''+escapeHtml(p.id)+'\',\''+(listName||'catalog')+'\')">'+
+    '<div class="card-media" style="--c1:'+(p.c1||'#6366F1')+';--c2:'+(p.c2||'#A855F7')+'">'+badge+'<span class="card-emoji">'+(p.emoji||'📦')+'</span>'+img+'</div>'+
+    '<div class="card-body">'+
+      '<span class="card-seller">🏷️ '+escapeHtml(p.seller||'')+'</span>'+
+      '<h3 class="card-title">'+escapeHtml(p.name)+'</h3>'+
+      '<p class="card-desc">'+escapeHtml(p.description)+'</p>'+
+      '<div class="card-meta">'+
+        '<span class="rating"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.9 7.5.8-5.6 5 1.6 7.3L12 18.3 5.5 22l1.6-7.3-5.6-5 7.5-.8z"/></svg>'+Number(p.rating||0).toFixed(1)+'</span>'+
+        '<span class="'+priceCls+'">'+escapeHtml(p.price)+'</span>'+
+      '</div>'+
+      '<button class="btn btn-outline btn-block" style="margin-top:6px" onclick="event.stopPropagation();HERO.openProduct(\''+escapeHtml(p.id)+'\',\''+(listName||'catalog')+'\')">عرض المنتج</button>'+
+    '</div></article>';
+}
+function emptyBlock(m){ return '<div class="empty" style="grid-column:1/-1"><div class="big">📦</div><h3>'+m+'</h3></div>'; }
+
+function renderChips(active){
+  var box = $('#chips'); if (!box) return;
+  var h = '<button class="chip'+(!active?' active':'')+'" data-cat="">الكل</button>';
+  STATE.categories.forEach(function(c){ h += '<button class="chip'+(active===c.id?' active':'')+'" data-cat="'+escapeHtml(c.id)+'">'+c.icon+' '+escapeHtml(c.name)+'</button>'; });
+  box.innerHTML = h;
+}
+function renderDrawerCats(){
+  $('#drawer-cats').innerHTML = STATE.categories.map(function(c){
+    return '<a onclick="HERO.goCat(\''+escapeHtml(c.id)+'\')">'+c.icon+' '+escapeHtml(c.name)+'</a>';
+  }).join('');
+}
+function renderCatGrid(){
+  $('#cat-grid').innerHTML = STATE.categories.map(function(c){
+    var n = STATE.products.filter(function(p){return p.category===c.id;}).length;
+    return '<div class="cat-card" onclick="HERO.goCat(\''+escapeHtml(c.id)+'\')"><span class="cat-icon">'+c.icon+'</span><span class="cat-name">'+escapeHtml(c.name)+'</span><span class="cat-count">'+n+' منتج</span></div>';
+  }).join('') || emptyBlock('لا توجد تصنيفات');
+}
+function renderHome(){
+  var featured = STATE.products.filter(function(p){return p.featured;}).slice(0,8);
+  var latest = STATE.products.slice().sort(function(a,b){return (b.new?1:0)-(a.new?1:0);}).slice(0,8);
+  $('#featured-grid').innerHTML = featured.length ? featured.map(function(p){return cardHTML(p,'featured_products');}).join('') : emptyBlock('لا توجد منتجات مميزة');
+  $('#latest-grid').innerHTML = latest.length ? latest.map(function(p){return cardHTML(p,'latest_products');}).join('') : emptyBlock('لا توجد منتجات');
+  TRACK.viewItemList('featured_products', featured);
+  TRACK.viewItemList('latest_products', latest);
+}
+
+function showView(n){ ['home','results','pdp'].forEach(function(v){ var el=document.getElementById(v); if(el) el.hidden = (v!==n); }); window.scrollTo({top:0,behavior:'auto'}); }
+function goHome(){ showView('home'); renderChips(''); if (location.hash!=='#/') history.replaceState(null,'','#/'); }
+function goAll(){ location.hash = '#/all'; }
+function goCat(id){ location.hash = '#/category/'+id; }
+function goProduct(id){ location.hash = '#/product/'+id; }
+
+function showResults(o){
+  o = o||{};
+  var term = (o.term||'').trim(), cat = o.category||'', sort = o.sort||'featured';
+  var list = STATE.products.filter(function(p){
+    if (cat && p.category!==cat) return false;
+    if (!term) return true;
+    var t = term.toLowerCase();
+    return (p.name+' '+p.description+' '+p.category+' '+(p.tags||[]).join(' ')+' '+(p.seller||'')).toLowerCase().indexOf(t)!==-1;
+  });
+  if (sort==='newest') list.sort(function(a,b){return (b.new?1:0)-(a.new?1:0);});
+  if (sort==='rating') list.sort(function(a,b){return b.rating-a.rating;});
+  if (sort==='price-asc') list.sort(function(a,b){return a.priceValue-b.priceValue;});
+  if (sort==='price-desc') list.sort(function(a,b){return b.priceValue-a.priceValue;});
+  if (sort==='featured') list.sort(function(a,b){return (b.featured?1:0)-(a.featured?1:0);});
+  showView('results');
+  $('#results-title').textContent = term ? 'نتائج البحث عن: '+term : (cat ? catOf(cat).icon+' '+catOf(cat).name : 'كل المنتجات');
+  $('#results-count').textContent = 'وجدنا '+list.length+' منتج';
+  $('#results-grid').innerHTML = list.length ? list.map(function(p){return cardHTML(p, cat?('category_'+cat):'search_results');}).join('') : '<div class="empty" style="grid-column:1/-1"><div class="big">🔍</div><h3>لا توجد نتائج</h3></div>';
+  if (term) TRACK.search(term, list.length);
+  TRACK.viewItemList(cat?('category_'+cat):'search_results', list);
+  renderChips(cat);
+}
+
+function showProduct(id){
+  var p = STATE.products.filter(function(x){return x.id===id;})[0];
+  if (!p){ toast('المنتج غير موجود'); goHome(); return; }
+  if (p.landingUrl){ window.open(p.landingUrl,'_blank','noopener'); return; }
+  showView('pdp');
+  document.title = p.name + ' — ' + (STATE.settings.storeName||'Store');
+  var features = (p.features && p.features.length ? p.features : [
+    ['سهل الاستخدام','واجهة بسيطة تناسب الجميع.'],
+    ['تحديثات مستمرة','تحسينات دورية بدون تكلفة إضافية.'],
+    ['دعم فني','مساعدة مباشرة عند الحاجة.'],
+    ['جودة احترافية','محتوى وأدوات بمستوى احترافي.']
+  ]).map(function(f){ return '<div class="feature"><span class="tick">✓</span><div><b>'+escapeHtml(f[0])+'</b><p>'+escapeHtml(f[1])+'</p></div></div>'; }).join('');
+  var faq = (p.faq && p.faq.length ? p.faq : [
+    ['ما هو هذا المنتج؟', p.description],
+    ['هل أحتاج خبرة سابقة؟','لا، المنتج مناسب للجميع.'],
+    ['كيف أحصل عليه؟','اضغط على "ابدأ الآن".']
+  ]).map(function(q){ return '<details><summary>'+escapeHtml(q[0])+'</summary><p>'+escapeHtml(q[1])+'</p></details>'; }).join('');
+  var img = p.image ? '<img src="'+escapeHtml(p.image)+'" alt="" onerror="this.remove()">' : '';
+  var custom = p.landingHtml ? '<div class="custom-landing">'+p.landingHtml+'</div>' : '';
+  $('#pdp-root').innerHTML = ''+
+    '<span class="back-link" onclick="HERO.goHome()">← العودة للمنتجات</span>'+
+    '<div class="pdp-hero">'+
+      '<div class="pdp-media" style="--c1:'+(p.c1||'#6366F1')+';--c2:'+(p.c2||'#A855F7')+'"><span class="pdp-emoji">'+(p.emoji||'📦')+'</span>'+img+'</div>'+
+      '<div class="pdp-info">'+
+        '<span class="pdp-cat">'+catOf(p.category).icon+' '+escapeHtml(catOf(p.category).name)+'</span>'+
+        '<h1 class="pdp-title">'+escapeHtml(p.name)+'</h1>'+
+        '<div class="rating" style="font-size:14px">'+starRow(p.rating)+' '+Number(p.rating).toFixed(1)+' <span class="muted">('+(p.reviews||0)+' تقييم)</span></div>'+
+        '<p class="pdp-desc">'+escapeHtml(p.description)+'</p>'+
+        '<div class="pdp-price">'+escapeHtml(p.price)+'</div>'+
+        '<div class="pdp-actions"><button class="btn btn-primary btn-lg" id="pdp-buy" style="flex:1;min-width:180px">'+(p.ctaText||'ابدأ الآن')+'</button>'+
+        '<button class="btn btn-outline btn-lg" id="pdp-share">مشاركة</button></div>'+
+        '<div class="pdp-trust"><span>⚡ وصول فوري</span><span>🔒 دفع آمن</span><span>↩️ دعم</span></div>'+
+      '</div>'+
+    '</div>'+
+    custom+
+    '<div class="panel"><h3>لماذا هذا المنتج؟</h3><div class="features">'+features+'</div></div>'+
+    '<div class="panel"><h3>عن التاجر</h3><div class="seller-box">'+
+      '<div class="seller-avatar">'+escapeHtml((p.seller||'H').charAt(0))+'</div>'+
+      '<div style="flex:1;min-width:160px"><b style="font-size:15px">'+escapeHtml(p.seller||'')+'</b></div>'+
+    '</div></div>'+
+    '<div class="panel faq"><h3>الأسئلة الشائعة</h3>'+faq+'</div>'+
+    '<div class="panel" style="text-align:center"><h3>جاهز للبدء؟</h3>'+
+      '<p class="muted" style="margin:0 0 16px">احصل على '+escapeHtml(p.name)+' الآن.</p>'+
+      '<button class="btn btn-primary btn-lg" id="pdp-buy-2">'+(p.ctaText||'ابدأ الآن')+'</button></div>';
+
+  function buy(){
+    TRACK.clickBuy(p, p.buyUrl||'');
+    if (p.buyUrl){ toast('جاري تحويلك...'); setTimeout(function(){window.open(p.buyUrl,'_blank','noopener');},450); }
+    else toast('لم يُضف رابط شراء لهذا المنتج');
+  }
+  ['pdp-buy','pdp-buy-2'].forEach(function(i){ var e=document.getElementById(i); if(e) e.addEventListener('click', buy); });
+  var sh = $('#pdp-share');
+  if (sh) sh.addEventListener('click', function(){
+    if (navigator.share) navigator.share({title:p.name, url:location.href});
+    else if (navigator.clipboard){ navigator.clipboard.writeText(location.href); toast('تم نسخ الرابط'); }
+  });
+  TRACK.viewItem(p);
+}
+
+function route(){
+  var h = location.hash || '#/';
+  if (h.indexOf('#/product/')===0){ showProduct(h.substring('#/product/'.length)); return; }
+  if (h.indexOf('#/category/')===0){ showResults({category:h.substring('#/category/'.length)}); return; }
+  if (h === '#/all'){ showResults({}); return; }
+  goHome();
+}
+
+function bindUI(){
+  var mb=$('#menu-btn'), dr=$('#drawer'), ov=$('#overlay'), cb=$('#drawer-close');
+  function op(){ dr.classList.add('open'); ov.classList.add('show'); mb.setAttribute('aria-expanded','true'); }
+  function cl(){ dr.classList.remove('open'); ov.classList.remove('show'); mb.setAttribute('aria-expanded','false'); }
+  mb.addEventListener('click', function(){ dr.classList.contains('open')?cl():op(); });
+  ov.addEventListener('click', cl); cb.addEventListener('click', cl);
+  $$('.drawer-nav a').forEach(function(a){ a.addEventListener('click', cl); });
+
+  document.addEventListener('click', function(e){
+    var c = e.target.closest('.chip');
+    if (!c) return;
+    var id = c.getAttribute('data-cat');
+    if (!id) goAll(); else goCat(id);
+  });
+  var inp=$('#search-input'), t;
+  inp.addEventListener('input', function(){
+    clearTimeout(t);
+    t = setTimeout(function(){
+      var v = inp.value.trim();
+      if (!v){ goHome(); return; }
+      showResults({term:v});
+    }, 260);
+  });
+  $('#sort-select').addEventListener('change', function(){
+    var c = location.hash.indexOf('#/category/')===0 ? location.hash.substring('#/category/'.length) : '';
+    showResults({category:c, term:'', sort:this.value});
+  });
+}
+
+function init(){
+  applyBrand(); renderChips(''); renderDrawerCats(); renderHome(); renderCatGrid(); bindUI(); route();
+  window.addEventListener('hashchange', route);
+  TRACK.pageView();
+}
+
+window.HERO = {
+  goHome:goHome, goAll:goAll, goCat:goCat, goProduct:goProduct,
+  openProduct: function(id, list){
+    var p = STATE.products.filter(function(x){return x.id===id;})[0];
+    if (p) TRACK.selectItem(p, list||'catalog');
+    goProduct(id);
+  }
+};
+
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+else init();
+
+})();
+</script>
 </body>
 </html>
