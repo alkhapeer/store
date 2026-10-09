@@ -9,8 +9,8 @@
 
   /* ---------- 1. CONFIG (fill these later) ---------- */
   var CONFIG = {
-    GA4_ID: '',                 // e.g. 'G-XXXXXXXXXX'
-    GTM_ID: '',                 // e.g. 'GTM-XXXXXXX'
+    GA4_ID: 'G-EFXR4NFC0G',                 // e.g. 'G-XXXXXXXXXX'
+    GTM_ID: 'GTM-PJB2HZC4',                 // e.g. 'GTM-XXXXXXX'
     ADS_ID: '',                 // e.g. 'AW-XXXXXXXXX'
     ADS_CONVERSION_LABEL: '',   // e.g. 'AbC-D_efGh'
     CURRENCY: 'USD',
