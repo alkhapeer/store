@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-09T08:12:52.569Z",
+  "updatedAt": "2026-10-09T08:12:52.571Z",
   "categories": [
     {
       "id": "games",
