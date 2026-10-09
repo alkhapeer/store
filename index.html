@@ -228,6 +228,41 @@ input,select,textarea{font:inherit;font-family:inherit}
 /* ============ TOAST ============ */
 .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,140%);background:var(--text);color:#fff;padding:11px 20px;border-radius:12px;font-size:13.5px;font-weight:600;z-index:120;transition:transform .35s;box-shadow:0 14px 30px rgba(0,0,0,.25);max-width:90vw;text-align:center}
 .toast.show{transform:translate(-50%,0)}
+/* ============ ARTICLES ============ */
+.articles-hero{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-2) 100%);color:#fff;padding:48px 40px;border-radius:28px;margin-top:22px;text-align:center;box-shadow:var(--shadow-lg)}
+.articles-hero h1{margin:0 0 10px;font-size:clamp(24px,3.5vw,36px);font-weight:800}
+.articles-hero p{margin:0;opacity:.94;font-size:15px}
+
+.article-card{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.3s;cursor:pointer;display:flex;flex-direction:column}
+.article-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:#DFDFF0}
+.article-cover{aspect-ratio:16/9;background:linear-gradient(135deg,var(--c1,#6366F1),var(--c2,#A855F7));display:grid;place-items:center;font-size:52px;position:relative;overflow:hidden}
+.article-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.article-body{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.article-meta{font-size:11.5px;color:var(--muted);font-weight:600;display:flex;gap:10px;align-items:center}
+.article-meta .dot{width:3px;height:3px;border-radius:50%;background:var(--muted)}
+.article-title{font-size:17px;font-weight:800;margin:0;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.article-excerpt{font-size:13px;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:1}
+.article-read{font-size:13px;font-weight:700;color:var(--primary);display:inline-flex;align-items:center;gap:5px;margin-top:4px}
+
+.article-page{padding-top:22px;max-width:760px;margin-inline:auto}
+.article-page-cover{aspect-ratio:16/9;border-radius:22px;background:linear-gradient(135deg,var(--c1,#6366F1),var(--c2,#A855F7));display:grid;place-items:center;font-size:80px;overflow:hidden;position:relative;margin-bottom:24px}
+.article-page-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.article-page-title{font-size:clamp(24px,3.5vw,34px);font-weight:800;margin:0 0 12px;line-height:1.3}
+.article-page-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted);font-weight:600;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.article-content{font-size:16px;line-height:1.95;color:var(--text)}
+.article-content h2{font-size:22px;font-weight:800;margin:32px 0 12px;line-height:1.4}
+.article-content h3{font-size:18px;font-weight:800;margin:24px 0 10px}
+.article-content p{margin:0 0 16px}
+.article-content ul,.article-content ol{padding-inline-start:24px;margin:0 0 16px}
+.article-content li{margin-bottom:8px}
+.article-content img{border-radius:14px;margin:18px 0;max-width:100%}
+.article-content blockquote{border-inline-start:4px solid var(--primary);padding:12px 18px;background:#F8F8FD;border-radius:8px;margin:18px 0;font-style:italic}
+.article-content code{background:#F2F2F8;padding:2px 7px;border-radius:5px;font-size:14px;font-family:ui-monospace,monospace;direction:ltr;display:inline-block}
+.article-content pre{background:#1A1A2A;color:#F5F5FA;padding:18px;border-radius:14px;overflow-x:auto;direction:ltr;text-align:left;margin:18px 0}
+.article-content pre code{background:transparent;color:inherit;padding:0}
+.article-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:32px;padding-top:20px;border-top:1px solid var(--line)}
+.article-tag{padding:5px 12px;border-radius:999px;background:#F2F2F8;font-size:12.5px;font-weight:600;cursor:pointer;transition:.2s}
+.article-tag:hover{background:var(--primary);color:#fff}
 </style>
 </head>
 <body>
@@ -245,6 +280,8 @@ input,select,textarea{font:inherit;font-family:inherit}
     <button class="menu-btn" id="menu-btn" aria-label="القائمة"><span></span><span></span><span></span></button>
   </div>
   <div class="cats"><div class="container"><div class="cats-scroll" id="chips"></div></div></div>
+  <!-- داخل header-inner، بعد الـ search -->
+<a class="btn btn-outline" onclick="HERO.goArticles()" style="height:44px;padding:0 16px">📝 المقالات</a>
 </header>
 
 <div class="overlay" id="overlay"></div>
@@ -306,8 +343,23 @@ input,select,textarea{font:inherit;font-family:inherit}
       </div>
       <div class="grid" id="results-grid"></div>
     </section>
+    <section id="articles" hidden>
+  <div class="articles-hero">
+    <h1 id="articles-title">📝 المقالات</h1>
+    <p id="articles-sub">نصائح، شروحات، وأفكار مفيدة</p>
+  </div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 18px;align-items:center">
+    <input type="search" id="article-search" placeholder="🔍 ابحث في المقالات..." style="flex:1;min-width:220px;height:44px;padding:0 16px;border-radius:12px;border:1px solid var(--line);background:#fff;font-size:14px;outline:none">
+    <span class="muted" id="articles-count"></span>
+  </div>
+  <div class="grid" id="articles-grid" style="grid-template-columns:repeat(2,1fr)"></div>
+</section>
 
-    <section id="pdp" hidden><div class="pdp" id="pdp-root"></div></section>
+<section id="article" hidden>
+  <div class="article-page" id="article-root"></div>
+</section>
+    
+<section id="pdp" hidden><div class="pdp" id="pdp-root"></div></section>
 
   </div>
 </main>
@@ -710,6 +762,8 @@ function route(){
   if (h.indexOf('#/category/')===0){ showResults({category:h.substring('#/category/'.length)}); return; }
   if (h === '#/all'){ showResults({}); return; }
   goHome();
+  if (h.indexOf('#/article/')===0){ showArticle(h.substring('#/article/'.length)); return; }
+  if (h === '#/articles'){ showArticles(); return; }
 }
 
 /* ============================================================
@@ -760,7 +814,78 @@ function init(){
   window.addEventListener('hashchange', route);
   TRACK.pageView();
 }
+/* ============================================================
+   ARTICLES MODULE
+   ============================================================ */
+var ARTICLES_STATE = window.HERO_ARTICLES || { articles: [] };
 
+function renderArticleCard(a){
+  var cover = a.image
+    ? '<img src="'+escapeHtml(a.image)+'" alt="" loading="lazy" onerror="this.remove()">'
+    : '<span>'+(a.emoji||'📄')+'</span>';
+  var date = a.date ? new Date(a.date).toLocaleDateString('ar-EG', {year:'numeric',month:'long',day:'numeric'}) : '';
+  var readTime = a.readTime || Math.max(1, Math.round((a.content||'').split(/\s+/).length / 200));
+  return '<article class="article-card" onclick="HERO.openArticle(\''+escapeHtml(a.id)+'\')">'+
+    '<div class="article-cover" style="--c1:'+(a.c1||'#6366F1')+';--c2:'+(a.c2||'#A855F7')+'">'+cover+'</div>'+
+    '<div class="article-body">'+
+      '<div class="article-meta">'+(date?'<span>'+date+'</span><span class="dot"></span>':'')+'<span>'+readTime+' دقائق قراءة</span></div>'+
+      '<h3 class="article-title">'+escapeHtml(a.title)+'</h3>'+
+      '<p class="article-excerpt">'+escapeHtml(a.excerpt||a.content||'').slice(0,160)+'</p>'+
+      '<span class="article-read">اقرأ المزيد ←</span>'+
+    '</div></article>';
+}
+
+function renderArticlesGrid(filter){
+  var list = ARTICLES_STATE.articles.slice().sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+  if (filter){
+    var t = filter.toLowerCase();
+    list = list.filter(function(a){ return (a.title+' '+(a.excerpt||'')+' '+(a.tags||[]).join(' ')).toLowerCase().indexOf(t)!==-1; });
+  }
+  var grid = $('#articles-grid');
+  var count = $('#articles-count');
+  if (count) count.textContent = list.length ? list.length+' مقال' : '';
+  if (!list.length){
+    grid.innerHTML = '<div class="empty" style="grid-column:1/-1"><div class="big">📝</div><h3>لا توجد مقالات</h3></div>';
+    return;
+  }
+  grid.innerHTML = list.map(renderArticleCard).join('');
+}
+
+function showArticles(){
+  ['home','results','pdp','articles','article'].forEach(function(v){
+    var el = document.getElementById(v); if (el) el.hidden = (v!=='articles');
+  });
+  window.scrollTo({top:0,behavior:'auto'});
+  renderArticlesGrid();
+  var inp = $('#article-search');
+  if (inp){ inp.value=''; inp.oninput = function(){ renderArticlesGrid(this.value.trim()); }; }
+}
+
+function showArticle(id){
+  var a = ARTICLES_STATE.articles.filter(function(x){ return x.id===id; })[0];
+  if (!a){ toast('المقال غير موجود'); showArticles(); return; }
+  ['home','results','pdp','articles','article'].forEach(function(v){
+    var el = document.getElementById(v); if (el) el.hidden = (v!=='article');
+  });
+  window.scrollTo({top:0,behavior:'auto'});
+  document.title = a.title + ' — ' + (STATE.settings.storeName||'Store');
+  var cover = a.image
+    ? '<img src="'+escapeHtml(a.image)+'" alt="" onerror="this.remove()">'
+    : '<span>'+(a.emoji||'📄')+'</span>';
+  var date = a.date ? new Date(a.date).toLocaleDateString('ar-EG', {year:'numeric',month:'long',day:'numeric'}) : '';
+  var tags = (a.tags||[]).map(function(t){ return '<span class="article-tag">#'+escapeHtml(t)+'</span>'; }).join('');
+  $('#article-root').innerHTML = ''+
+    '<span class="back-link" onclick="HERO.goArticles()">← العودة للمقالات</span>'+
+    '<div class="article-page-cover" style="--c1:'+(a.c1||'#6366F1')+';--c2:'+(a.c2||'#A855F7')+'">'+cover+'</div>'+
+    '<h1 class="article-page-title">'+escapeHtml(a.title)+'</h1>'+
+    '<div class="article-page-meta">'+
+      (date?'<span>📅 '+date+'</span>':'')+
+      (a.author?'<span>✍️ '+escapeHtml(a.author)+'</span>':'')+
+      '<span>⏱️ '+(a.readTime||Math.max(1,Math.round((a.content||'').split(/\s+/).length/200)))+' دقائق</span>'+
+    '</div>'+
+    '<div class="article-content">'+(a.content||'')+'</div>'+
+    (tags?'<div class="article-tags">'+tags+'</div>':'');
+}
 /* ============================================================
    PUBLIC API
    ============================================================ */
@@ -770,6 +895,8 @@ window.HERO = {
   goCat: goCat,
   goProduct: goProduct,
   loadMore: loadMore,
+  goArticles: showArticles,
+  openArticle: showArticle,
   openProduct: function(id, list){
     var p = STATE.products.filter(function(x){return x.id===id;})[0];
     if (p) TRACK.selectItem(p, list||'catalog');
@@ -782,5 +909,6 @@ else init();
 
 })();
 </script>
+<script src="articles.js"></script>
 </body>
 </html>
