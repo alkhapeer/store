@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-09T08:12:52.571Z",
+  "updatedAt": "2026-10-09T08:36:18.290Z",
   "categories": [
     {
       "id": "games",
@@ -104,6 +104,46 @@ window.HERO_DATA = {
       ],
       "buyUrl": "https://saatgat.hero1.vip/",
       "landingUrl": "",
+      "landingHtml": ""
+    },
+    {
+      "id": "ts004",
+      "name": "مقياس نبض التميز",
+      "seller": "HERO",
+      "category": "tools",
+      "description": "اكتشف نقاط قوة طفلك \nتقييم نمائي شامل • أنشطة يومية مخصصة • متابعة تطور طفلك يوماً بيوم",
+      "emoji": "📦",
+      "image": "/assets/004.png",
+      "c1": "#6366f1",
+      "c2": "#a855f7",
+      "price": "$9",
+      "priceValue": 9,
+      "rating": 5,
+      "reviews": 9,
+      "ctaText": "",
+      "featured": true,
+      "new": false,
+      "tags": [
+        "تنمية مهارات الطفل",
+        "تقييم قدرات الأطفال",
+        "اكتشاف مواهب الأطفال",
+        "نقاط قوة الطفل",
+        "تطوير شخصية الطفل",
+        "تقييم نمو الطفل",
+        "تنمية قدرات الأطفال",
+        "تربية الأطفال",
+        "التربية الإيجابية",
+        "فهم شخصية الطفل",
+        "كيف أكتشف موهبة طفلي",
+        "كيف أطور مهارات طفلي",
+        "نقاط القوة والضعف عند الأطفال",
+        "التعامل مع سلوك الأطفال",
+        "تنمية ذكاء الطفل",
+        "تحسين ثقة الطفل بنفسه",
+        "دعم نمو الطفل"
+      ],
+      "buyUrl": "",
+      "landingUrl": "https://nabdh.hero1.vip/nabd.html",
       "landingHtml": ""
     }
   ],
