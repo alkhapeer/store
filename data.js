@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-09T08:36:18.289Z",
+  "updatedAt": "2026-10-09T08:39:04.977Z",
   "categories": [
     {
       "id": "games",
@@ -45,8 +45,8 @@ window.HERO_DATA = {
       "image": "assets/images/123.png",
       "c1": "#6366f1",
       "c2": "#a855f7",
-      "price": "أربعة دولار و99 سنت",
-      "priceValue": 4.99,
+      "price": "0",
+      "priceValue": 0,
       "rating": 4.5,
       "reviews": 27,
       "ctaText": "",
@@ -116,8 +116,8 @@ window.HERO_DATA = {
       "image": "/assets/004.png",
       "c1": "#6366f1",
       "c2": "#a855f7",
-      "price": "$9",
-      "priceValue": 9,
+      "price": "0",
+      "priceValue": 0,
       "rating": 5,
       "reviews": 9,
       "ctaText": "",
