@@ -23,7 +23,6 @@ input,select,textarea{font:inherit;font-family:inherit}
 code{background:var(--surface2);padding:1px 6px;border-radius:5px;font-family:ui-monospace,monospace;font-size:12px;direction:ltr;display:inline-block}
 .muted{color:var(--muted)}
 
-/* Layout */
 .layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
 @media(max-width:900px){.layout{grid-template-columns:1fr}}
 
@@ -60,13 +59,11 @@ code{background:var(--surface2);padding:1px 6px;border-radius:5px;font-family:ui
 .content{padding:26px;max-width:1100px;width:100%;margin-inline:auto}
 @media(max-width:600px){.content{padding:16px}}
 
-/* Cards */
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:18px}
 .card h2{margin:0 0 6px;font-size:16px;font-weight:800}
-.card h3{margin:0 0 12px;font-size:14px;font-weight:800;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;font-size:11.5px}
+.card h3{margin:0 0 12px;font-size:11.5px;font-weight:800;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
 .card-desc{color:var(--muted);font-size:13px;margin-bottom:18px;line-height:1.7}
 
-/* Stats */
 .stats{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
 @media(min-width:700px){.stats{grid-template-columns:repeat(4,1fr)}}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;position:relative;overflow:hidden}
@@ -76,7 +73,6 @@ code{background:var(--surface2);padding:1px 6px;border-radius:5px;font-family:ui
 .stat .sub{font-size:11.5px;color:var(--muted);margin-top:4px}
 .stat .ico{position:absolute;top:14px;left:14px;font-size:20px;opacity:.6}
 
-/* Buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:40px;padding:0 16px;border-radius:10px;font-weight:700;font-size:13.5px;transition:.15s;border:1px solid transparent;white-space:nowrap}
 .btn:active{transform:scale(.97)}
 .btn:disabled{opacity:.45;cursor:not-allowed}
@@ -91,7 +87,6 @@ code{background:var(--surface2);padding:1px 6px;border-radius:5px;font-family:ui
 .btn-sm{height:32px;padding:0 11px;font-size:12px;border-radius:8px}
 .btn-block{width:100%}
 
-/* Forms */
 .form-grid{display:grid;gap:16px;grid-template-columns:1fr}
 @media(min-width:640px){.form-grid{grid-template-columns:1fr 1fr}}
 .form-grid .full{grid-column:1/-1}
@@ -102,13 +97,13 @@ code{background:var(--surface2);padding:1px 6px;border-radius:5px;font-family:ui
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(99,102,241,.18)}
 .field textarea{resize:vertical;min-height:80px;line-height:1.7}
 .field textarea.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;direction:ltr;text-align:left;min-height:180px;line-height:1.55}
+.field textarea.article-body{min-height:360px;font-size:14px;line-height:1.9}
 .field input[type="color"]{height:44px;padding:4px;cursor:pointer}
 .field input[type="checkbox"]{width:auto;height:auto;accent-color:var(--primary)}
 .check-row{display:flex;flex-wrap:wrap;gap:18px;margin-top:6px}
 .check{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;cursor:pointer;color:var(--muted)}
 .check input:checked + span{color:var(--text)}
 
-/* Table */
 .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
 table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
 thead{background:var(--surface2)}
@@ -129,21 +124,18 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
 .empty-row{text-align:center;padding:44px 20px;color:var(--muted)}
 .empty-row .big{font-size:44px;margin-bottom:10px}
 
-/* Tags input */
-.tags{display:flex;flex-wrap:wrap;gap:6px;padding:8px;background:var(--surface2);border:1px solid var(--line);border-radius:10px;min-height:44px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;padding:8px;background:var(--surface2);border:1px solid var(--line);border-radius:10px;min-height:44px;cursor:text}
 .tag{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);padding:4px 10px;border-radius:999px;font-size:12.5px;font-weight:600}
 .tag button{color:var(--muted);font-size:14px;line-height:1;padding:0}
 .tag button:hover{color:var(--danger)}
 .tags input{flex:1;min-width:100px;border:0;background:transparent;padding:4px 6px;outline:none;color:var(--text);font-size:13.5px}
 
-/* Notice */
 .notice{padding:12px 16px;border-radius:10px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.3);color:#C7D2FE;font-size:13px;line-height:1.7;margin-bottom:16px}
 .notice.warn{background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.3);color:#FDE68A}
 .notice.danger{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.3);color:#FCA5A5}
 .notice.ok{background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.3);color:#6EE7B7}
 .notice a{color:#fff;text-decoration:underline}
 
-/* Modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);z-index:200;display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:.2s}
 .modal-overlay.show{opacity:1;pointer-events:auto}
 .modal{background:var(--surface);border:1px solid var(--line);border-radius:16px;max-width:520px;width:100%;max-height:85vh;overflow-y:auto;padding:24px;box-shadow:var(--shadow);transform:scale(.96);transition:.2s}
@@ -152,29 +144,32 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
 .modal p{margin:0 0 18px;font-size:14px;color:var(--muted);line-height:1.7}
 .modal-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:20px}
 
-/* Toast */
 .toast{position:fixed;bottom:24px;inset-inline-start:50%;transform:translate(-50%,140%);background:#fff;color:#0F0F1A;padding:12px 20px;border-radius:12px;font-size:13.5px;font-weight:700;z-index:300;transition:transform .3s;box-shadow:0 14px 40px rgba(0,0,0,.5);max-width:90vw;text-align:center}
 .toast.show{transform:translate(-50%,0)}
 .toast.ok{background:#10B981;color:#fff}
 .toast.err{background:#EF4444;color:#fff}
 
-/* Tabs in settings */
-.subtabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:20px;overflow-x:auto}
-.subtab{padding:10px 14px;font-size:13px;font-weight:700;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:.15s}
-.subtab.active{color:var(--text);border-color:var(--primary)}
-.subtab:hover{color:var(--text)}
-
-/* Social grid */
 .social-grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
 @media(min-width:700px){.social-grid{grid-template-columns:repeat(4,1fr)}}
-
-/* Color input row */
 .color-row{display:grid;gap:10px;grid-template-columns:1fr auto}
 .color-row input[type=text]{font-family:ui-monospace,monospace;font-size:12.5px;direction:ltr;text-align:left}
-
-/* Loader */
 .loader{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* Editor preview */
+.editor-toolbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.editor-toolbar button{padding:6px 11px;border-radius:8px;background:var(--surface2);border:1px solid var(--line);font-size:12px;font-weight:700;color:var(--muted);transition:.15s}
+.editor-toolbar button:hover{color:var(--text);border-color:var(--primary)}
+.preview-toggle{display:flex;gap:6px;margin-bottom:10px}
+.preview-toggle button{padding:7px 14px;border-radius:8px;background:var(--surface2);border:1px solid var(--line);font-size:12.5px;font-weight:700;color:var(--muted);transition:.15s}
+.preview-toggle button.active{background:rgba(99,102,241,.15);color:var(--primary);border-color:var(--primary)}
+.preview-panel{padding:18px;background:var(--surface2);border:1px solid var(--line);border-radius:10px;min-height:360px;line-height:1.9;font-size:14px}
+.preview-panel h1,.preview-panel h2,.preview-panel h3{margin-top:1.2em;font-weight:800}
+.preview-panel blockquote{border-inline-start:4px solid var(--primary);padding:10px 16px;background:rgba(99,102,241,.06);border-radius:8px;margin:14px 0;font-style:italic;color:var(--muted)}
+.preview-panel code{background:var(--bg);padding:2px 6px;border-radius:5px;font-family:ui-monospace,monospace;font-size:12.5px;direction:ltr;display:inline-block}
+.preview-panel pre{background:var(--bg);padding:14px;border-radius:10px;overflow-x:auto;direction:ltr;text-align:left;margin:14px 0}
+.preview-panel pre code{background:transparent;padding:0}
+.preview-panel img{max-width:100%;border-radius:10px;margin:10px 0}
 </style>
 </head>
 <body>
@@ -192,10 +187,14 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
       <div class="sb-sep">نظرة عامة</div>
       <a class="sb-link active" data-sec="dashboard"><span class="ico">📊</span> لوحة القيادة</a>
 
-      <div class="sb-sep">المحتوى</div>
+      <div class="sb-sep">المنتجات</div>
       <a class="sb-link" data-sec="products"><span class="ico">📦</span> المنتجات <span class="badge" id="sb-prod-count">0</span></a>
       <a class="sb-link" data-sec="editor"><span class="ico">➕</span> إضافة منتج</a>
       <a class="sb-link" data-sec="categories"><span class="ico">🏷️</span> التصنيفات <span class="badge" id="sb-cat-count">0</span></a>
+
+      <div class="sb-sep">المقالات</div>
+      <a class="sb-link" data-sec="articles"><span class="ico">📝</span> المقالات <span class="badge" id="sb-art-count">0</span></a>
+      <a class="sb-link" data-sec="article-editor"><span class="ico">➕</span> إضافة مقال</a>
 
       <div class="sb-sep">التخصيص</div>
       <a class="sb-link" data-sec="appearance"><span class="ico">🎨</span> المظهر والألوان</a>
@@ -213,7 +212,7 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
     </nav>
 
     <div class="sb-footer">
-      <div>الإصدار 2.0</div>
+      <div>الإصدار 3.0</div>
       <a href="index.html" target="_blank" style="color:var(--primary);font-weight:700">← عرض المتجر ↗</a>
     </div>
   </aside>
@@ -236,8 +235,8 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
       <section class="section" data-sec="dashboard">
         <div class="stats" style="margin-bottom:20px">
           <div class="stat"><span class="ico">📦</span><div class="lbl">المنتجات</div><div class="val" id="st-products">0</div><div class="sub" id="st-products-sub">—</div></div>
+          <div class="stat"><span class="ico">📝</span><div class="lbl">المقالات</div><div class="val" id="st-articles">0</div><div class="sub" id="st-articles-sub">منشورة</div></div>
           <div class="stat"><span class="ico">🏷️</span><div class="lbl">التصنيفات</div><div class="val" id="st-categories">0</div><div class="sub">مصنّفة</div></div>
-          <div class="stat"><span class="ico">⭐</span><div class="lbl">المميزة</div><div class="val" id="st-featured">0</div><div class="sub">تظهر أولًا</div></div>
           <div class="stat"><span class="ico">☁️</span><div class="lbl">حالة النشر</div><div class="val" id="st-publish">—</div><div class="sub" id="st-publish-sub">GitHub</div></div>
         </div>
 
@@ -246,7 +245,9 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
           <p class="card-desc">الوصول السريع للمهام الأكثر استخدامًا.</p>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button class="btn btn-primary" onclick="ADMIN.goSection('editor')">➕ إضافة منتج</button>
+            <button class="btn btn-primary" onclick="ADMIN.newArticle()">📝 إضافة مقال</button>
             <button class="btn btn-outline" onclick="ADMIN.goSection('products')">📦 إدارة المنتجات</button>
+            <button class="btn btn-outline" onclick="ADMIN.goSection('articles')">📝 إدارة المقالات</button>
             <button class="btn btn-outline" onclick="ADMIN.goSection('github')">☁️ إعداد النشر</button>
             <a class="btn btn-outline" href="index.html" target="_blank">👁️ عرض المتجر ↗</a>
           </div>
@@ -260,6 +261,11 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
         <div class="card">
           <h2>📋 آخر المنتجات</h2>
           <div id="dash-recent"></div>
+        </div>
+
+        <div class="card">
+          <h2>📰 آخر المقالات</h2>
+          <div id="dash-recent-articles"></div>
         </div>
       </section>
 
@@ -306,7 +312,7 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
         </div>
       </section>
 
-      <!-- ============ EDITOR ============ -->
+      <!-- ============ PRODUCT EDITOR ============ -->
       <section class="section" data-sec="editor" hidden>
         <form id="product-form" onsubmit="ADMIN.saveProduct(event)">
           <input type="hidden" id="f-editing">
@@ -340,7 +346,7 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
               <div class="field"><label>لون التدرّج 2</label><input id="f-c2" type="color" value="#A855F7"></div>
             </div>
 
-            <h3 style="margin-top:24px">الوسوم والتصنيف</h3>
+            <h3 style="margin-top:24px">الوسوم</h3>
             <div class="field">
               <label>الكلمات المفتاحية <span class="hint">اضغط Enter لإضافة</span></label>
               <div class="tags" id="tags-box" onclick="document.getElementById('tag-input').focus()">
@@ -387,6 +393,120 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
             <div class="field" style="justify-content:end"><button class="btn btn-primary" onclick="ADMIN.addCategory()">➕ إضافة</button></div>
           </div>
         </div>
+      </section>
+
+      <!-- ============ ARTICLES LIST ============ -->
+      <section class="section" data-sec="articles" hidden>
+        <div class="card">
+          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div>
+              <h2 style="margin:0">📝 المقالات</h2>
+              <p class="muted" style="margin:4px 0 0;font-size:13px" id="art-count-line">—</p>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <input type="search" id="art-search" placeholder="🔍 بحث..." style="height:36px;padding:0 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface2);color:var(--text);outline:none;font-size:13px;min-width:180px">
+              <select id="art-filter" style="height:36px;padding:0 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface2);color:var(--text);outline:none;font-size:13px">
+                <option value="">كل المقالات</option>
+                <option value="featured">المميزة</option>
+                <option value="regular">العادية</option>
+              </select>
+              <button class="btn btn-primary btn-sm" onclick="ADMIN.newArticle()">➕ مقال جديد</button>
+            </div>
+          </div>
+
+          <div id="art-bulk-bar" hidden style="background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.3);border-radius:10px;padding:10px 14px;margin-bottom:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <span id="art-bulk-count" style="font-size:13px;font-weight:700">0 محدد</span>
+            <button class="btn btn-outline btn-sm" onclick="ADMIN.bulkArticleFeature(true)">⭐ تمييز</button>
+            <button class="btn btn-outline btn-sm" onclick="ADMIN.bulkArticleFeature(false)">☆ إلغاء التمييز</button>
+            <button class="btn btn-danger btn-sm" onclick="ADMIN.bulkArticleDelete()">🗑️ حذف</button>
+            <button class="btn btn-ghost btn-sm" onclick="ADMIN.clearArticleSelection()">إلغاء التحديد</button>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:34px"><input type="checkbox" id="art-check-all" style="accent-color:var(--primary)"></th>
+                  <th>المقال</th>
+                  <th>التاريخ</th>
+                  <th>الوسوم</th>
+                  <th>الحالة</th>
+                  <th style="text-align:end">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="art-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ARTICLE EDITOR ============ -->
+      <section class="section" data-sec="article-editor" hidden>
+        <form id="article-form" onsubmit="ADMIN.saveArticle(event)">
+          <input type="hidden" id="a-editing">
+
+          <div class="card">
+            <h2 id="article-editor-title">➕ إضافة مقال جديد</h2>
+            <p class="card-desc">املأ الحقول ثم اضغط حفظ. لا تنسَ النشر بعد الانتهاء.</p>
+
+            <h3>المعلومات الأساسية</h3>
+            <div class="form-grid">
+              <div class="field"><label>المعرّف (ID) * <span class="hint">a-z 0-9 -</span></label><input id="a-id" required placeholder="how-to-use-trend-studio" pattern="[a-z0-9\-]+"></div>
+              <div class="field"><label>عنوان المقال *</label><input id="a-title" required placeholder="كيف تستخدم Trend Studio"></div>
+              <div class="field"><label>الكاتب</label><input id="a-author" placeholder="HERO" value="HERO"></div>
+              <div class="field"><label>التاريخ</label><input id="a-date" type="date"></div>
+              <div class="field full"><label>الوصف القصير (Excerpt) * <span class="hint">يظهر في القائمة</span></label><textarea id="a-excerpt" required placeholder="وصف مختصر للمقال..." style="min-height:70px"></textarea></div>
+            </div>
+
+            <h3 style="margin-top:24px">العرض البصري</h3>
+            <div class="form-grid">
+              <div class="field"><label>الإيموجي <span class="hint">بديل الصورة</span></label><input id="a-emoji" placeholder="📄" value="📄" maxlength="4"></div>
+              <div class="field"><label>رابط صورة الغلاف</label><input id="a-image" placeholder="https://... أو assets/img.webp"></div>
+              <div class="field"><label>لون التدرّج 1</label><input id="a-c1" type="color" value="#6366F1"></div>
+              <div class="field"><label>لون التدرّج 2</label><input id="a-c2" type="color" value="#A855F7"></div>
+            </div>
+
+            <h3 style="margin-top:24px">الوسوم</h3>
+            <div class="field">
+              <label>وسوم المقال <span class="hint">اضغط Enter لإضافة</span></label>
+              <div class="tags" id="art-tags-box" onclick="document.getElementById('art-tag-input').focus()">
+                <input id="art-tag-input" placeholder="أضف وسومًا..." onkeydown="ADMIN.articleTagKey(event)">
+              </div>
+            </div>
+
+            <h3 style="margin-top:24px">محتوى المقال (HTML)</h3>
+            <div class="editor-toolbar">
+              <button type="button" onclick="ADMIN.insertHTML('<h2>عنوان فرعي</h2>')">H2</button>
+              <button type="button" onclick="ADMIN.insertHTML('<h3>عنوان صغير</h3>')">H3</button>
+              <button type="button" onclick="ADMIN.insertHTML('<p>فقرة جديدة</p>')">¶ فقرة</button>
+              <button type="button" onclick="ADMIN.insertHTML('<strong>نص عريض</strong>')">B</button>
+              <button type="button" onclick="ADMIN.insertHTML('<em>نص مائل</em>')">I</button>
+              <button type="button" onclick="ADMIN.insertHTML('<ul>\n<li>عنصر 1</li>\n<li>عنصر 2</li>\n</ul>')">• قائمة</button>
+              <button type="button" onclick="ADMIN.insertHTML('<blockquote>اقتباس</blockquote>')">❝ اقتباس</button>
+              <button type="button" onclick="ADMIN.insertHTML('<img src=&quot;رابط-الصورة&quot; alt=&quot;وصف&quot;>')">🖼️ صورة</button>
+              <button type="button" onclick="ADMIN.insertHTML('<pre><code>كود</code></pre>')">&lt;/&gt; كود</button>
+            </div>
+            <div class="preview-toggle">
+              <button type="button" id="tab-write" class="active" onclick="ADMIN.switchEditorTab('write')">✏️ كتابة</button>
+              <button type="button" id="tab-preview" onclick="ADMIN.switchEditorTab('preview')">👁️ معاينة</button>
+            </div>
+            <div class="field">
+              <textarea id="a-content" class="article-body code" placeholder="<p>محتوى المقال هنا...</p>" oninput="ADMIN.syncPreview()"></textarea>
+              <div id="a-preview" class="preview-panel" hidden></div>
+            </div>
+
+            <h3 style="margin-top:24px">الحالة</h3>
+            <div class="check-row">
+              <label class="check"><input type="checkbox" id="a-featured"> <span>⭐ مقال مميز</span></label>
+            </div>
+
+            <div style="display:flex;gap:8px;margin-top:24px;flex-wrap:wrap">
+              <button type="submit" class="btn btn-primary">💾 حفظ المقال</button>
+              <button type="button" class="btn btn-outline" onclick="ADMIN.newArticle()">🗑️ تفريغ / مقال جديد</button>
+              <button type="button" class="btn btn-ghost" onclick="ADMIN.goSection('articles')">→ العودة للقائمة</button>
+            </div>
+          </div>
+        </form>
       </section>
 
       <!-- ============ APPEARANCE ============ -->
@@ -440,6 +560,8 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
             <div class="field"><label>عنوان المنتجات المميزة</label><input id="s-featuredTitle" placeholder="منتجات مميزة"></div>
             <div class="field"><label>عنوان أحدث المنتجات</label><input id="s-latestTitle" placeholder="أحدث المنتجات"></div>
             <div class="field"><label>عنوان التصنيفات</label><input id="s-catsTitle" placeholder="تصفّح التصنيفات"></div>
+            <div class="field"><label>عنوان قسم المقالات</label><input id="s-articlesTitle" placeholder="📝 المقالات"></div>
+            <div class="field full"><label>وصف قسم المقالات</label><input id="s-articlesSub" placeholder="نصائح، شروحات، وأفكار مفيدة"></div>
           </div>
 
           <h3 style="margin-top:24px">إظهار الأقسام</h3>
@@ -447,6 +569,7 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
             <label class="check"><input type="checkbox" id="s-showFeatured"> <span>إظهار قسم المنتجات المميزة</span></label>
             <label class="check"><input type="checkbox" id="s-showLatest"> <span>إظهار قسم أحدث المنتجات</span></label>
             <label class="check"><input type="checkbox" id="s-showCats"> <span>إظهار قسم التصنيفات</span></label>
+            <label class="check"><input type="checkbox" id="s-showArticles"> <span>إظهار قسم المقالات في الرئيسية</span></label>
           </div>
 
           <button class="btn btn-primary" style="margin-top:20px" onclick="ADMIN.saveHero()">💾 حفظ الصفحة الرئيسية</button>
@@ -501,7 +624,7 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
           <h2>📈 التتبع والتحليلات</h2>
           <p class="card-desc">أضف معرّفات Google وسيبدأ التتبع تلقائيًا بعد النشر.</p>
 
-          <div class="notice">الأحداث المدعومة: <code>page_view</code>, <code>view_item_list</code>, <code>view_item</code>, <code>select_item</code>, <code>search</code>, <code>click_buy</code>, <code>view_seller</code></div>
+          <div class="notice">الأحداث المدعومة: <code>page_view</code>, <code>view_item_list</code>, <code>view_item</code>, <code>select_item</code>, <code>search</code>, <code>click_buy</code>, <code>view_seller</code>, <code>view_article</code></div>
 
           <div class="form-grid">
             <div class="field"><label>GA4 Measurement ID</label><input id="a-ga4" placeholder="G-XXXXXXXXXX"></div>
@@ -522,10 +645,10 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
 
           <div class="notice">
             <b>خطوات الحصول على Token:</b><br>
-            1) افتح <a href="https://github.com/settings/tokens?type=beta" target="_blank">Fine-grained tokens</a><br>
-            2) اختر <b>Only select repositories</b> → المستودع<br>
-            3) <b>Contents: Read and write</b><br>
-            4) Generate → انسخه (يبدأ بـ <code>github_pat_</code>)
+            1) افتح <a href="https://github.com/settings/tokens" target="_blank">Personal access tokens (classic)</a><br>
+            2) اضغط <b>Generate new token (classic)</b><br>
+            3) ضع علامة ✅ على <code>repo</code> فقط<br>
+            4) Generate → انسخه (يبدأ بـ <code>ghp_</code>)
           </div>
 
           <div class="notice warn">⚠️ الـ Token يُحفظ في متصفحك فقط. لا تستخدم هذه اللوحة على أجهزة عامة.</div>
@@ -534,12 +657,14 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
             <div class="field"><label>GitHub Username *</label><input id="g-owner" placeholder="username"></div>
             <div class="field"><label>Repository *</label><input id="g-repo" placeholder="my-store"></div>
             <div class="field"><label>Branch</label><input id="g-branch" placeholder="main" value="main"></div>
-            <div class="field"><label>File Path</label><input id="g-path" placeholder="data.js" value="data.js"></div>
+            <div class="field"><label>مسار ملف المنتجات</label><input id="g-path" placeholder="data.js" value="data.js"></div>
+            <div class="field"><label>مسار ملف المقالات</label><input id="g-articles-path" placeholder="articles.js" value="articles.js"></div>
             <div class="field full"><label>Personal Access Token *</label>
-  <form onsubmit="return false;" style="margin:0">
-    <input id="g-token" type="password" placeholder="github_pat_..." autocomplete="new-password">
-  </form>
-</div>
+              <form onsubmit="return false;" style="margin:0">
+                <input id="g-token" type="password" placeholder="ghp_..." autocomplete="new-password">
+              </form>
+            </div>
+          </div>
 
           <div style="display:flex;gap:8px;margin-top:20px;flex-wrap:wrap">
             <button class="btn btn-primary" onclick="ADMIN.saveGitHub()">💾 حفظ الإعدادات</button>
@@ -557,15 +682,18 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
       <!-- ============ RAW ============ -->
       <section class="section" data-sec="raw" hidden>
         <div class="card">
-          <h2>📄 البيانات الخام (JSON)</h2>
+          <h2>📄 البيانات الخام</h2>
           <p class="card-desc">عرض / تعديل / استيراد البيانات مباشرة. للخبراء فقط.</p>
+
+          <div class="preview-toggle" style="margin-bottom:14px">
+            <button type="button" id="raw-tab-products" class="active" onclick="ADMIN.switchRawTab('products')">📦 المنتجات (data.js)</button>
+            <button type="button" id="raw-tab-articles" onclick="ADMIN.switchRawTab('articles')">📝 المقالات (articles.js)</button>
+          </div>
 
           <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
             <button class="btn btn-outline btn-sm" onclick="ADMIN.loadRaw()">🔄 تحديث</button>
             <button class="btn btn-outline btn-sm" onclick="ADMIN.applyRaw()">✅ تطبيق التعديلات</button>
-            <button class="btn btn-outline btn-sm" onclick="ADMIN.downloadBackup()">⬇️ تنزيل data.js</button>
-            <button class="btn btn-outline btn-sm" onclick="document.getElementById('import-file').click()">⬆️ استيراد ملف</button>
-            <input type="file" id="import-file" accept=".js,.json,application/json,text/javascript" hidden onchange="ADMIN.importFile(event)">
+            <button class="btn btn-outline btn-sm" onclick="ADMIN.downloadBackup()">⬇️ تنزيل الملف الحالي</button>
           </div>
 
           <div class="field">
@@ -580,9 +708,10 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
           <h2 style="color:#FCA5A5">⚠️ منطقة الخطر</h2>
           <p class="card-desc">إجراءات لا يمكن التراجع عنها.</p>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn btn-danger" onclick="ADMIN.resetAll()">🗑️ إعادة تعيين كاملة</button>
+            <button class="btn btn-danger" onclick="ADMIN.resetAll()">🗑️ إعادة تعيين كاملة (المنتجات + المقالات)</button>
             <button class="btn btn-danger" onclick="ADMIN.deleteAllProducts()">🗑️ حذف كل المنتجات</button>
             <button class="btn btn-danger" onclick="ADMIN.deleteAllCategories()">🗑️ حذف كل التصنيفات</button>
+            <button class="btn btn-danger" onclick="ADMIN.deleteAllArticles()">🗑️ حذف كل المقالات</button>
           </div>
         </div>
       </section>
@@ -606,15 +735,17 @@ tbody tr:hover{background:rgba(99,102,241,.04)}
 <div class="toast" id="toast"></div>
 
 <script src="data.js"></script>
+<script src="articles.js"></script>
 <script>
 /* ============================================================
-   HERO Store — ADMIN PANEL v2
+   HERO Store — ADMIN PANEL v3 (Products + Articles)
    ============================================================ */
 (function(){
 'use strict';
 
 var GH_KEY = 'hero_admin_gh_v1';
-var DIRTY = false;
+var DIRTY_DATA = false;
+var DIRTY_ARTICLES = false;
 
 /* ---------- Helpers ---------- */
 function $(s,c){ return (c||document).querySelector(s); }
@@ -626,7 +757,13 @@ function toast(msg, type){
   clearTimeout(t._id);
   t._id = setTimeout(function(){ t.className = 'toast'; }, 2600);
 }
-function uid(){ return 'p-'+Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+function slugify(s){
+  return String(s||'').toLowerCase().trim()
+    .replace(/[^\w\s\u0600-\u06FF-]/g,'')
+    .replace(/\s+/g,'-')
+    .replace(/-+/g,'-')
+    .slice(0,60) || ('item-'+Date.now().toString(36));
+}
 function utf8ToBase64(str){ return btoa(unescape(encodeURIComponent(str))); }
 
 /* ---------- State ---------- */
@@ -644,7 +781,8 @@ var STATE = {
     heroCta:'اكتشف المنتجات', heroCta2:'تصفّح التصنيفات', heroImage:'',
     primaryColor:'#6366F1', secondaryColor:'#A855F7', accentColor:'#EC4899',
     featuredTitle:'منتجات مميزة', latestTitle:'أحدث المنتجات', catsTitle:'تصفّح التصنيفات',
-    showFeatured:true, showLatest:true, showCats:true,
+    articlesTitle:'📝 المقالات', articlesSub:'نصائح، شروحات، وأفكار مفيدة',
+    showFeatured:true, showLatest:true, showCats:true, showArticles:true,
     footerAbout:'كتالوج منتجات رقمية: أدوات، ألعاب، دورات، تصاميم وخدمات.',
     footerCopyright:'© 2026 HERO — جميع الحقوق محفوظة.',
     social:{ twitter:'',instagram:'',youtube:'',tiktok:'',facebook:'',whatsapp:'',email:'',website:'' },
@@ -653,13 +791,20 @@ var STATE = {
   analytics: Object.assign({ GA4_ID:'', GTM_ID:'', ADS_ID:'', ADS_CONVERSION_LABEL:'' }, D.analytics || {})
 };
 
+var AR = window.HERO_ARTICLES || {};
+var ARTICLES_STATE = {
+  version: 1,
+  updatedAt: AR.updatedAt || new Date().toISOString(),
+  articles: JSON.parse(JSON.stringify(AR.articles || []))
+};
+
 /* ---------- GitHub config ---------- */
 function getGH(){ try { return JSON.parse(localStorage.getItem(GH_KEY)); } catch(e){ return null; } }
 function setGH(c){ localStorage.setItem(GH_KEY, JSON.stringify(c)); }
 function delGH(){ localStorage.removeItem(GH_KEY); }
 
-async function ghGet(cfg){
-  var url = 'https://api.github.com/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+encodeURIComponent(cfg.path)+'?ref='+cfg.branch+'&t='+Date.now();
+async function ghGet(cfg, path){
+  var url = 'https://api.github.com/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+encodeURIComponent(path)+'?ref='+cfg.branch+'&t='+Date.now();
   var r = await fetch(url, {
     method: 'GET',
     headers: {
@@ -675,20 +820,20 @@ async function ghGet(cfg){
   return { exists:true, sha:d.sha, content:d.content };
 }
 
-async function ghPut(cfg, content, msg, attempt){
+async function ghPut(cfg, path, content, msg, attempt){
   attempt = attempt || 1;
   var MAX_ATTEMPTS = 4;
 
-  var m = await ghGet(cfg);
+  var m = await ghGet(cfg, path);
 
   var body = {
-    message: msg || ('Update '+cfg.path),
+    message: msg || ('Update '+path),
     content: utf8ToBase64(content),
     branch: cfg.branch
   };
   if (m.exists) body.sha = m.sha;
 
-  var r = await fetch('https://api.github.com/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+encodeURIComponent(cfg.path), {
+  var r = await fetch('https://api.github.com/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+encodeURIComponent(path), {
     method: 'PUT',
     headers: {
       'Authorization': 'token ' + cfg.token,
@@ -705,12 +850,12 @@ async function ghPut(cfg, content, msg, attempt){
     }
     console.warn('[publish] 409 — إعادة المحاولة رقم '+(attempt+1));
     await new Promise(function(res){ setTimeout(res, 800 * attempt); });
-    return ghPut(cfg, content, msg, attempt + 1);
+    return ghPut(cfg, path, content, msg, attempt + 1);
   }
 
   if (r.status === 401) throw new Error('التوكن غير صالح (401)');
   if (r.status === 403) throw new Error('صلاحية الكتابة مرفوضة (403). تأكد من نطاق repo.');
-  if (r.status === 404) throw new Error('المستودع أو الفرع غير موجود (404).');
+  if (r.status === 404) throw new Error('المسار غير موجود (404).');
   if (!r.ok){ var t = await r.text(); throw new Error('GitHub PUT '+r.status+': '+t.slice(0,200)); }
   return await r.json();
 }
@@ -719,18 +864,21 @@ function generateDataJs(){
   STATE.updatedAt = new Date().toISOString();
   return '/* HERO Store data — auto-generated */\nwindow.HERO_DATA = ' + JSON.stringify(STATE, null, 2) + ';\n';
 }
+function generateArticlesJs(){
+  ARTICLES_STATE.updatedAt = new Date().toISOString();
+  return '/* HERO Store articles — auto-generated */\nwindow.HERO_ARTICLES = ' + JSON.stringify(ARTICLES_STATE, null, 2) + ';\n';
+}
 
 /* ---------- Publish ---------- */
-function markDirty(){
-  DIRTY = true;
-  updatePublishStatus();
-  updateStats();
-}
+function markDirtyData(){ DIRTY_DATA = true; updatePublishStatus(); updateStats(); }
+function markDirtyArticles(){ DIRTY_ARTICLES = true; updatePublishStatus(); updateStats(); }
+
 function updatePublishStatus(){
   var cfg = getGH();
   var dot = $('#publish-dot'), label = $('#publish-label'), btn = $('#publish-btn');
   var dash = $('#dash-gh-status');
   var st = $('#st-publish'), stSub = $('#st-publish-sub');
+  var anyDirty = DIRTY_DATA || DIRTY_ARTICLES;
 
   if (!cfg || !cfg.token){
     dot.className = 'publish-dot err';
@@ -743,43 +891,58 @@ function updatePublishStatus(){
   }
   dot.className = 'publish-dot ok';
   label.textContent = cfg.owner+'/'+cfg.repo;
-  btn.disabled = !DIRTY;
-  if (dash) dash.innerHTML = '<div class="notice ok">✅ متصل: <b>'+escapeHtml(cfg.owner)+'/'+escapeHtml(cfg.repo)+'</b> → <code>'+escapeHtml(cfg.path)+'</code> ('+escapeHtml(cfg.branch)+')</div>';
-  if (st) st.textContent = DIRTY ? '⚠️' : '✅';
-  if (stSub) stSub.textContent = DIRTY ? 'يوجد تعديلات غير منشورة' : 'محدَّث';
+  btn.disabled = !anyDirty;
+  var dirtyList = [];
+  if (DIRTY_DATA) dirtyList.push('data.js');
+  if (DIRTY_ARTICLES) dirtyList.push('articles.js');
+  if (dash) dash.innerHTML = '<div class="notice ok">✅ متصل: <b>'+escapeHtml(cfg.owner)+'/'+escapeHtml(cfg.repo)+'</b><br>'+
+    '📦 المنتجات: <code>'+escapeHtml(cfg.path)+'</code> · 📝 المقالات: <code>'+escapeHtml(cfg.articlesPath)+'</code></div>';
+  if (st) st.textContent = anyDirty ? '⚠️' : '✅';
+  if (stSub) stSub.textContent = anyDirty ? ('غير منشور: '+dirtyList.join(' + ')) : 'محدَّث';
 }
 
 async function publish(){
   var cfg = getGH();
   if (!cfg || !cfg.token){ toast('اضبط إعدادات GitHub أولًا','err'); return; }
+  if (!DIRTY_DATA && !DIRTY_ARTICLES){ toast('لا توجد تغييرات للنشر','err'); return; }
 
   var btn = $('#publish-btn');
   var orig = btn.textContent;
   btn.disabled = true;
   btn.innerHTML = '<span class="loader"></span> جاري النشر';
 
+  var results = [];
   try {
-    var content = generateDataJs();
-    var res = await ghPut(cfg, content, 'Publish from admin — '+new Date().toISOString());
-    DIRTY = false;
+    if (DIRTY_DATA){
+      await ghPut(cfg, cfg.path, generateDataJs(), 'Publish data.js — '+new Date().toISOString());
+      DIRTY_DATA = false;
+      results.push('data.js ✅');
+    }
+    if (DIRTY_ARTICLES){
+      await ghPut(cfg, cfg.articlesPath, generateArticlesJs(), 'Publish articles.js — '+new Date().toISOString());
+      DIRTY_ARTICLES = false;
+      results.push('articles.js ✅');
+    }
     updatePublishStatus();
     updateStats();
-    toast('✅ تم النشر — سيظهر للزوار خلال دقيقة','ok');
-    console.log('[publish] success', res && res.commit && res.commit.sha);
+    toast('✅ تم النشر: ' + results.join(' · '), 'ok');
   } catch(e){
     console.error('[publish] error:', e);
     var msg = (e.message || 'فشل غير معروف').slice(0, 220);
     toast('❌ فشل النشر: ' + msg, 'err');
     btn.textContent = orig;
     btn.disabled = false;
+    updatePublishStatus();
   }
 }
 
 /* ---------- Sections / Nav ---------- */
 var SECTION_TITLES = {
-  dashboard:'📊 لوحة القيادة', products:'📦 المنتجات', editor:'➕ محرر المنتج',
-  categories:'🏷️ التصنيفات', appearance:'🎨 المظهر والألوان',
-  hero:'🖼️ الصفحة الرئيسية', social:'🔗 الروابط والتواصل', seo:'🔍 SEO',
+  dashboard:'📊 لوحة القيادة',
+  products:'📦 المنتجات', editor:'➕ محرر المنتج', categories:'🏷️ التصنيفات',
+  articles:'📝 المقالات', 'article-editor':'➕ محرر المقال',
+  appearance:'🎨 المظهر والألوان', hero:'🖼️ الصفحة الرئيسية',
+  social:'🔗 الروابط والتواصل', seo:'🔍 SEO',
   analytics:'📈 التتبع والتحليلات', github:'☁️ اتصال GitHub',
   raw:'📄 البيانات الخام', danger:'⚠️ منطقة الخطر'
 };
@@ -790,6 +953,7 @@ function goSection(name){
   if (name==='dashboard') refreshDashboard();
   if (name==='products') renderProductsTable();
   if (name==='categories') renderCategories();
+  if (name==='articles') renderArticlesTable();
   if (name==='appearance') fillAppearance();
   if (name==='hero') fillHero();
   if (name==='social') fillSocial();
@@ -801,14 +965,18 @@ function goSection(name){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-/* ---------- Stats / Dashboard ---------- */
+/* ---------- Stats ---------- */
 function updateStats(){
   $('#sb-prod-count').textContent = STATE.products.length;
   $('#sb-cat-count').textContent = STATE.categories.length;
+  if ($('#sb-art-count')) $('#sb-art-count').textContent = ARTICLES_STATE.articles.length;
   if ($('#st-products')) $('#st-products').textContent = STATE.products.length;
   if ($('#st-categories')) $('#st-categories').textContent = STATE.categories.length;
-  if ($('#st-featured')) $('#st-featured').textContent = STATE.products.filter(function(p){return p.featured;}).length;
+  if ($('#st-articles')) $('#st-articles').textContent = ARTICLES_STATE.articles.length;
+  if ($('#st-articles-sub')) $('#st-articles-sub').textContent = ARTICLES_STATE.articles.filter(function(a){return a.featured;}).length + ' مميز';
   if ($('#prod-count-line')) $('#prod-count-line').textContent = STATE.products.length + ' منتج في ' + STATE.categories.length + ' تصنيف';
+  if ($('#art-count-line')) $('#art-count-line').textContent = ARTICLES_STATE.articles.length + ' مقال';
+
   var recent = STATE.products.slice(-5).reverse();
   if ($('#dash-recent')){
     $('#dash-recent').innerHTML = recent.length ? recent.map(function(p){
@@ -819,10 +987,23 @@ function updateStats(){
       '</div>';
     }).join('') : '<div class="empty-row" style="padding:20px"><div class="big">📦</div>لا توجد منتجات بعد</div>';
   }
+
+  var recentA = ARTICLES_STATE.articles.slice(-5).reverse();
+  if ($('#dash-recent-articles')){
+    $('#dash-recent-articles').innerHTML = recentA.length ? recentA.map(function(a){
+      return '<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)">'+
+        '<div class="thumb" style="--c1:'+(a.c1||'#6366F1')+';--c2:'+(a.c2||'#A855F7')+'">'+(a.emoji||'📄')+'</div>'+
+        '<div style="flex:1;min-width:0"><div class="cell-name">'+escapeHtml(a.title)+'</div><div class="cell-id">'+escapeHtml(a.id)+'</div></div>'+
+        '<button class="btn btn-outline btn-sm" onclick="ADMIN.editArticle(\''+escapeHtml(a.id)+'\')">تعديل</button>'+
+      '</div>';
+    }).join('') : '<div class="empty-row" style="padding:20px"><div class="big">📝</div>لا توجد مقالات بعد</div>';
+  }
 }
 function refreshDashboard(){ updateStats(); updatePublishStatus(); }
 
-/* ---------- Products Table ---------- */
+/* ============================================================
+   PRODUCTS
+   ============================================================ */
 var selected = new Set();
 function renderProductsTable(){
   var search = ($('#prod-search').value||'').toLowerCase();
@@ -867,7 +1048,6 @@ function renderProductsTable(){
     '</tr>';
   }).join('');
 
-  // row-check handlers
   $$('.row-check').forEach(function(cb){
     cb.addEventListener('change', function(){
       if (cb.checked) selected.add(cb.dataset.id); else selected.delete(cb.dataset.id);
@@ -1010,7 +1190,7 @@ function saveProduct(e){
     STATE.products.push(product);
     toast('✅ تمت إضافة المنتج','ok');
   }
-  markDirty();
+  markDirtyData();
   updateStats();
   newProduct();
   goSection('products');
@@ -1023,7 +1203,7 @@ function duplicateProduct(id){
   copy.name = p.name + ' (نسخة)';
   copy.featured = false;
   STATE.products.push(copy);
-  markDirty(); renderProductsTable();
+  markDirtyData(); renderProductsTable();
   toast('تم النسخ: '+copy.id,'ok');
 }
 
@@ -1031,19 +1211,18 @@ function deleteProduct(id){
   openModal('حذف المنتج', 'هل أنت متأكد من حذف "'+id+'"؟ لا يمكن التراجع.', function(){
     STATE.products = STATE.products.filter(function(p){return p.id!==id;});
     selected.delete(id);
-    markDirty(); renderProductsTable(); updateStats();
+    markDirtyData(); renderProductsTable(); updateStats();
     toast('تم الحذف','ok');
     closeModal();
   });
 }
 
-/* ---------- Bulk ---------- */
-function bulkFeature(val){ selected.forEach(function(id){ var p=STATE.products.filter(function(x){return x.id===id;})[0]; if(p) p.featured=val; }); markDirty(); renderProductsTable(); toast('تم التحديث','ok'); }
-function bulkNew(val){ selected.forEach(function(id){ var p=STATE.products.filter(function(x){return x.id===id;})[0]; if(p) p['new']=val; }); markDirty(); renderProductsTable(); toast('تم التحديث','ok'); }
+function bulkFeature(val){ selected.forEach(function(id){ var p=STATE.products.filter(function(x){return x.id===id;})[0]; if(p) p.featured=val; }); markDirtyData(); renderProductsTable(); toast('تم التحديث','ok'); }
+function bulkNew(val){ selected.forEach(function(id){ var p=STATE.products.filter(function(x){return x.id===id;})[0]; if(p) p['new']=val; }); markDirtyData(); renderProductsTable(); toast('تم التحديث','ok'); }
 function bulkDelete(){
   openModal('حذف '+selected.size+' منتج', 'لا يمكن التراجع. متابعة؟', function(){
     STATE.products = STATE.products.filter(function(p){ return !selected.has(p.id); });
-    selected.clear(); markDirty(); renderProductsTable(); updateStats();
+    selected.clear(); markDirtyData(); renderProductsTable(); updateStats();
     toast('تم الحذف','ok'); closeModal();
   });
 }
@@ -1055,7 +1234,7 @@ function addCategory(){
   if (!/^[a-z0-9\-]+$/.test(id)){ toast('المعرّف: a-z 0-9 - فقط','err'); return; }
   if (STATE.categories.some(function(c){return c.id===id;})){ toast('التصنيف موجود','err'); return; }
   STATE.categories.push({id:id, name:name, icon:icon});
-  markDirty(); renderCategories(); updateStats();
+  markDirtyData(); renderCategories(); updateStats();
   $('#c-id').value=''; $('#c-name').value=''; $('#c-icon').value='';
   toast('✅ تمت الإضافة','ok');
 }
@@ -1064,12 +1243,241 @@ function deleteCategory(id){
   if (used>0){ toast('لا يمكن — '+used+' منتج في هذا التصنيف','err'); return; }
   openModal('حذف التصنيف', 'حذف "'+id+'"؟', function(){
     STATE.categories = STATE.categories.filter(function(c){return c.id!==id;});
-    markDirty(); renderCategories(); updateStats();
+    markDirtyData(); renderCategories(); updateStats();
     toast('تم الحذف','ok'); closeModal();
   });
 }
 
-/* ---------- Appearance ---------- */
+/* ============================================================
+   ARTICLES
+   ============================================================ */
+var selectedArticles = new Set();
+
+function renderArticlesTable(){
+  var search = ($('#art-search').value||'').toLowerCase();
+  var filter = $('#art-filter').value;
+
+  var list = ARTICLES_STATE.articles.slice();
+  if (filter === 'featured') list = list.filter(function(a){ return a.featured; });
+  if (filter === 'regular') list = list.filter(function(a){ return !a.featured; });
+  if (search){
+    list = list.filter(function(a){
+      return (a.title+' '+a.id+' '+(a.excerpt||'')+' '+(a.tags||[]).join(' ')).toLowerCase().indexOf(search) !== -1;
+    });
+  }
+  // sort by date desc
+  list.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+
+  var tb = $('#art-tbody');
+  if (!list.length){
+    tb.innerHTML = '<tr><td colspan="6" class="empty-row"><div class="big">📝</div><div>لا توجد مقالات</div></td></tr>';
+    updateArticleBulkBar(); return;
+  }
+
+  tb.innerHTML = list.map(function(a){
+    var date = a.date ? new Date(a.date).toLocaleDateString('ar-EG',{year:'numeric',month:'short',day:'numeric'}) : '—';
+    var tags = (a.tags||[]).slice(0,3).map(function(t){ return '<span class="pill">#'+escapeHtml(t)+'</span>'; }).join(' ');
+    if ((a.tags||[]).length > 3) tags += ' <span class="muted">+'+(a.tags.length-3)+'</span>';
+    return '<tr>'+
+      '<td><input type="checkbox" class="row-art-check" data-id="'+escapeHtml(a.id)+'"'+(selectedArticles.has(a.id)?' checked':'')+' style="accent-color:var(--primary)"></td>'+
+      '<td><div class="cell-thumb">'+
+        '<div class="thumb" style="--c1:'+(a.c1||'#6366F1')+';--c2:'+(a.c2||'#A855F7')+'">'+(a.image?'<img src="'+escapeHtml(a.image)+'" onerror="this.parentNode.textContent=\''+(a.emoji||'📄')+'\'">':(a.emoji||'📄'))+'</div>'+
+        '<div style="min-width:0"><div class="cell-name">'+escapeHtml(a.title)+'</div><div class="cell-id">'+escapeHtml(a.id)+'</div></div>'+
+      '</div></td>'+
+      '<td style="font-size:12.5px;color:var(--muted)">'+date+'</td>'+
+      '<td>'+tags+'</td>'+
+      '<td>'+(a.featured?'<span class="pill ok">⭐ مميز</span>':'<span class="muted">عادي</span>')+'</td>'+
+      '<td><div class="row-actions">'+
+        '<button class="btn btn-outline btn-sm" onclick="ADMIN.editArticle(\''+escapeHtml(a.id)+'\')">✏️</button>'+
+        '<button class="btn btn-outline btn-sm" onclick="ADMIN.duplicateArticle(\''+escapeHtml(a.id)+'\')">📋</button>'+
+        '<button class="btn btn-danger btn-sm" onclick="ADMIN.deleteArticle(\''+escapeHtml(a.id)+'\')">🗑️</button>'+
+      '</div></td>'+
+    '</tr>';
+  }).join('');
+
+  $$('.row-art-check').forEach(function(cb){
+    cb.addEventListener('change', function(){
+      if (cb.checked) selectedArticles.add(cb.dataset.id); else selectedArticles.delete(cb.dataset.id);
+      updateArticleBulkBar();
+    });
+  });
+  var ca = $('#art-check-all');
+  if (ca) ca.checked = list.length>0 && list.every(function(a){return selectedArticles.has(a.id);});
+  updateArticleBulkBar();
+}
+function updateArticleBulkBar(){
+  var bar = $('#art-bulk-bar');
+  if (selectedArticles.size === 0){ bar.hidden = true; return; }
+  bar.hidden = false;
+  $('#art-bulk-count').textContent = selectedArticles.size + ' محدد';
+}
+function clearArticleSelection(){ selectedArticles.clear(); renderArticlesTable(); }
+
+/* ---------- Article tags ---------- */
+var articleTags = [];
+function renderArticleTags(){
+  var box = $('#art-tags-box');
+  var input = $('#art-tag-input');
+  var html = articleTags.map(function(t,i){
+    return '<span class="tag">'+escapeHtml(t)+' <button type="button" onclick="ADMIN.removeArticleTag('+i+')">✕</button></span>';
+  }).join('');
+  box.innerHTML = html;
+  box.appendChild(input);
+}
+function articleTagKey(e){
+  if (e.key === 'Enter' || e.key === ','){
+    e.preventDefault();
+    var v = e.target.value.trim().replace(/,+$/,'');
+    if (v && articleTags.indexOf(v) === -1){
+      articleTags.push(v); e.target.value = ''; renderArticleTags();
+    }
+  } else if (e.key === 'Backspace' && !e.target.value && articleTags.length){
+    articleTags.pop(); renderArticleTags();
+  }
+}
+function removeArticleTag(i){ articleTags.splice(i,1); renderArticleTags(); }
+
+/* ---------- Article editor ---------- */
+function newArticle(){
+  $('#article-form').reset();
+  $('#a-editing').value = '';
+  $('#a-author').value = 'HERO';
+  $('#a-emoji').value = '📄';
+  $('#a-c1').value = '#6366F1';
+  $('#a-c2').value = '#A855F7';
+  $('#a-date').value = new Date().toISOString().slice(0,10);
+  $('#a-content').value = '';
+  $('#a-featured').checked = false;
+  $('#article-editor-title').textContent = '➕ إضافة مقال جديد';
+  articleTags = [];
+  renderArticleTags();
+  switchEditorTab('write');
+  goSection('article-editor');
+}
+
+function editArticle(id){
+  var a = ARTICLES_STATE.articles.filter(function(x){ return x.id===id; })[0];
+  if (!a) return;
+  $('#a-editing').value = a.id;
+  $('#a-id').value = a.id;
+  $('#a-title').value = a.title || '';
+  $('#a-author').value = a.author || 'HERO';
+  $('#a-date').value = a.date || new Date().toISOString().slice(0,10);
+  $('#a-excerpt').value = a.excerpt || '';
+  $('#a-emoji').value = a.emoji || '📄';
+  $('#a-image').value = a.image || '';
+  $('#a-c1').value = a.c1 || '#6366F1';
+  $('#a-c2').value = a.c2 || '#A855F7';
+  $('#a-content').value = a.content || '';
+  $('#a-featured').checked = !!a.featured;
+  articleTags = (a.tags || []).slice();
+  renderArticleTags();
+  $('#article-editor-title').textContent = '✏️ تعديل: ' + a.title;
+  switchEditorTab('write');
+  goSection('article-editor');
+}
+
+function saveArticle(e){
+  e.preventDefault();
+  var editing = $('#a-editing').value;
+  var id = $('#a-id').value.trim();
+  if (!/^[a-z0-9\-]+$/.test(id)){ toast('المعرّف: a-z 0-9 - فقط','err'); return; }
+  if (ARTICLES_STATE.articles.some(function(a){ return a.id===id && a.id!==editing; })){ toast('المعرّف مستخدم','err'); return; }
+
+  var article = {
+    id: id,
+    title: $('#a-title').value.trim(),
+    author: $('#a-author').value.trim() || 'HERO',
+    date: $('#a-date').value || new Date().toISOString().slice(0,10),
+    excerpt: $('#a-excerpt').value.trim(),
+    emoji: $('#a-emoji').value.trim() || '📄',
+    image: $('#a-image').value.trim(),
+    c1: $('#a-c1').value,
+    c2: $('#a-c2').value,
+    content: $('#a-content').value,
+    featured: $('#a-featured').checked,
+    tags: articleTags.slice()
+  };
+
+  if (editing){
+    ARTICLES_STATE.articles = ARTICLES_STATE.articles.map(function(a){ return a.id===editing ? article : a; });
+    toast('✅ تم تحديث المقال','ok');
+  } else {
+    ARTICLES_STATE.articles.push(article);
+    toast('✅ تمت إضافة المقال','ok');
+  }
+  markDirtyArticles();
+  updateStats();
+  newArticle();
+  goSection('articles');
+}
+
+function duplicateArticle(id){
+  var a = ARTICLES_STATE.articles.filter(function(x){ return x.id===id; })[0]; if (!a) return;
+  var copy = JSON.parse(JSON.stringify(a));
+  copy.id = a.id + '-copy-' + Math.random().toString(36).slice(2,5);
+  copy.title = a.title + ' (نسخة)';
+  copy.featured = false;
+  ARTICLES_STATE.articles.push(copy);
+  markDirtyArticles(); renderArticlesTable();
+  toast('تم النسخ: '+copy.id,'ok');
+}
+
+function deleteArticle(id){
+  openModal('حذف المقال', 'هل أنت متأكد من حذف "'+id+'"؟ لا يمكن التراجع.', function(){
+    ARTICLES_STATE.articles = ARTICLES_STATE.articles.filter(function(a){ return a.id!==id; });
+    selectedArticles.delete(id);
+    markDirtyArticles(); renderArticlesTable(); updateStats();
+    toast('تم الحذف','ok');
+    closeModal();
+  });
+}
+
+function bulkArticleFeature(val){
+  selectedArticles.forEach(function(id){
+    var a = ARTICLES_STATE.articles.filter(function(x){ return x.id===id; })[0];
+    if (a) a.featured = val;
+  });
+  markDirtyArticles(); renderArticlesTable(); toast('تم التحديث','ok');
+}
+function bulkArticleDelete(){
+  openModal('حذف '+selectedArticles.size+' مقال', 'لا يمكن التراجع. متابعة؟', function(){
+    ARTICLES_STATE.articles = ARTICLES_STATE.articles.filter(function(a){ return !selectedArticles.has(a.id); });
+    selectedArticles.clear(); markDirtyArticles(); renderArticlesTable(); updateStats();
+    toast('تم الحذف','ok'); closeModal();
+  });
+}
+
+/* ---------- Article preview + toolbar ---------- */
+function switchEditorTab(tab){
+  var writeTab = $('#tab-write'), previewTab = $('#tab-preview');
+  var ta = $('#a-content'), pv = $('#a-preview');
+  if (tab === 'preview'){
+    writeTab.classList.remove('active'); previewTab.classList.add('active');
+    ta.hidden = true; pv.hidden = false; syncPreview();
+  } else {
+    previewTab.classList.remove('active'); writeTab.classList.add('active');
+    ta.hidden = false; pv.hidden = true;
+  }
+}
+function syncPreview(){
+  var pv = $('#a-preview'); if (!pv || pv.hidden) return;
+  pv.innerHTML = $('#a-content').value || '<p class="muted">لا يوجد محتوى بعد.</p>';
+}
+function insertHTML(snippet){
+  var ta = $('#a-content');
+  if (!ta) return;
+  var start = ta.selectionStart, end = ta.selectionEnd;
+  var val = ta.value;
+  ta.value = val.slice(0,start) + snippet + val.slice(end);
+  ta.focus();
+  ta.selectionStart = ta.selectionEnd = start + snippet.length;
+  syncPreview();
+}
+
+/* ============================================================
+   SETTINGS
+   ============================================================ */
 function fillAppearance(){
   var s = STATE.settings;
   $('#s-storeName').value = s.storeName||'';
@@ -1092,33 +1500,33 @@ function saveAppearance(){
   s.primaryColor = $('#s-primaryColorText').value.trim() || $('#s-primaryColor').value;
   s.secondaryColor = $('#s-secondaryColorText').value.trim() || $('#s-secondaryColor').value;
   s.accentColor = $('#s-accentColorText').value.trim() || $('#s-accentColor').value;
-  markDirty();
+  markDirtyData();
   toast('✅ تم الحفظ — لا تنسَ النشر','ok');
 }
 
-/* ---------- Hero ---------- */
 function fillHero(){
   var s = STATE.settings;
-  ['heroBadge','heroTitle','heroSub','heroCta','heroCta2','heroImage','featuredTitle','latestTitle','catsTitle'].forEach(function(k){
+  ['heroBadge','heroTitle','heroSub','heroCta','heroCta2','heroImage','featuredTitle','latestTitle','catsTitle','articlesTitle','articlesSub'].forEach(function(k){
     var el = $('#s-'+k); if (el) el.value = s[k]||'';
   });
   $('#s-showFeatured').checked = s.showFeatured !== false;
   $('#s-showLatest').checked = s.showLatest !== false;
   $('#s-showCats').checked = s.showCats !== false;
+  $('#s-showArticles').checked = s.showArticles !== false;
 }
 function saveHero(){
   var s = STATE.settings;
-  ['heroBadge','heroTitle','heroSub','heroCta','heroCta2','heroImage','featuredTitle','latestTitle','catsTitle'].forEach(function(k){
+  ['heroBadge','heroTitle','heroSub','heroCta','heroCta2','heroImage','featuredTitle','latestTitle','catsTitle','articlesTitle','articlesSub'].forEach(function(k){
     var el = $('#s-'+k); if (el) s[k] = el.value.trim();
   });
   s.showFeatured = $('#s-showFeatured').checked;
   s.showLatest = $('#s-showLatest').checked;
   s.showCats = $('#s-showCats').checked;
-  markDirty();
+  s.showArticles = $('#s-showArticles').checked;
+  markDirtyData();
   toast('✅ تم الحفظ — لا تنسَ النشر','ok');
 }
 
-/* ---------- Social ---------- */
 function fillSocial(){
   var s = STATE.settings.social || {};
   ['twitter','instagram','youtube','tiktok','facebook','whatsapp','email','website'].forEach(function(k){
@@ -1135,11 +1543,10 @@ function saveSocial(){
   });
   s.footerAbout = $('#s-footerAbout').value;
   s.footerCopyright = $('#s-footerCopyright').value;
-  markDirty();
+  markDirtyData();
   toast('✅ تم الحفظ','ok');
 }
 
-/* ---------- SEO ---------- */
 function fillSEO(){
   $('#s-metaTitle').value = STATE.settings.metaTitle||'';
   $('#s-metaDescription').value = STATE.settings.metaDescription||'';
@@ -1149,10 +1556,9 @@ function saveSEO(){
   STATE.settings.metaTitle = $('#s-metaTitle').value;
   STATE.settings.metaDescription = $('#s-metaDescription').value;
   STATE.settings.ogImage = $('#s-ogImage').value;
-  markDirty(); toast('✅ تم الحفظ','ok');
+  markDirtyData(); toast('✅ تم الحفظ','ok');
 }
 
-/* ---------- Analytics ---------- */
 function fillAnalytics(){
   ['GA4_ID','GTM_ID','ADS_ID','ADS_CONVERSION_LABEL'].forEach(function(k){
     var el = $('#a-'+k.toLowerCase().replace(/_/g,'-')); if (el) el.value = STATE.analytics[k]||'';
@@ -1163,7 +1569,7 @@ function saveAnalytics(){
   STATE.analytics.GTM_ID = $('#a-gtm').value.trim();
   STATE.analytics.ADS_ID = $('#a-ads').value.trim();
   STATE.analytics.ADS_CONVERSION_LABEL = $('#a-label').value.trim();
-  markDirty(); toast('✅ تم الحفظ','ok');
+  markDirtyData(); toast('✅ تم الحفظ','ok');
 }
 
 /* ---------- GitHub ---------- */
@@ -1174,16 +1580,19 @@ function fillGitHub(){
   $('#g-repo').value = c.repo||'';
   $('#g-branch').value = c.branch||'main';
   $('#g-path').value = c.path||'data.js';
+  $('#g-articles-path').value = c.articlesPath||'articles.js';
   $('#g-token').value = c.token||'';
   var st = $('#gh-status');
   if (st) st.innerHTML = '<div class="notice ok">✅ متصل: <b>'+escapeHtml(c.owner)+'/'+escapeHtml(c.repo)+'</b></div>';
 }
 function readGH(){
   var owner=$('#g-owner').value.trim(), repo=$('#g-repo').value.trim(),
-      branch=$('#g-branch').value.trim()||'main', path=$('#g-path').value.trim()||'data.js',
+      branch=$('#g-branch').value.trim()||'main',
+      path=$('#g-path').value.trim()||'data.js',
+      articlesPath=$('#g-articles-path').value.trim()||'articles.js',
       token=$('#g-token').value.trim();
   if (!owner||!repo||!token) return null;
-  return {owner:owner,repo:repo,branch:branch,path:path,token:token};
+  return {owner:owner,repo:repo,branch:branch,path:path,articlesPath:articlesPath,token:token};
 }
 function saveGitHub(){
   var c = readGH();
@@ -1198,10 +1607,12 @@ async function testGitHub(){
   var st = $('#gh-status');
   st.innerHTML = '<div class="notice">🧪 جاري الاختبار...</div>';
   try {
-    var r = await ghGet(c);
-    st.innerHTML = r.exists
-      ? '<div class="notice ok">✅ الاتصال ناجح — الملف موجود (sha: '+r.sha.slice(0,7)+')</div>'
-      : '<div class="notice ok">✅ الاتصال ناجح — الملف سيُنشأ عند النشر</div>';
+    var r1 = await ghGet(c, c.path);
+    var r2 = await ghGet(c, c.articlesPath);
+    var msgs = [];
+    msgs.push('📦 <code>'+escapeHtml(c.path)+'</code>: ' + (r1.exists ? 'موجود (sha: '+r1.sha.slice(0,7)+')' : 'سيُنشأ عند النشر'));
+    msgs.push('📝 <code>'+escapeHtml(c.articlesPath)+'</code>: ' + (r2.exists ? 'موجود (sha: '+r2.sha.slice(0,7)+')' : 'سيُنشأ عند النشر'));
+    st.innerHTML = '<div class="notice ok">✅ الاتصال ناجح<br>'+msgs.join('<br>')+'</div>';
     toast('✅ نجح الاتصال','ok');
   } catch(e){
     st.innerHTML = '<div class="notice danger">❌ فشل: '+escapeHtml((e.message||'').slice(0,200))+'</div>';
@@ -1219,68 +1630,81 @@ function clearGitHub(){
 }
 
 /* ---------- RAW ---------- */
+var rawTab = 'products';
+function switchRawTab(tab){
+  rawTab = tab;
+  $('#raw-tab-products').classList.toggle('active', tab==='products');
+  $('#raw-tab-articles').classList.toggle('active', tab==='articles');
+  loadRaw();
+}
 function loadRaw(){
-  $('#raw-json').value = JSON.stringify(STATE, null, 2);
+  if (rawTab === 'articles'){
+    $('#raw-json').value = JSON.stringify(ARTICLES_STATE, null, 2);
+  } else {
+    $('#raw-json').value = JSON.stringify(STATE, null, 2);
+  }
 }
 function applyRaw(){
   try {
     var d = JSON.parse($('#raw-json').value);
-    if (!d.products || !Array.isArray(d.products)) throw new Error('bad format');
-    STATE.categories = d.categories || [];
-    STATE.products   = d.products;
-    STATE.settings   = Object.assign(STATE.settings, d.settings || {});
-    STATE.analytics  = Object.assign(STATE.analytics, d.analytics || {});
-    markDirty(); updateStats();
+    if (rawTab === 'articles'){
+      if (!d.articles || !Array.isArray(d.articles)) throw new Error('bad articles format');
+      ARTICLES_STATE.articles = d.articles;
+      markDirtyArticles();
+    } else {
+      if (!d.products || !Array.isArray(d.products)) throw new Error('bad data format');
+      STATE.categories = d.categories || [];
+      STATE.products   = d.products;
+      STATE.settings   = Object.assign(STATE.settings, d.settings || {});
+      STATE.analytics  = Object.assign(STATE.analytics, d.analytics || {});
+      markDirtyData();
+    }
+    updateStats();
     toast('✅ تم تطبيق التعديلات — لا تنسَ النشر','ok');
   } catch(e){ toast('❌ JSON غير صالح: '+(e.message||'').slice(0,80),'err'); }
 }
 function downloadBackup(){
-  var blob = new Blob([generateDataJs()], {type:'text/javascript'});
+  var content, filename;
+  if (rawTab === 'articles'){
+    content = generateArticlesJs(); filename = 'articles.js';
+  } else {
+    content = generateDataJs(); filename = 'data.js';
+  }
+  var blob = new Blob([content], {type:'text/javascript'});
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'data.js';
+  a.download = filename;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(a.href);
-  toast('تم تنزيل data.js','ok');
-}
-function importFile(e){
-  var f = e.target.files[0]; if (!f) return;
-  var r = new FileReader();
-  r.onload = function(ev){
-    var txt = ev.target.result;
-    var m = txt.match(/window\.HERO_DATA\s*=\s*(\{[\s\S]*\});?/);
-    try {
-      var data = m ? JSON.parse(m[1]) : JSON.parse(txt);
-      if (!data.products) throw new Error('bad');
-      STATE.categories = data.categories || [];
-      STATE.products   = data.products;
-      STATE.settings   = Object.assign(STATE.settings, data.settings || {});
-      STATE.analytics  = Object.assign(STATE.analytics, data.analytics || {});
-      markDirty(); updateStats(); loadRaw();
-      toast('✅ تم الاستيراد','ok');
-    } catch(err){ toast('❌ ملف غير صالح','err'); }
-  };
-  r.readAsText(f); e.target.value = '';
+  toast('تم تنزيل '+filename,'ok');
 }
 
 /* ---------- Danger ---------- */
 function resetAll(){
-  openModal('⚠️ إعادة تعيين كاملة', 'سيتم حذف كل المنتجات والتصنيفات والإعدادات. متابعة؟', function(){
+  openModal('⚠️ إعادة تعيين كاملة', 'سيتم حذف كل المنتجات والتصنيفات والمقالات. متابعة؟', function(){
     STATE = { version:1, updatedAt:new Date().toISOString(), categories:[], products:[],
       settings:Object.assign({}, STATE.settings), analytics:Object.assign({}, STATE.analytics) };
-    markDirty(); updateStats(); goSection('dashboard');
+    ARTICLES_STATE = { version:1, updatedAt:new Date().toISOString(), articles:[] };
+    markDirtyData(); markDirtyArticles();
+    updateStats(); goSection('dashboard');
     toast('تمت إعادة التعيين','ok'); closeModal();
   });
 }
 function deleteAllProducts(){
   openModal('حذف كل المنتجات', 'لا يمكن التراجع.', function(){
-    STATE.products = []; markDirty(); updateStats(); goSection('products');
+    STATE.products = []; markDirtyData(); updateStats(); goSection('products');
     toast('تم الحذف','ok'); closeModal();
   });
 }
 function deleteAllCategories(){
   openModal('حذف كل التصنيفات', 'لا يمكن التراجع.', function(){
-    STATE.categories = []; markDirty(); updateStats(); goSection('categories');
+    STATE.categories = []; markDirtyData(); updateStats(); goSection('categories');
+    toast('تم الحذف','ok'); closeModal();
+  });
+}
+function deleteAllArticles(){
+  openModal('حذف كل المقالات', 'لا يمكن التراجع.', function(){
+    ARTICLES_STATE.articles = []; markDirtyArticles(); updateStats(); goSection('articles');
     toast('تم الحذف','ok'); closeModal();
   });
 }
@@ -1303,7 +1727,7 @@ function bindUI(){
   $('#hamburger').addEventListener('click', function(){ $('#sidebar').classList.toggle('open'); });
   $('#publish-btn').addEventListener('click', publish);
 
-  // products search/filter
+  // products
   $('#prod-search').addEventListener('input', function(){ renderProductsTable(); });
   $('#prod-filter').addEventListener('change', function(){ renderProductsTable(); });
   $('#check-all').addEventListener('change', function(){
@@ -1318,10 +1742,39 @@ function bindUI(){
     renderProductsTable();
   });
 
+  // articles
+  $('#art-search').addEventListener('input', function(){ renderArticlesTable(); });
+  $('#art-filter').addEventListener('change', function(){ renderArticlesTable(); });
+  $('#art-check-all').addEventListener('change', function(){
+    var search = ($('#art-search').value||'').toLowerCase();
+    var filter = $('#art-filter').value;
+    var list = ARTICLES_STATE.articles.slice();
+    if (filter === 'featured') list = list.filter(function(a){ return a.featured; });
+    if (filter === 'regular') list = list.filter(function(a){ return !a.featured; });
+    if (search){
+      list = list.filter(function(a){
+        return (a.title+' '+a.id+' '+(a.excerpt||'')+' '+(a.tags||[]).join(' ')).toLowerCase().indexOf(search) !== -1;
+      });
+    }
+    list.forEach(function(a){ this.checked ? selectedArticles.add(a.id) : selectedArticles.delete(a.id); }, this);
+    renderArticlesTable();
+  });
+
   // color sync
   [['s-primaryColor','s-primaryColorText'],['s-secondaryColor','s-secondaryColorText'],['s-accentColor','s-accentColorText']].forEach(function(pair){
     $('#'+pair[0]).addEventListener('input', function(){ $('#'+pair[1]).value = this.value; });
     $('#'+pair[1]).addEventListener('input', function(){ var v=this.value.trim(); if (/^#[0-9a-fA-F]{6}$/.test(v)) $('#'+pair[0]).value = v; });
+  });
+
+  // article id auto-suggest from title
+  $('#a-title').addEventListener('input', function(){
+    if ($('#a-editing').value) return;
+    var cur = $('#a-id').value;
+    if (!cur || cur === $('#a-id').dataset.auto){
+      var s = slugify(this.value);
+      $('#a-id').value = s;
+      $('#a-id').dataset.auto = s;
+    }
   });
 
   // modal close on overlay
@@ -1329,18 +1782,18 @@ function bindUI(){
 
   // unsaved changes warning
   window.addEventListener('beforeunload', function(e){
-    if (DIRTY){ e.preventDefault(); e.returnValue = ''; }
+    if (DIRTY_DATA || DIRTY_ARTICLES){ e.preventDefault(); e.returnValue = ''; }
   });
 }
 
 function init(){
   bindUI();
   renderTags();
+  renderArticleTags();
   fillCategorySelect();
   updateStats();
   updatePublishStatus();
   refreshDashboard();
-  // Auto open github if not configured
   if (!getGH()) goSection('github');
   else goSection('dashboard');
 }
@@ -1352,20 +1805,26 @@ window.ADMIN = {
   newProduct: newProduct, editProduct: editProduct, saveProduct: saveProduct,
   duplicateProduct: duplicateProduct, deleteProduct: deleteProduct,
   bulkFeature: bulkFeature, bulkNew: bulkNew, bulkDelete: bulkDelete, clearSelection: clearSelection,
-  // tags
   tagKey: tagKey, removeTag: removeTag,
   // categories
   addCategory: addCategory, deleteCategory: deleteCategory,
+  // articles
+  newArticle: newArticle, editArticle: editArticle, saveArticle: saveArticle,
+  duplicateArticle: duplicateArticle, deleteArticle: deleteArticle,
+  bulkArticleFeature: bulkArticleFeature, bulkArticleDelete: bulkArticleDelete,
+  clearArticleSelection: clearArticleSelection,
+  articleTagKey: articleTagKey, removeArticleTag: removeArticleTag,
+  switchEditorTab: switchEditorTab, syncPreview: syncPreview, insertHTML: insertHTML,
   // settings
   saveAppearance: saveAppearance, saveHero: saveHero, saveSocial: saveSocial,
   saveSEO: saveSEO, saveAnalytics: saveAnalytics,
   // github
   saveGitHub: saveGitHub, testGitHub: testGitHub, clearGitHub: clearGitHub,
   // raw
-  loadRaw: loadRaw, applyRaw: applyRaw, downloadBackup: downloadBackup, importFile: importFile,
+  loadRaw: loadRaw, applyRaw: applyRaw, downloadBackup: downloadBackup, switchRawTab: switchRawTab,
   // danger
-  resetAll: resetAll, deleteAllProducts: deleteAllProducts, deleteAllCategories: deleteAllCategories,
-  // modal
+  resetAll: resetAll, deleteAllProducts: deleteAllProducts,
+  deleteAllCategories: deleteAllCategories, deleteAllArticles: deleteAllArticles,
   closeModal: closeModal
 };
 
