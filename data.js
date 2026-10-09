@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-09T08:39:04.978Z",
+  "updatedAt": "2026-10-09T21:37:06.957Z",
   "categories": [
     {
       "id": "games",
@@ -152,8 +152,8 @@ window.HERO_DATA = {
     "storeTag": "STORE",
     "logoEmoji": "H",
     "logoImage": "assets/logo.png",
-    "heroTitle": "اكتشف منتجات وأدوات رقمية مميزة",
-    "heroSub": "تطبيقات، ألعاب، أدوات، دورات ومنتجات رقمية في مكان واحد.",
+    "heroTitle": "لا تشتري ما يشتريه الجميع ! اكتشف منتجات وأدوات رقمية مميزة",
+    "heroSub": "أدوات، ألعاب، دورات، تصاميم وخدمات رقمية — منتقاة يدويًا، جاهزة فورًا.",
     "heroBadge": "✨ جديد — منتجات مختارة بعناية",
     "heroCta": "اكتشف المنتجات",
     "heroCta2": "تصفّح التصنيفات",
@@ -164,9 +164,12 @@ window.HERO_DATA = {
     "featuredTitle": "منتجات مميزة",
     "latestTitle": "أحدث المنتجات",
     "catsTitle": "تصفّح التصنيفات",
+    "articlesTitle": "📝 المقالات",
+    "articlesSub": "نصائح، شروحات، وأفكار مفيدة",
     "showFeatured": true,
     "showLatest": true,
     "showCats": true,
+    "showArticles": true,
     "footerAbout": "كتالوج منتجات رقمية: أدوات، ألعاب، دورات، تصاميم وخدمات.",
     "footerCopyright": "© 2026 HERO — جميع الحقوق محفوظة.",
     "social": {
@@ -179,13 +182,13 @@ window.HERO_DATA = {
       "email": "",
       "website": ""
     },
-    "metaTitle": "",
-    "metaDescription": "",
+    "metaTitle": "HERO Store — منتجات رقمية مميزة | أدوات، ألعاب، دورات",
+    "metaDescription": "HERO Store — منتجات رقمية مميزة: أدوات، ألعاب، دورات، تصاميم وخدمات. جودة منتقاة، وصول فوري. اكتشف الفرق الآن.\n\n",
     "ogImage": ""
   },
   "analytics": {
-    "GA4_ID": "",
-    "GTM_ID": "",
+    "GA4_ID": "G-EFXR4NFC0G",
+    "GTM_ID": "GTM-PJB2HZC4",
     "ADS_ID": "",
     "ADS_CONVERSION_LABEL": ""
   }
