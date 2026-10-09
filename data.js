@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-08T22:51:38.020Z",
+  "updatedAt": "2026-10-09T08:12:52.569Z",
   "categories": [
     {
       "id": "games",
@@ -65,6 +65,45 @@ window.HERO_DATA = {
       ],
       "buyUrl": "https://studio.hero1.vip/",
       "landingUrl": "https://studio.hero1.vip/product-pitch-ar.html",
+      "landingHtml": ""
+    },
+    {
+      "id": "ts001",
+      "name": "سوبر هيرو القدرات والتحصيلي",
+      "seller": "HERO",
+      "category": "education",
+      "description": "طريقك للاستعداد للقدرات والتحصيلي بطريقة منظمة وسهلة تساعدك على التعلم والمراجعة والاستعداد للاختبار.",
+      "emoji": "📦",
+      "image": "/assets/001.png",
+      "c1": "#6366f1",
+      "c2": "#a855f7",
+      "price": "0",
+      "priceValue": 0,
+      "rating": 4.5,
+      "reviews": 7,
+      "ctaText": "",
+      "featured": true,
+      "new": false,
+      "tags": [
+        "القدرات",
+        "اختبار القدرات",
+        "القدرات الكمي",
+        "القدرات اللفظي",
+        "تأسيس قدرات",
+        "شرح القدرات",
+        "تجميعات القدرات",
+        "أسئلة قدرات مع الحل",
+        "تدريب قدرات",
+        "خطة مذاكرة التحصيلي",
+        "الاستعداد للقبول الجامعي",
+        "اختبارات القبول الجامعي في السعودية",
+        "طلاب الثانوية السعودية",
+        "Hero Academy",
+        "أكاديمية هيرو",
+        "اختبار قدرات تجريبي"
+      ],
+      "buyUrl": "https://saatgat.hero1.vip/",
+      "landingUrl": "",
       "landingHtml": ""
     }
   ],
