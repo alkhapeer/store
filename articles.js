@@ -1,7 +1,7 @@
 /* HERO Store articles — auto-generated */
 window.HERO_ARTICLES = {
   "version": 1,
-  "updatedAt": "2026-10-10T21:51:04.746Z",
+  "updatedAt": "2026-10-10T21:51:23.331Z",
   "articles": [
     {
       "id": "note002",
