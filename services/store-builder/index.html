@@ -229,25 +229,40 @@
       </article>
     </div>
 
-    <form class="custom-form" id="custom-form" action="https://formspree.io/f/yourformid" method="POST">
-      <h3>اطلب تصميمًا مخصصًا</h3>
-      <div class="form-row">
-        <label>الاسم <input type="text" name="name" required /></label>
-        <label>وسيلة التواصل <input type="text" name="contact" required placeholder="بريد أو واتساب" /></label>
-      </div>
-      <div class="form-row">
-        <label>نوع النشاط <input type="text" name="business" placeholder="حلويات، أزياء، إلكترونيات..." /></label>
-        <label>القالب المفضل
-          <select name="template">
-            <option>بوتيك</option><option>منزلي</option><option>تقني</option><option>أطفال</option><option>غير محدد</option>
-          </select>
-        </label>
-      </div>
-      <label>تفاصيل إضافية <textarea name="details" rows="4" placeholder="أخبرنا عن هوية متجرك، الألوان المفضلة، والمزايا التي تحتاجها."></textarea></label>
-      <button type="submit" class="btn btn-primary">أرسل الطلب</button>
-      <p class="hint">لا نشارك بياناتك مع أي طرف ثالث.</p>
-    </form>
+   <form class="custom-form" id="custom-form">
+  <h3>اطلب تصميمًا مخصصًا</h3>
+  <div class="form-row">
+    <label>الاسم <input type="text" name="name" required /></label>
+    <label>نوع النشاط <input type="text" name="business" placeholder="حلويات، أزياء، إلكترونيات..." /></label>
   </div>
+  <div class="form-row">
+    <label>القالب المفضل
+      <select name="template">
+        <option>بوتيك</option>
+        <option>منزلي</option>
+        <option>تقني</option>
+        <option>أطفال</option>
+        <option>غير محدد</option>
+      </select>
+    </label>
+    <label>وسيلة تواصل تفضلها
+      <select name="prefer">
+        <option>واتساب</option>
+        <option>تليجرام</option>
+      </select>
+    </label>
+  </div>
+  <label>تفاصيل إضافية
+    <textarea name="details" rows="4" placeholder="أخبرنا عن هوية متجرك، الألوان المفضلة، والمزايا التي تحتاجها."></textarea>
+  </label>
+
+  <div class="publish-actions">
+    <button type="submit" class="btn btn-primary" data-channel="whatsapp">💬 أرسل عبر واتساب</button>
+    <button type="submit" class="btn btn-ghost" data-channel="telegram">✈️ أرسل عبر تليجرام</button>
+  </div>
+  <p class="hint">لا نشارك بياناتك مع أي طرف ثالث.</p>
+</form>
+</div>
 </section>
 
 <!-- GUIDE -->
