@@ -273,17 +273,40 @@ footer a{font-weight:700;color:${t.primary}}
     location.reload();
   });
 
-  /* ---------- Custom form ---------- */
-  $('#custom-form').addEventListener('submit', e => {
-    // إذا لم تضبط Formspree بعد، يفتح البريد كبديل
-    const form = e.target;
-    if (form.action.includes('yourformid')) {
-      e.preventDefault();
-      const data = new FormData(form);
-      const body = [...data.entries()].map(([k,v])=>`${k}: ${v}`).join('\n');
-      location.href = `mailto:hello@hero-store.example?subject=${encodeURIComponent('طلب قالب مخصص')}&body=${encodeURIComponent(body)}`;
-    }
-  });
+/* ---------- Custom form → WhatsApp / Telegram ---------- */
+const CONTACT = {
+  whatsapp: '201234567890',        // ← ضع رقمك بدون + وبدون مسافات
+  telegram: 'hero_store'           // ← ضع معرف تليجرام بدون @
+};
+
+$('#custom-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const form = e.target;
+  const channel = e.submitter?.dataset.channel || 'whatsapp';
+  const data = Object.fromEntries(new FormData(form).entries());
+
+  const message =
+`طلب قالب مخصص
+──────────────
+الاسم: ${data.name || '-'}
+النشاط: ${data.business || '-'}
+القالب المفضل: ${data.template || '-'}
+وسيلة التواصل المفضلة: ${data.prefer || '-'}
+
+تفاصيل:
+${data.details || '-'}`;
+
+  const encoded = encodeURIComponent(message);
+
+  if (channel === 'telegram') {
+    // تليجرام لا يدعم نصًا مسبقًا في الروابط المباشرة، لذا ننسخ الرسالة ونفتح المحادثة
+    navigator.clipboard?.writeText(message).catch(() => {});
+    alert('تم نسخ تفاصيل طلبك. سيتم فتح تليجرام — الصق الرسالة في المحادثة.');
+    window.open(`https://t.me/${CONTACT.telegram}`, '_blank', 'noopener');
+  } else {
+    window.open(`https://wa.me/${CONTACT.whatsapp}?text=${encoded}`, '_blank', 'noopener');
+  }
+});
 
   /* ---------- Init ---------- */
   load();
