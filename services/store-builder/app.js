@@ -302,9 +302,9 @@ ${data.details || '-'}`;
     // تليجرام لا يدعم نصًا مسبقًا في الروابط المباشرة، لذا ننسخ الرسالة ونفتح المحادثة
     navigator.clipboard?.writeText(message).catch(() => {});
     alert('تم نسخ تفاصيل طلبك. سيتم فتح تليجرام — الصق الرسالة في المحادثة.');
-    window.open(`https://t.me/${CONTACT.telegram}`, '_blank', 'noopener');
+    window.open(`https://t.me/${Herocourses}`, '_blank', 'noopener');
   } else {
-    window.open(`https://wa.me/${CONTACT.whatsapp}?text=${encoded}`, '_blank', 'noopener');
+    window.open(`https://wa.me/${249915886600}?text=${encoded}`, '_blank', 'noopener');
   }
 });
 
