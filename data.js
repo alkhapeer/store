@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-10T09:27:10.907Z",
+  "updatedAt": "2026-10-10T20:07:45.895Z",
   "categories": [
     {
       "id": "games",
@@ -176,6 +176,41 @@ window.HERO_DATA = {
       ],
       "buyUrl": "https://t.me/Herocourses",
       "landingUrl": "",
+      "landingHtml": ""
+    },
+    {
+      "id": "ts006",
+      "name": "أداة صانع المتجر الالكتروني",
+      "seller": "HERO",
+      "category": "services",
+      "description": "اصنع متجر إلكتروني مجاني ، مع أداتنا الجبارة سيكون متجرك جاهزا في وقت قياسي ويمكنك تحميله ونشره !",
+      "emoji": "📦",
+      "image": "/services/store-builder/006png.png",
+      "c1": "#6366f1",
+      "c2": "#a855f7",
+      "price": "0",
+      "priceValue": 0,
+      "rating": 5,
+      "reviews": 5,
+      "ctaText": "",
+      "featured": true,
+      "new": false,
+      "tags": [
+        "مولّد متاجر",
+        "متجر إلكتروني مجاني",
+        "إنشاء متجر إلكتروني",
+        "متجر واتساب",
+        "قالب متجر جاهز",
+        "متجر بدون خادم",
+        "متجر HTML",
+        "متجر للبيع",
+        "متجر مشاريع منزلية",
+        "أداة إنشاء متجر",
+        "هيرو ستور",
+        "متجر مجاني"
+      ],
+      "buyUrl": "",
+      "landingUrl": "services/store-builder/store-builder.html",
       "landingHtml": ""
     }
   ],
