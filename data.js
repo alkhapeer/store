@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-10T09:07:27.411Z",
+  "updatedAt": "2026-10-10T09:08:16.370Z",
   "categories": [
     {
       "id": "games",
@@ -150,7 +150,7 @@ window.HERO_DATA = {
       "id": "ts005",
       "name": "صفحة هبوط + اعلان مجاني لأول 100 معلن",
       "seller": "HERO",
-      "category": "games",
+      "category": "design",
       "description": "صفحة هبوط + اعلان مجاني لأول 100 معلن",
       "emoji": "📦",
       "image": "/assets/005.png",
