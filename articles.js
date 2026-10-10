@@ -1,10 +1,10 @@
 /* HERO Store articles — auto-generated */
 window.HERO_ARTICLES = {
   "version": 1,
-  "updatedAt": "2026-10-10T20:55:48.945Z",
+  "updatedAt": "2026-10-10T21:41:19.275Z",
   "articles": [
     {
-      "id": "note001",
+      "id": "note002",
       "title": "كيف تبدأ متجرك الإلكتروني في دقيقة — بدون خبرة تقنية ولا تكلفة",
       "author": "HERO",
       "date": "2026-10-08",
