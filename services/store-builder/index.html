@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>مولّد المتاجر المجاني — أنشئ متجرك في دقيقة | هيرو ستور</title>
+<meta name="description" content="أداة مجانية لتوليد متجر إلكتروني جاهز يعمل بدون خادم. أضف منتجاتك، اختر قالبك، حمّل متجرك واستخدمه فورًا. صنع بواسطة هيرو ستور." />
+<meta name="keywords" content="مولّد متاجر, متجر إلكتروني مجاني, متجر واتساب, قالب متجر, هيرو ستور" />
+<link rel="canonical" href="https://hero-store.github.io/services/store-builder/" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="مولّد المتاجر المجاني — هيرو ستور" />
+<meta property="og:description" content="أنشئ متجرك الإلكتروني في دقيقة، حمّله، وشغّله في أي مكان. مجانًا بالكامل." />
+<meta property="og:url" content="https://hero-store.github.io/services/store-builder/" />
+<meta property="og:locale" content="ar_AR" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="مولّد المتاجر المجاني — هيرو ستور" />
+<meta name="twitter:description" content="أنشئ متجرك الإلكتروني في دقيقة، مجانًا." />
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "مولّد المتاجر — هيرو ستور",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "أداة مجانية لتوليد متجر إلكتروني ثابت يعمل بدون خادم."
+}
+</script>
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="هيرو ستور">
+      <span class="brand-mark">ه</span>
+      <span class="brand-name">هيرو ستور</span>
+    </a>
+    <nav class="site-nav" aria-label="التنقل">
+      <a href="#builder">المولّد</a>
+      <a href="#custom">قوالب مخصصة</a>
+      <a href="#guide">الدليل</a>
+      <a href="/" class="nav-cta">المتجر الرئيسي</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-inner">
+    <h1>متجرك الإلكتروني… <span class="accent">جاهز في دقيقة</span></h1>
+    <p class="hero-sub">أداة مجانية بالكامل. لا تسجيل، لا خادم، لا انتظار. أضف منتجاتك، اختر قالبك، حمّل متجرك وشغّله فورًا.</p>
+    <div class="hero-actions">
+      <a href="#builder" class="btn btn-primary">ابدأ الآن مجانًا</a>
+      <a href="#guide" class="btn btn-ghost">كيف يعمل؟</a>
+    </div>
+    <ul class="hero-points">
+      <li>✅ 4 قوالب جاهزة</li>
+      <li>✅ طلب عبر واتساب</li>
+      <li>✅ دفع يدوي (PayPal، بنكي، محفظة)</li>
+      <li>✅ ملف واحد يعمل في أي مكان</li>
+    </ul>
+  </div>
+</section>
+
+<!-- BUILDER -->
+<section id="builder" class="section">
+  <div class="container">
+    <header class="section-head">
+      <h2>مولّد المتاجر</h2>
+      <p>املأ الخطوات، شاهد المعاينة مباشرة، ثم حمّل متجرك.</p>
+    </header>
+
+    <div class="builder-grid">
+
+      <!-- FORM -->
+      <form id="builder-form" class="builder-form" autocomplete="off">
+
+        <!-- Step 1 -->
+        <fieldset class="step">
+          <legend><span class="step-num">1</span> معلومات المتجر</legend>
+          <label>اسم المتجر <input type="text" id="storeName" required placeholder="مثال: حلويات أم أحمد" /></label>
+          <label>وصف قصير <input type="text" id="storeTagline" placeholder="حلويات منزلية طازجة" /></label>
+          <label>رقم واتساب (مع رمز الدولة) <input type="tel" id="storeWhatsapp" required placeholder="+201234567890" /></label>
+          <label>البريد الإلكتروني (اختياري) <input type="email" id="storeEmail" placeholder="you@example.com" /></label>
+          <label>العملة
+            <select id="storeCurrency">
+              <option value="ج.م">ج.م (مصر)</option>
+              <option value="ر.س">ر.س (السعودية)</option>
+              <option value="د.إ">د.إ (الإمارات)</option>
+              <option value="د.ك">د.ك (الكويت)</option>
+              <option value="د.أ">د.أ (الأردن)</option>
+              <option value="MAD">د.م (المغرب)</option>
+              <option value="USD">USD</option>
+            </select>
+          </label>
+        </fieldset>
+
+        <!-- Step 2 -->
+        <fieldset class="step">
+          <legend><span class="step-num">2</span> المنتجات</legend>
+          <div id="products-list" class="products-list"></div>
+          <button type="button" class="btn btn-outline" id="add-product">+ إضافة منتج</button>
+        </fieldset>
+
+        <!-- Step 3 -->
+        <fieldset class="step">
+          <legend><span class="step-num">3</span> القالب</legend>
+          <div class="template-picker" id="template-picker">
+            <label class="tpl">
+              <input type="radio" name="template" value="minimal" checked />
+              <div class="tpl-card">
+                <div class="tpl-preview tpl-minimal"><span></span><span></span><span></span></div>
+                <strong>بسيط</strong>
+                <small>نظيف، أبيض، أنيق</small>
+              </div>
+            </label>
+            <label class="tpl">
+              <input type="radio" name="template" value="warm" />
+              <div class="tpl-card">
+                <div class="tpl-preview tpl-warm"><span></span><span></span><span></span></div>
+                <strong>دافئ</strong>
+                <small>منزلي، بيج، ودود</small>
+              </div>
+            </label>
+            <label class="tpl">
+              <input type="radio" name="template" value="dark" />
+              <div class="tpl-card">
+                <div class="tpl-preview tpl-dark"><span></span><span></span><span></span></div>
+                <strong>داكن</strong>
+                <small>حديث، عصري، جذاب</small>
+              </div>
+            </label>
+            <label class="tpl">
+              <input type="radio" name="template" value="market" />
+              <div class="tpl-card">
+                <div class="tpl-preview tpl-market"><span></span><span></span><span></span></div>
+                <strong>سوق</strong>
+                <small>تصنيفات، بحث، كثيف</small>
+              </div>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- Step 4 -->
+        <fieldset class="step">
+          <legend><span class="step-num">4</span> طرق الطلب والدفع</legend>
+          <label class="check"><input type="checkbox" id="payWhatsapp" checked /> طلب عبر واتساب</label>
+          <label class="check"><input type="checkbox" id="payPaypal" /> رابط PayPal.me
+            <input type="url" id="paypalLink" placeholder="https://paypal.me/username" class="inline-input" />
+          </label>
+          <label class="check"><input type="checkbox" id="payBank" /> تحويل بنكي
+            <input type="text" id="bankInfo" placeholder="البنك / رقم الحساب / IBAN" class="inline-input" />
+          </label>
+          <label class="check"><input type="checkbox" id="payWallet" /> محفظة إلكترونية
+            <input type="text" id="walletInfo" placeholder="فودافون كاش / 01012345678" class="inline-input" />
+          </label>
+          <label class="check"><input type="checkbox" id="payPhone" /> اتصال هاتفي مباشر</label>
+        </fieldset>
+
+        <!-- Step 5 -->
+        <fieldset class="step">
+          <legend><span class="step-num">5</span> النشر</legend>
+          <div class="publish-actions">
+            <button type="button" class="btn btn-primary" id="download-store">⬇ تحميل المتجر (ملف HTML)</button>
+            <button type="button" class="btn btn-ghost" id="share-store">🔗 نسخ رابط المشاركة</button>
+            <button type="button" class="btn btn-ghost" id="reset-form">🗑 مسح الكل</button>
+          </div>
+          <p class="hint">ملف واحد يعمل مباشرة عند فتحه في المتصفح. ارفعه على أي استضافة مجانية مثل GitHub Pages أو Netlify.</p>
+        </fieldset>
+
+      </form>
+
+      <!-- PREVIEW -->
+      <aside class="builder-preview">
+        <div class="preview-head">
+          <strong>معاينة مباشرة</strong>
+          <div class="preview-toggle">
+            <button type="button" data-device="mobile" class="active">📱</button>
+            <button type="button" data-device="desktop">💻</button>
+          </div>
+        </div>
+        <div class="preview-frame" id="preview-frame">
+          <iframe id="preview-iframe" title="معاينة المتجر" sandbox="allow-scripts allow-same-origin"></iframe>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM TEMPLATES -->
+<section id="custom" class="section section-alt">
+  <div class="container">
+    <header class="section-head">
+      <h2>هل تحتاج تصميمًا خاصًا؟</h2>
+      <p>نصمم لك قالبًا يناسب هوية متجرك بالكامل — من الألوان إلى التخطيط. أخبرنا بما تحتاجه وسنعاود التواصل خلال 24 ساعة.</p>
+    </header>
+
+    <div class="custom-grid">
+      <article class="custom-card">
+        <div class="custom-visual cv-boutique">🛍️</div>
+        <h3>بوتيك</h3>
+        <p>أنيق، هادئ، مناسب للأزياء والمجوهرات.</p>
+      </article>
+      <article class="custom-card">
+        <div class="custom-visual cv-food">🍰</div>
+        <h3>منزلي</h3>
+        <p>دافئ، مريح، مناسب للمأكولات والحلويات.</p>
+      </article>
+      <article class="custom-card">
+        <div class="custom-visual cv-tech">💻</div>
+        <h3>تقني</h3>
+        <p>حديث، داكن، مناسب للإلكترونيات والخدمات.</p>
+      </article>
+      <article class="custom-card">
+        <div class="custom-visual cv-kids">🧸</div>
+        <h3>أطفال</h3>
+        <p>مبهج، ملوّن، مناسب للألعاب والمستلزمات.</p>
+      </article>
+    </div>
+
+    <form class="custom-form" id="custom-form" action="https://formspree.io/f/yourformid" method="POST">
+      <h3>اطلب تصميمًا مخصصًا</h3>
+      <div class="form-row">
+        <label>الاسم <input type="text" name="name" required /></label>
+        <label>وسيلة التواصل <input type="text" name="contact" required placeholder="بريد أو واتساب" /></label>
+      </div>
+      <div class="form-row">
+        <label>نوع النشاط <input type="text" name="business" placeholder="حلويات، أزياء، إلكترونيات..." /></label>
+        <label>القالب المفضل
+          <select name="template">
+            <option>بوتيك</option><option>منزلي</option><option>تقني</option><option>أطفال</option><option>غير محدد</option>
+          </select>
+        </label>
+      </div>
+      <label>تفاصيل إضافية <textarea name="details" rows="4" placeholder="أخبرنا عن هوية متجرك، الألوان المفضلة، والمزايا التي تحتاجها."></textarea></label>
+      <button type="submit" class="btn btn-primary">أرسل الطلب</button>
+      <p class="hint">لا نشارك بياناتك مع أي طرف ثالث.</p>
+    </form>
+  </div>
+</section>
+
+<!-- GUIDE -->
+<section id="guide" class="section">
+  <div class="container">
+    <header class="section-head">
+      <h2>الدليل السريع</h2>
+      <p>ثلاث خطوات لتحويل متجرك إلى مصدر دخل حقيقي.</p>
+    </header>
+
+    <div class="guide-grid">
+      <article class="guide-card">
+        <div class="guide-num">01</div>
+        <h3>كيف تبيع عبر واتساب؟</h3>
+        <p>حوّل كل محادثة إلى طلب مؤكد: رسالة جاهزة، ردود سريعة، وتأكيد الدفع في دقيقة.</p>
+        <a href="#" class="link">اقرأ المزيد →</a>
+      </article>
+      <article class="guide-card">
+        <div class="guide-num">02</div>
+        <h3>كيف تكتب وصف منتج يبيع؟</h3>
+        <p>السر في 3 أسطر: فائدة واضحة، تفصيل حسي، ودعوة للطلب. تعرّف على الصيغة الجاهزة.</p>
+        <a href="#" class="link">اقرأ المزيد →</a>
+      </article>
+      <article class="guide-card">
+        <div class="guide-num">03</div>
+        <h3>كيف تنشر متجرك مجانًا؟</h3>
+        <p>خطوات بسيطة لنشر متجرك على GitHub Pages أو Netlify بدون خبرة تقنية.</p>
+        <a href="#" class="link">اقرأ المزيد →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>صُنع بحب في <strong>هيرو ستور</strong> — أداة مجانية لتوليد المتاجر.</p>
+    <nav>
+      <a href="/">الرئيسية</a>
+      <a href="#builder">المولّد</a>
+      <a href="#custom">قوالب مخصصة</a>
+      <a href="#guide">الدليل</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
