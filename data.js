@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-09T21:37:06.922Z",
+  "updatedAt": "2026-10-10T09:01:01.538Z",
   "categories": [
     {
       "id": "games",
@@ -144,6 +144,41 @@ window.HERO_DATA = {
       ],
       "buyUrl": "",
       "landingUrl": "https://nabdh.hero1.vip/nabd.html",
+      "landingHtml": ""
+    },
+    {
+      "id": "ts005",
+      "name": "صفحة هبوط + اعلان مجاني لأول 100 معلن",
+      "seller": "HERO",
+      "category": "services",
+      "description": "لدعم المعلنين نصمم لك صفحة هبوط احترافية باسم شركتك ووننشرها لك على هيرو ستور دون مقابل!\nيمكنك استخدام رابطك في التسويق لعملك. للحجز اتصل بالدعم الفني على تليجرام الآن : https://t.me/heroapp1",
+      "emoji": "📦",
+      "image": "/assets/005.png",
+      "c1": "#6366f1",
+      "c2": "#a855f7",
+      "price": "0",
+      "priceValue": 0,
+      "rating": 4.5,
+      "reviews": 0,
+      "ctaText": "",
+      "featured": true,
+      "new": false,
+      "tags": [
+        "HeroStore",
+        "التجارة_الإلكترونية",
+        "التسويق_الرقمي",
+        "أصحاب_المشاريع",
+        "صفحات_الهبوط",
+        "اعلان",
+        "مصر",
+        "السعودية",
+        "صفحة_هبوط",
+        "تسويق_إلكتروني",
+        "مشاريع_صغيرة",
+        "رواد_الأعمال"
+      ],
+      "buyUrl": "",
+      "landingUrl": "",
       "landingHtml": ""
     }
   ],
