@@ -822,8 +822,9 @@ async function ghGet(cfg, path){
 
 async function ghPut(cfg, path, content, msg, attempt){
   attempt = attempt || 1;
-  var MAX_ATTEMPTS = 4;
+  var MAX_ATTEMPTS = 5;
 
+  // جلب SHA جديد مع كل محاولة (تجنب الكاش)
   var m = await ghGet(cfg, path);
 
   var body = {
@@ -843,19 +844,22 @@ async function ghPut(cfg, path, content, msg, attempt){
     body: JSON.stringify(body)
   });
 
+  // 409 = الملف تغيّر بين GET و PUT
   if (r.status === 409){
     if (attempt >= MAX_ATTEMPTS){
       var t409 = await r.text();
-      throw new Error('تعارض متكرر بعد '+MAX_ATTEMPTS+' محاولات. أغلق أي تبويب آخر للوحة التحكم.\n'+t409.slice(0,200));
+      throw new Error('تعارض متكرر ('+MAX_ATTEMPTS+' محاولات). أغلق كل تبويبات اللوحة الأخرى ثم أعد المحاولة.\n'+t409.slice(0,150));
     }
-    console.warn('[publish] 409 — إعادة المحاولة رقم '+(attempt+1));
-    await new Promise(function(res){ setTimeout(res, 800 * attempt); });
+    // انتظر أطول قليلاً مع كل محاولة (exponential backoff)
+    var delay = 1500 * attempt;
+    console.warn('[publish] 409 على "'+path+'" — إعادة المحاولة '+(attempt+1)+'/'+MAX_ATTEMPTS+' بعد '+delay+'ms');
+    await new Promise(function(res){ setTimeout(res, delay); });
     return ghPut(cfg, path, content, msg, attempt + 1);
   }
 
   if (r.status === 401) throw new Error('التوكن غير صالح (401)');
   if (r.status === 403) throw new Error('صلاحية الكتابة مرفوضة (403). تأكد من نطاق repo.');
-  if (r.status === 404) throw new Error('المسار غير موجود (404).');
+  if (r.status === 404) throw new Error('المسار "'+path+'" غير موجود (404).');
   if (!r.ok){ var t = await r.text(); throw new Error('GitHub PUT '+r.status+': '+t.slice(0,200)); }
   return await r.json();
 }
@@ -901,41 +905,53 @@ function updatePublishStatus(){
   if (stSub) stSub.textContent = anyDirty ? ('غير منشور: '+dirtyList.join(' + ')) : 'محدَّث';
 }
 
+var PUBLISHING = false;  /* قفل لمنع النشر المزدوج */
+
 async function publish(){
+  if (PUBLISHING){ toast('النشر قيد التنفيذ... انتظر قليلاً','err'); return; }
+
   var cfg = getGH();
   if (!cfg || !cfg.token){ toast('اضبط إعدادات GitHub أولًا','err'); return; }
   if (!DIRTY_DATA && !DIRTY_ARTICLES){ toast('لا توجد تغييرات للنشر','err'); return; }
 
+  PUBLISHING = true;
   var btn = $('#publish-btn');
-  var orig = btn.textContent;
+  var origHTML = '🚀 نشر';
   btn.disabled = true;
-  btn.innerHTML = '<span class="loader"></span> جاري النشر';
 
   var results = [];
   try {
     if (DIRTY_DATA){
+      btn.innerHTML = '<span class="loader"></span> نشر data.js...';
       await ghPut(cfg, cfg.path, generateDataJs(), 'Publish data.js — '+new Date().toISOString());
       DIRTY_DATA = false;
       results.push('data.js ✅');
     }
     if (DIRTY_ARTICLES){
+      btn.innerHTML = '<span class="loader"></span> نشر articles.js...';
       await ghPut(cfg, cfg.articlesPath, generateArticlesJs(), 'Publish articles.js — '+new Date().toISOString());
       DIRTY_ARTICLES = false;
       results.push('articles.js ✅');
     }
+
+    // ✅ إعادة تعيين الزر عند النجاح
+    btn.innerHTML = origHTML;
+    btn.disabled = false;
+
     updatePublishStatus();
     updateStats();
     toast('✅ تم النشر: ' + results.join(' · '), 'ok');
   } catch(e){
     console.error('[publish] error:', e);
-    var msg = (e.message || 'فشل غير معروف').slice(0, 220);
+    var msg = (e.message || 'فشل غير معروف').slice(0, 200);
     toast('❌ فشل النشر: ' + msg, 'err');
-    btn.textContent = orig;
+    btn.innerHTML = origHTML;
     btn.disabled = false;
     updatePublishStatus();
+  } finally {
+    PUBLISHING = false;
   }
 }
-
 /* ---------- Sections / Nav ---------- */
 var SECTION_TITLES = {
   dashboard:'📊 لوحة القيادة',
