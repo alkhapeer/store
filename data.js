@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-10T09:16:59.537Z",
+  "updatedAt": "2026-10-10T09:27:10.907Z",
   "categories": [
     {
       "id": "games",
@@ -151,7 +151,7 @@ window.HERO_DATA = {
       "name": "صفحة هبوط + اعلان مجاني لأول 100 معلن",
       "seller": "HERO",
       "category": "design",
-      "description": "للحجز تواصل مع الدعم الفني على تيليجرام : https://t.me/heroapp1",
+      "description": "للحجز تواصل مع الدعم الفني الآن",
       "emoji": "📦",
       "image": "/assets/005.png",
       "c1": "#6366f1",
@@ -174,7 +174,7 @@ window.HERO_DATA = {
         "أصحاب_المشاريع",
         "صفحات_الهبوط"
       ],
-      "buyUrl": "https://t.me/heroapp1",
+      "buyUrl": "https://t.me/Herocourses",
       "landingUrl": "",
       "landingHtml": ""
     }
