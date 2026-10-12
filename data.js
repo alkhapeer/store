@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-10T20:18:47.975Z",
+  "updatedAt": "2026-10-12T21:46:12.000Z",
   "categories": [
     {
       "id": "games",
@@ -211,6 +211,41 @@ window.HERO_DATA = {
       ],
       "buyUrl": "",
       "landingUrl": "services/store-builder/store-builder.html",
+      "landingHtml": ""
+    },
+    {
+      "id": "opentopic-01",
+      "name": "افتح توبيك Open Topic",
+      "seller": "HERO",
+      "category": "games",
+      "description": "🔥 جاهزين للتحدي؟ لمّوا صحابكم وشوفوا مين فيكم أذكى ومين إجاباته هتفجّر الضحك! 😂\nاختاروا الأسئلة، جاوبوا بالدور، اجمعوا النجوم، واكسبوا الجولة! 🏆\nادخلوا افتح توبيك دلوقتي… والتحدي يبدأ! مين هيطلع البطل؟ 🔥",
+      "emoji": "📦",
+      "image": "/assets/opentopic-full-logo.png",
+      "c1": "#6366f1",
+      "c2": "#a855f7",
+      "price": "0",
+      "priceValue": 0,
+      "rating": 5,
+      "reviews": 40,
+      "ctaText": "",
+      "featured": true,
+      "new": false,
+      "tags": [
+        "game",
+        "games",
+        "fun",
+        "funny",
+        "usa",
+        "مصر",
+        "لعب",
+        "لعبة",
+        "ترفيه",
+        "ربح",
+        "ضحك",
+        "ذكاء"
+      ],
+      "buyUrl": "",
+      "landingUrl": "/opentopicLP.html",
       "landingHtml": ""
     }
   ],
