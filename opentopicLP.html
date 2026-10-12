@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#142b70">
+<title>افتح توبيك | Open Topic — لعبة بطاقات أسئلة للعائلة والأصدقاء</title>
+<meta name="description" content="افتح توبيك — لعبة بطاقات أسئلة عربية وإنجليزية. العب وحدك أو مع أصحابك، اكتشف إجابات غير متوقعة، وشارك بطاقات الأسئلة. مجانًا وبدون تسجيل.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="افتح توبيك | Open Topic — Question Card Game">
+<meta property="og:description" content="سؤال جديد، بداية حكاية. العب مع أصحابك أو عائلتك وشارك البطاقات.">
+<meta property="og:image" content="/assets/opentopic-full-logo.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+:root{--navy:#142b70;--navy2:#203d90;--yellow:#ffc629;--teal:#12a99e;--purple:#7448df;--pink:#ff7b8e;--ink:#18254b;--muted:#6e7690;--cream:#fff9ef;--line:#e9e5dc;--shadow:0 18px 48px rgba(20,43,112,.10)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.7;overflow-x:hidden}
+img{max-width:100%;display:block;height:auto}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+a{color:#6344cf;text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1120px;margin:auto;padding:0 22px}
+.hidden{display:none!important}
+
+/* Topbar */
+.top{position:sticky;top:0;z-index:50;background:rgba(255,249,239,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand-logo{width:46px;height:46px;background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:13px;display:grid;place-items:center;color:var(--yellow);font-weight:900;font-size:19px;letter-spacing:-1px;border:2px solid #2d4a95}
+.brand-name{font-weight:950;color:var(--navy);font-size:19px;line-height:1.05}
+.brand-name small{display:block;color:#7650d8;font-size:12px;letter-spacing:.6px;margin-top:2px;font-weight:800;direction:ltr}
+.top-actions{display:flex;align-items:center;gap:9px}
+.lang-btn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 13px;font-weight:800;color:var(--navy);font-size:13px}
+.lang-btn:hover{border-color:#c7ccee}
+.cta-mini{background:var(--yellow);color:#172451;border-radius:12px;padding:10px 16px;font-weight:900;font-size:13px;box-shadow:0 5px 0 rgba(8,16,56,.12);transition:.15s}
+.cta-mini:hover{transform:translateY(-2px);text-decoration:none}
+
+/* Hero */
+.hero{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding:60px 48px;border-radius:36px;margin-top:24px;background:linear-gradient(125deg,#182f7b 0%,#193880 58%,#4e42af 100%);color:white;box-shadow:var(--shadow)}
+.hero:before,.hero:after{content:"";position:absolute;z-index:-1;border-radius:50%;opacity:.22}
+.hero:before{width:340px;height:340px;background:var(--yellow);right:-120px;top:-180px}
+.hero:after{width:280px;height:280px;background:#16c3b7;left:8%;bottom:-200px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 14px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.20);border-radius:999px;font-size:12.5px;font-weight:800;margin-bottom:18px}
+.eyebrow i{width:8px;height:8px;background:var(--yellow);border-radius:50%;display:inline-block}
+.hero h1{font-size:clamp(32px,4.6vw,54px);line-height:1.1;margin:0 0 18px;font-weight:950;letter-spacing:-1.7px}
+.hero h1 em{color:var(--yellow);font-style:normal}
+.hero p.lead{font-size:17px;color:#e6eafc;max-width:560px;line-height:1.85;margin:0 0 30px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{border-radius:15px;padding:15px 22px;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.15s;font-size:15px;text-decoration:none;border:0}
+.btn:hover{transform:translateY(-2px);text-decoration:none}
+.btn-primary{background:var(--yellow);color:#172451;box-shadow:0 7px 0 rgba(8,16,56,.18)}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.30)}
+.hero-art{position:relative;display:flex;align-items:center;justify-content:center;min-height:280px}
+.hero-mock{width:min(100%,280px);aspect-ratio:1;background:linear-gradient(135deg,#203d90,#142b70);border-radius:36px;display:grid;place-items:center;color:var(--yellow);font-weight:900;font-size:100px;letter-spacing:-6px;box-shadow:0 30px 60px rgba(0,0,0,.35);border:3px solid rgba(255,255,255,.15);text-shadow:0 4px 0 rgba(0,0,0,.15)}
+.hero-chip{position:absolute;background:#fff;color:var(--navy);font-weight:900;border-radius:15px;padding:12px 17px;box-shadow:0 15px 35px rgba(0,0,0,.22);font-size:13px}
+.hero-chip small{display:block;color:#7c8096;font-size:10px;font-weight:750;margin-bottom:3px}
+.hero-chip.a{top:12px;left:6%;transform:rotate(-6deg)}
+.hero-chip.b{bottom:14px;right:8%;transform:rotate(5deg);background:var(--yellow);color:#172451}
+
+/* Sections */
+section{margin-top:70px}
+section.hero{margin-top:24px}
+h2{font-size:clamp(24px,3.2vw,34px);color:var(--navy);letter-spacing:-.9px;margin:0 0 8px;font-weight:950}
+h3{font-size:19px;color:var(--navy);margin:0 0 7px;font-weight:900}
+.section-kicker{font-size:12px;color:#7960d0;font-weight:900;text-transform:uppercase;letter-spacing:1.8px;margin-bottom:6px;direction:ltr;text-align:start}
+.section-sub{color:var(--muted);font-size:15px;margin:0 0 34px;max-width:720px}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
+.step{background:#fff;border:1px solid var(--line);border-radius:26px;padding:26px;position:relative;box-shadow:0 5px 18px rgba(26,38,89,.03);counter-increment:s;transition:.2s}
+.step:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.step:before{content:counter(s);position:absolute;top:-14px;inset-inline-start:24px;background:var(--yellow);color:#172451;width:34px;height:34px;border-radius:12px;display:grid;place-items:center;font-weight:900;font-size:16px;box-shadow:0 6px 14px rgba(255,198,41,.4)}
+.step h3{margin-top:10px}
+.step p{margin:0;color:var(--muted);font-size:14px;line-height:1.75}
+
+/* Features */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feature{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;transition:.2s}
+.feature:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.feature-icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:26px;margin-bottom:14px}
+.feature-icon.y{background:#fff0bf}.feature-icon.t{background:#d9f7f2}.feature-icon.p{background:#eee6ff}
+.feature-icon.r{background:#ffe0e5}.feature-icon.b{background:#dde7ff}.feature-icon.g{background:#e6f7dc}
+.feature p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.75}
+
+/* Categories */
+.cats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.cat{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px 12px;text-align:center;transition:.2s}
+.cat:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#d1c5ff}
+.cat .em{font-size:34px;display:block;margin-bottom:8px}
+.cat b{display:block;color:var(--navy);font-size:14px;margin-bottom:3px}
+.cat small{color:var(--muted);font-size:11.5px}
+
+/* Modes showcase */
+.modes{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.mode-card{background:#fff;border:1px solid var(--line);border-radius:26px;padding:28px;position:relative;overflow:hidden}
+.mode-card.solo{background:linear-gradient(160deg,#fff9ef,#fff7dc)}
+.mode-card.group{background:linear-gradient(160deg,#ecf9f6,#f4fbf9)}
+.mode-tag{display:inline-block;font-size:11px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;padding:5px 11px;border-radius:99px;margin-bottom:12px;direction:ltr}
+.mode-card.solo .mode-tag{background:#ffebaf;color:#7a5c00}
+.mode-card.group .mode-tag{background:#c9efe6;color:#126d67}
+.mode-card h3{font-size:22px;margin-bottom:10px}
+.mode-card p{color:var(--muted);font-size:14.5px;margin:0 0 14px;line-height:1.75}
+.mode-list{margin:0;padding:0;list-style:none}
+.mode-list li{padding:6px 0 6px 26px;position:relative;font-size:13.5px;color:#3a4060}
+.mode-list li:before{content:"✓";position:absolute;inset-inline-start:0;color:var(--teal);font-weight:900;font-size:15px}
+
+/* Categories preview cards */
+.preview-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.preview-card{background:#fff9dc;border:1px solid #f4e7b9;border-radius:22px;padding:22px;position:relative;overflow:hidden;min-height:150px}
+.preview-card:before{content:"?";position:absolute;font-size:120px;font-weight:1000;color:rgba(255,198,41,.18);bottom:-40px;inset-inline-start:8px;line-height:1}
+.preview-card .pc-label{font-size:10.5px;font-weight:900;color:#95752b;letter-spacing:1.2px;text-transform:uppercase;direction:ltr;margin-bottom:12px}
+.preview-card p{position:relative;color:var(--navy);font-weight:900;font-size:16px;line-height:1.55;margin:0}
+
+/* Reward feature callout */
+.callout-reward{background:linear-gradient(135deg,#fff9dc,#fff4d6);border:2px solid #ffc629;border-radius:26px;padding:32px;text-align:center;position:relative;overflow:hidden;margin-top:70px}
+.callout-reward:before{content:"🏆";position:absolute;font-size:160px;opacity:.08;top:-30px;inset-inline-end:-20px}
+.callout-reward h3{font-size:24px;margin-bottom:8px;color:var(--navy)}
+.callout-reward p{max-width:680px;margin:0 auto 14px;color:#5c4400;font-size:15px;line-height:1.8}
+.callout-reward .example{display:inline-block;background:#fff;border:1px dashed #c9a34a;border-radius:14px;padding:10px 18px;font-size:13.5px;color:#7a5c00;font-weight:800}
+
+/* FAQ */
+.faq{max-width:820px;margin:auto}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:18px;margin-bottom:10px;overflow:hidden}
+.faq-item summary{cursor:pointer;padding:18px 22px;font-weight:900;color:var(--navy);font-size:15px;list-style:none;position:relative;padding-inline-end:56px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:after{content:"+";position:absolute;inset-inline-end:22px;top:50%;transform:translateY(-50%);font-size:24px;color:var(--teal);font-weight:900;transition:.2s}
+.faq-item[open] summary:after{content:"−"}
+.faq-item[open] summary{border-bottom:1px solid var(--line)}
+.faq-item p{margin:0;padding:16px 22px 20px;color:var(--muted);font-size:14px;line-height:1.85}
+
+/* Final CTA */
+.final-cta{margin-top:70px;background:linear-gradient(125deg,#142b70,#203d90,#4e42af);color:#fff;border-radius:36px;padding:60px 40px;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.final-cta:before{content:"";position:absolute;width:280px;height:280px;background:var(--yellow);border-radius:50%;opacity:.14;right:-80px;top:-120px}
+.final-cta h2{color:#fff;margin-bottom:12px;position:relative}
+.final-cta p{color:#dfe5ff;max-width:600px;margin:0 auto 26px;font-size:16px;line-height:1.8;position:relative}
+.final-cta .btn{position:relative}
+.final-cta .btn-primary{font-size:16px;padding:17px 30px}
+.final-cta .btn-ghost{margin-inline-start:8px}
+
+/* Footer */
+footer{margin-top:60px;border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:13px}
+.foot-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.foot-inner strong{color:var(--navy)}
+.foot-links{display:flex;gap:16px;flex-wrap:wrap}
+.foot-links a{color:#6344cf;font-weight:800}
+
+/* Ad slots */
+.ad-slot{margin:40px 0;min-height:96px;border:2px dashed #d6cfec;background:#faf8ff;border-radius:20px;display:grid;place-items:center;padding:18px;text-align:center;color:#9a92bd;font-size:12px;font-weight:800}
+.ad-slot strong{color:#7a6fbf;font-size:13px;display:block;margin-bottom:4px}
+.ad-slot em{font-style:normal;font-size:11px;color:#a79fca;direction:ltr}
+.ad-slot.has-ad{border:0;background:transparent;padding:0;min-height:0}
+
+/* Responsive */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;padding:40px 26px;gap:20px}
+  .hero-art{min-height:220px;order:-1}
+  .hero-mock{width:200px;font-size:70px}
+  .hero-chip{font-size:11px;padding:9px 13px}
+  .steps{grid-template-columns:1fr}
+  .features{grid-template-columns:repeat(2,1fr)}
+  .cats{grid-template-columns:repeat(3,1fr)}
+  .modes{grid-template-columns:1fr}
+  .preview-row{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .top-inner{padding:11px 0}
+  .brand-name{font-size:16px}
+  .brand-logo{width:40px;height:40px;font-size:16px}
+  .cta-mini{padding:9px 13px;font-size:12px}
+  .lang-btn{padding:8px 11px;font-size:12px}
+  section{margin-top:50px}
+  .hero{padding:30px 20px;border-radius:26px}
+  .hero h1{font-size:30px}
+  .hero p.lead{font-size:14.5px}
+  .hero-actions{flex-direction:column}
+  .hero-cta .btn{width:100%}
+  .features{grid-template-columns:1fr}
+  .cats{grid-template-columns:repeat(2,1fr)}
+  .final-cta{padding:40px 22px;border-radius:26px}
+  .final-cta .btn{width:100%}
+  .final-cta .btn-ghost{margin:10px 0 0;width:100%}
+  .foot-inner{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ TOPBAR ══════════ -->
+<header class="top">
+  <div class="wrap top-inner">
+    <a class="brand" href="https://opentopic.hero1.vip/">
+      <span class="brand-logo">OT</span>
+      <div class="brand-name">
+        <span id="b-ar">افتح توبيك</span><span id="b-en" class="hidden">Open Topic</span>
+        <small>QUESTION CARD GAME</small>
+      </div>
+    </a>
+    <div class="top-actions">
+      <button class="lang-btn" id="langBtn" type="button">🌐 <span id="langLabel">English</span></button>
+      <a class="cta-mini" href="https://opentopic.hero1.vip/" data-i18n="playNowMini">▶ ابدأ اللعب</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <span class="eyebrow"><i></i><span data-i18n="heroEyebrow">سؤال جديد. بداية حكاية.</span></span>
+      <h1 id="hero-title" data-i18n-html="heroTitle">افتح سؤالاً،<br><em>وافتح التوبيك!</em></h1>
+      <p class="lead" data-i18n="heroLead">
+        لعبة بطاقات أسئلة عربية وإنجليزية للعب وحدك أو مع أصحابك. اكتشف إجابات غير متوقعة، اعرف من حولك بعمق أكبر، وشارك البطاقات التي تستحق النقاش.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://opentopic.hero1.vip/" data-i18n="playFree">▶ العب مجانًا الآن</a>
+        <a class="btn btn-ghost" href="#how" data-i18n="seeHow">كيف تعمل؟</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="hero-mock">OT</div>
+      <div class="hero-chip a"><small data-i18n="chip1Label">سؤال اليوم</small><span data-i18n="chip1Text">جاهز لسؤال؟ ✦</span></div>
+      <div class="hero-chip b"><small data-i18n="chip2Label">بدون تسجيل</small><span data-i18n="chip2Text">ادخل والعب فورًا</span></div>
+    </div>
+  </section>
+
+  <!-- ══════════ AD SLOT TOP ══════════ -->
+  <div class="ad-slot" data-ad="top"><div><strong data-i18n="adLabel">مساحة إعلانية</strong><em>Ad Slot — Top Banner (responsive)</em></div></div>
+
+  <!-- ══════════ HOW IT WORKS ══════════ -->
+  <section id="how" aria-labelledby="how-title">
+    <div class="section-kicker">HOW IT WORKS</div>
+    <h2 id="how-title" data-i18n="howTitle">كيف تلعب؟ ثلاث خطوات فقط</h2>
+    <p class="section-sub" data-i18n="howSub">لا حاجة لتنزيل تطبيق، ولا لإنشاء حساب. افتح الرابط، اختر النمط، وابدأ اللعب خلال ثوانٍ.</p>
+
+    <div class="steps">
+      <div class="step">
+        <h3 data-i18n="step1Title">1. اختر النمط</h3>
+        <p data-i18n="step1Body">فردي لاكتشاف ذاتك، أو جماعي مع الأصدقاء والعائلة، أو أنشئ بطاقة سؤال لترسلها لصديق.</p>
+      </div>
+      <div class="step">
+        <h3 data-i18n="step2Title">2. اختر الفئة</h3>
+        <p data-i18n="step2Body">خمس فئات متنوعة: ضحك ومرح، الأصدقاء، أسئلة عميقة، ماذا تفضّل، والعائلة.</p>
+      </div>
+      <div class="step">
+        <h3 data-i18n="step3Title">3. العب وشارك</h3>
+        <p data-i18n="step3Body">اسحب سؤالًا، أجب، صوّتوا على أفضل إجابة، ثم شارك البطاقة على واتساب أو انستغرام بضغطة واحدة.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FEATURES ══════════ -->
+  <section aria-labelledby="feat-title">
+    <div class="section-kicker">WHY OPEN TOPIC</div>
+    <h2 id="feat-title" data-i18n="featTitle">لماذا يحبها اللاعبون؟</h2>
+    <p class="section-sub" data-i18n="featSub">لعبة أسئلة مصممة لتُنتج لحظات لا تُنسى — لا مجرد أسئلة عابرة.</p>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon y">🎯</div>
+        <h3 data-i18n="f1t">مصمّمة للحظة الحقيقية</h3>
+        <p data-i18n="f1b">كل سؤال مكتوب بعناية ليُشعل حوارًا حقيقيًا — لا يُجاب بنعم أو لا.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon t">🎲</div>
+        <h3 data-i18n="f2t">لعب فردي وجماعي</h3>
+        <p data-i18n="f2b">استخدمها للتأمل الشخصي، أو لنقاش جماعي، أو لتصويت مثير مع الأصدقاء.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon p">📸</div>
+        <h3 data-i18n="f3t">بطاقات قابلة للمشاركة</h3>
+        <p data-i18n="f3b">حوّل أي سؤال إلى بطاقة أنيقة تنزلها أو تشاركها على واتساب وتليجرام وانستغرام.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon r">🏆</div>
+        <h3 data-i18n="f4t">مكافأة الفائز</h3>
+        <p data-i18n="f4b">قبل البدء، اتفقوا على مكافأة عينية للفائز — لعبة أكثر حماسًا ومنافسة.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon b">🌍</div>
+        <h3 data-i18n="f5t">عربي وإنجليزي</h3>
+        <p data-i18n="f5b">واجهة وأسئلة بلغتين. بدّل اللغة بضغطة واحدة — دون إعادة تحميل.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon g">⚡</div>
+        <h3 data-i18n="f6t">تعمل من المتصفح مباشرة</h3>
+        <p data-i18n="f6b">لا تنزيل ولا تسجيل. افتح الرابط والعب. يمكنك تثبيتها كتطبيق على شاشتك الرئيسية.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ MODES ══════════ -->
+  <section aria-labelledby="modes-title">
+    <div class="section-kicker">GAME MODES</div>
+    <h2 id="modes-title" data-i18n="modesTitle">نمطان مختلفان… ومتعة واحدة</h2>
+    <p class="section-sub" data-i18n="modesSub">اختر نمط اللعب حسب اللحظة: تأمل شخصي هادئ، أو جلسة تفاعلية حماسية مع من تحب.</p>
+
+    <div class="modes">
+      <div class="mode-card solo">
+        <span class="mode-tag" data-i18n="soloTag">Play Solo</span>
+        <h3 data-i18n="soloTitle">اللعب الفردي</h3>
+        <p data-i18n="soloBody">خذ وقتك مع الأسئلة. اكتشف طريقة تفكيرك، احفظ ما يلمسك، وشارك ما يستحق المشاركة.</p>
+        <ul class="mode-list">
+          <li data-i18n="soloL1">اسحب سؤالًا جديدًا بضغطة واحدة</li>
+          <li data-i18n="soloL2">تنقّل بين الفئات بسهولة</li>
+          <li data-i18n="soloL3">نزّل بطاقة السؤال أو شاركها فورًا</li>
+          <li data-i18n="soloL4">لا يوجد عدّاد ولا ضغط — هذه لحظتك</li>
+        </ul>
+      </div>
+      <div class="mode-card group">
+        <span class="mode-tag" data-i18n="groupTag">Play Together</span>
+        <h3 data-i18n="groupTitle">اللعب الجماعي</h3>
+        <p data-i18n="groupBody">اجمعوا 2 إلى 4 لاعبين على جهاز واحد. كل لاعب يجيب، ثم تصوّتون على أفضل إجابة، وأول من يجمع 5 نجوم يفوز.</p>
+        <ul class="mode-list">
+          <li data-i18n="groupL1">أضف أسماء اللاعبين واختر الفئة</li>
+          <li data-i18n="groupL2">كل اللاعبين يجيبون عن السؤال نفسه بالتناوب</li>
+          <li data-i18n="groupL3">صوّتوا لمن قدّم أفضل إجابة</li>
+          <li data-i18n="groupL4">اتفقوا على مكافأة مسبقًا لزيادة الحماس</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CATEGORIES ══════════ -->
+  <section aria-labelledby="cats-title">
+    <div class="section-kicker">FIVE CATEGORIES</div>
+    <h2 id="cats-title" data-i18n="catsTitle">اختر الفئة حسب المزاج</h2>
+    <p class="section-sub" data-i18n="catsSub">كل فئة لها طابع مختلف — من الضحك الخفيف إلى الأسئلة التي تلمس القلب.</p>
+
+    <div class="cats">
+      <div class="cat"><span class="em">😂</span><b data-i18n="catFun">ضحك ومرح</b><small data-i18n="catFunSub">أسئلة خفيفة تُضحك الجميع</small></div>
+      <div class="cat"><span class="em">🫶</span><b data-i18n="catFriends">الأصدقاء</b><small data-i18n="catFriendsSub">اكتشفوا بعضكم أكثر</small></div>
+      <div class="cat"><span class="em">💭</span><b data-i18n="catDeep">أسئلة عميقة</b><small data-i18n="catDeepSub">فكّر بعمق وأجب بصدق</small></div>
+      <div class="cat"><span class="em">⚖️</span><b data-i18n="catChoices">ماذا تفضّل؟</b><small data-i18n="catChoicesSub">اختر بين خيارين صعبين</small></div>
+      <div class="cat"><span class="em">🏡</span><b data-i18n="catFamily">العائلة</b><small data-i18n="catFamilySub">أسئلة آمنة وممتعة للجميع</small></div>
+    </div>
+
+    <div class="preview-row">
+      <div class="preview-card">
+        <div class="pc-label">DEEP QUESTIONS</div>
+        <p data-i18n="sampleQ1">«ما الشيء الذي تتمنى أن يتذكرك الناس به؟»</p>
+      </div>
+      <div class="preview-card">
+        <div class="pc-label">WOULD YOU RATHER</div>
+        <p data-i18n="sampleQ2">«هل تفضّل وقتًا أكثر أم مالًا أكثر؟»</p>
+      </div>
+      <div class="preview-card">
+        <div class="pc-label">FAMILY</div>
+        <p data-i18n="sampleQ3">«ما العادة العائلية التي تتمنى أن تستمر لأجيال؟»</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ REWARD FEATURE ══════════ -->
+  <section class="callout-reward" aria-labelledby="reward-title">
+    <h3 id="reward-title" data-i18n="rewardTitle">🏆 ميزة جديدة: مكافأة الفائز</h3>
+    <p data-i18n="rewardBody">
+      قبل بدء المباراة، اتفقوا على مكافأة عينية للفائز: عشاء على حساب الخاسرين، أو وجبة مفضلة، أو أي شيء ترغبون به. المكافأة تظهر في لوحة النقاط طوال اللعبة — لتعزيز المنافسة وتحويل كل جولة إلى تحدٍّ حقيقي.
+    </p>
+    <span class="example" data-i18n="rewardExample">مثال: «الفائز لا يدفع الحساب الليلة»</span>
+  </section>
+
+  <!-- ══════════ AD SLOT MID ══════════ -->
+  <div class="ad-slot" data-ad="mid"><div><strong data-i18n="adLabel">مساحة إعلانية</strong><em>Ad Slot — In-feed Rectangle (300×250 / 336×280)</em></div></div>
+
+  <!-- ══════════ FAQ ══════════ -->
+  <section aria-labelledby="faq-title">
+    <div class="section-kicker">FAQ</div>
+    <h2 id="faq-title" data-i18n="faqTitle">أسئلة شائعة</h2>
+    <p class="section-sub" data-i18n="faqSub">كل ما تريد معرفته قبل أن تبدأ.</p>
+
+    <div class="faq">
+      <details class="faq-item">
+        <summary data-i18n="q1">هل اللعبة مجانية فعلاً؟</summary>
+        <p data-i18n="a1">نعم. اللعبة مجانية بالكامل، وبدون تسجيل إجباري. يمكنك البدء مباشرة من المتصفح.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="q2">هل أحتاج إلى تنزيل تطبيق؟</summary>
+        <p data-i18n="a2">لا. تعمل اللعبة من المتصفح مباشرة. يمكنك اختياريًا تثبيتها على شاشة هاتفك الرئيسية بضغطة واحدة من قائمة المتصفح — لتفتحها لاحقًا كتطبيق مستقل.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="q3">كم عدد اللاعبين في الوضع الجماعي؟</summary>
+        <p data-i18n="a3">من 2 إلى 4 لاعبين على جهاز واحد. الفكرة أن يجيب كل لاعب عن السؤال نفسه بالتناوب، ثم يصوّت الجميع على أفضل إجابة.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="q4">هل هناك أسئلة للأطفال والعائلة؟</summary>
+        <p data-i18n="a4">نعم. فئة «العائلة» مكتوبة بعناية لتكون مناسبة لجميع الأعمار، ويمكن لعبها على طاولة العشاء بأمان.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="q5">كيف تعمل مكافأة الفائز؟</summary>
+        <p data-i18n="a5">قبل البدء، اكتبوا في حقل «المكافأة للفائز» ما اتفقتم عليه (مثل «لا يدفع الحساب الليلة»). ستظهر المكافأة في لوحة النقاط طوال المباراة، وعند فوز أحد اللاعبين ستُعرض مع رسالة الفوز. المكافأة رمزية واتفاقية بين اللاعبين — اللعبة لا تتضمن أي دفع إلكتروني.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="q6">هل يمكنني مشاركة الأسئلة مع أصدقائي؟</summary>
+        <p data-i18n="a6">نعم، وهذه من أهم ميزات اللعبة. حوّل أي سؤال إلى بطاقة أنيقة، وشاركها على واتساب أو تليجرام أو انستغرام، أو نزّلها كصورة. عند فتح الرابط، ينتقل صديقك إلى السؤال نفسه داخل اللعبة مباشرة.</p>
+      </details>
+      <details class="faq-item">
+        <summary data-i18n="q7">هل اللعبة بالعربية والإنجليزية؟</summary>
+        <p data-i18n="a7">نعم، الواجهة والأسئلة متوفرة بلغتين. يمكنك التبديل بينهما بضغطة واحدة، دون إعادة تحميل الصفحة.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ══════════ FINAL CTA ══════════ -->
+  <section class="final-cta" aria-labelledby="cta-title">
+    <h2 id="cta-title" data-i18n="ctaTitle">جاهز لفتح توبيك جديد؟</h2>
+    <p data-i18n="ctaBody">لا تسجيل، لا تنزيل، ولا انتظار. افتح اللعبة الآن، وابدأ أول سؤال خلال ثوانٍ. ثم شاركها مع من تحب.</p>
+    <a class="btn btn-primary" href="https://opentopic.hero1.vip/" data-i18n="ctaPlay">▶ ابدأ اللعب مجانًا</a>
+    <a class="btn btn-ghost" href="#how" data-i18n="ctaLearnMore">تعرّف أكثر</a>
+  </section>
+
+</main>
+
+<!-- ══════════ AD SLOT BOTTOM ══════════ -->
+<div class="wrap">
+  <div class="ad-slot" data-ad="bottom"><div><strong data-i18n="adLabel">مساحة إعلانية</strong><em>Ad Slot — Bottom Leaderboard (970×90 / 320×100)</em></div></div>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="wrap foot-inner">
+    <div>
+      <strong>افتح توبيك | Open Topic</strong><br>
+      <span data-i18n="footerTag">لعبة بطاقات أسئلة — Question Card Game</span>
+    </div>
+    <div class="foot-links">
+      <a href="/" data-i18n="footPlay">العب الآن</a>
+      <a href="mailto:info@hero1.vip">info@hero1.vip</a>
+      <a href="/privacy" data-i18n="footPrivacy">سياسة الخصوصية</a>
+    </div>
+    <div>© <span id="year"></span> Open Topic — opentopic.hero1.vip</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+const $=s=>document.querySelector(s);
+const $$=s=>[...document.querySelectorAll(s)];
+const T={
+ar:{
+  playNowMini:'▶ ابدأ اللعب',
+  heroEyebrow:'سؤال جديد. بداية حكاية.',
+  heroTitle:'افتح سؤالاً،<br><em>وافتح التوبيك!</em>',
+  heroLead:'لعبة بطاقات أسئلة عربية وإنجليزية للعب وحدك أو مع أصحابك. اكتشف إجابات غير متوقعة، اعرف من حولك بعمق أكبر، وشارك البطاقات التي تستحق النقاش.',
+  playFree:'▶ العب مجانًا الآن',seeHow:'كيف تعمل؟',
+  chip1Label:'سؤال اليوم',chip1Text:'جاهز لسؤال؟ ✦',
+  chip2Label:'بدون تسجيل',chip2Text:'ادخل والعب فورًا',
+  adLabel:'مساحة إعلانية',
+  howTitle:'كيف تلعب؟ ثلاث خطوات فقط',
+  howSub:'لا حاجة لتنزيل تطبيق، ولا لإنشاء حساب. افتح الرابط، اختر النمط، وابدأ اللعب خلال ثوانٍ.',
+  step1Title:'1. اختر النمط',
+  step1Body:'فردي لاكتشاف ذاتك، أو جماعي مع الأصدقاء والعائلة، أو أنشئ بطاقة سؤال لترسلها لصديق.',
+  step2Title:'2. اختر الفئة',
+  step2Body:'خمس فئات متنوعة: ضحك ومرح، الأصدقاء، أسئلة عميقة، ماذا تفضّل، والعائلة.',
+  step3Title:'3. العب وشارك',
+  step3Body:'اسحب سؤالًا، أجب، صوّتوا على أفضل إجابة، ثم شارك البطاقة على واتساب أو انستغرام بضغطة واحدة.',
+  featTitle:'لماذا يحبها اللاعبون؟',
+  featSub:'لعبة أسئلة مصممة لتُنتج لحظات لا تُنسى — لا مجرد أسئلة عابرة.',
+  f1t:'مصمّمة للحظة الحقيقية',f1b:'كل سؤال مكتوب بعناية ليُشعل حوارًا حقيقيًا — لا يُجاب بنعم أو لا.',
+  f2t:'لعب فردي وجماعي',f2b:'استخدمها للتأمل الشخصي، أو لنقاش جماعي، أو لتصويت مثير مع الأصدقاء.',
+  f3t:'بطاقات قابلة للمشاركة',f3b:'حوّل أي سؤال إلى بطاقة أنيقة تنزلها أو تشاركها على واتساب وتليجرام وانستغرام.',
+  f4t:'مكافأة الفائز',f4b:'قبل البدء، اتفقوا على مكافأة عينية للفائز — لعبة أكثر حماسًا ومنافسة.',
+  f5t:'عربي وإنجليزي',f5b:'واجهة وأسئلة بلغتين. بدّل اللغة بضغطة واحدة — دون إعادة تحميل.',
+  f6t:'تعمل من المتصفح مباشرة',f6b:'لا تنزيل ولا تسجيل. افتح الرابط والعب. يمكنك تثبيتها كتطبيق على شاشتك الرئيسية.',
+  modesTitle:'نمطان مختلفان… ومتعة واحدة',
+  modesSub:'اختر نمط اللعب حسب اللحظة: تأمل شخصي هادئ، أو جلسة تفاعلية حماسية مع من تحب.',
+  soloTag:'Play Solo',groupTag:'Play Together',
+  soloTitle:'اللعب الفردي',
+  soloBody:'خذ وقتك مع الأسئلة. اكتشف طريقة تفكيرك، احفظ ما يلمسك، وشارك ما يستحق المشاركة.',
+  soloL1:'اسحب سؤالًا جديدًا بضغطة واحدة',soloL2:'تنقّل بين الفئات بسهولة',
+  soloL3:'نزّل بطاقة السؤال أو شاركها فورًا',soloL4:'لا يوجد عدّاد ولا ضغط — هذه لحظتك',
+  groupTitle:'اللعب الجماعي',
+  groupBody:'اجمعوا 2 إلى 4 لاعبين على جهاز واحد. كل لاعب يجيب، ثم تصوّتون على أفضل إجابة، وأول من يجمع 5 نجوم يفوز.',
+  groupL1:'أضف أسماء اللاعبين واختر الفئة',groupL2:'كل اللاعبين يجيبون عن السؤال نفسه بالتناوب',
+  groupL3:'صوّتوا لمن قدّم أفضل إجابة',groupL4:'اتفقوا على مكافأة مسبقًا لزيادة الحماس',
+  catsTitle:'اختر الفئة حسب المزاج',
+  catsSub:'كل فئة لها طابع مختلف — من الضحك الخفيف إلى الأسئلة التي تلمس القلب.',
+  catFun:'ضحك ومرح',catFunSub:'أسئلة خفيفة تُضحك الجميع',
+  catFriends:'الأصدقاء',catFriendsSub:'اكتشفوا بعضكم أكثر',
+  catDeep:'أسئلة عميقة',catDeepSub:'فكّر بعمق وأجب بصدق',
+  catChoices:'ماذا تفضّل؟',catChoicesSub:'اختر بين خيارين صعبين',
+  catFamily:'العائلة',catFamilySub:'أسئلة آمنة وممتعة للجميع',
+  sampleQ1:'«ما الشيء الذي تتمنى أن يتذكرك الناس به؟»',
+  sampleQ2:'«هل تفضّل وقتًا أكثر أم مالًا أكثر؟»',
+  sampleQ3:'«ما العادة العائلية التي تتمنى أن تستمر لأجيال؟»',
+  rewardTitle:'🏆 ميزة جديدة: مكافأة الفائز',
+  rewardBody:'قبل بدء المباراة، اتفقوا على مكافأة عينية للفائز: عشاء على حساب الخاسرين، أو وجبة مفضلة، أو أي شيء ترغبون به. المكافأة تظهر في لوحة النقاط طوال اللعبة — لتعزيز المنافسة وتحويل كل جولة إلى تحدٍّ حقيقي.',
+  rewardExample:'مثال: «الفائز لا يدفع الحساب الليلة»',
+  faqTitle:'أسئلة شائعة',faqSub:'كل ما تريد معرفته قبل أن تبدأ.',
+  q1:'هل اللعبة مجانية فعلاً؟',a1:'نعم. اللعبة مجانية بالكامل، وبدون تسجيل إجباري. يمكنك البدء مباشرة من المتصفح.',
+  q2:'هل أحتاج إلى تنزيل تطبيق؟',a2:'لا. تعمل اللعبة من المتصفح مباشرة. يمكنك اختياريًا تثبيتها على شاشة هاتفك الرئيسية بضغطة واحدة من قائمة المتصفح — لتفتحها لاحقًا كتطبيق مستقل.',
+  q3:'كم عدد اللاعبين في الوضع الجماعي؟',a3:'من 2 إلى 4 لاعبين على جهاز واحد. الفكرة أن يجيب كل لاعب عن السؤال نفسه بالتناوب، ثم يصوّت الجميع على أفضل إجابة.',
+  q4:'هل هناك أسئلة للأطفال والعائلة؟',a4:'نعم. فئة «العائلة» مكتوبة بعناية لتكون مناسبة لجميع الأعمار، ويمكن لعبها على طاولة العشاء بأمان.',
+  q5:'كيف تعمل مكافأة الفائز؟',a5:'قبل البدء، اكتبوا في حقل «المكافأة للفائز» ما اتفقتم عليه (مثل «لا يدفع الحساب الليلة»). ستظهر المكافأة في لوحة النقاط طوال المباراة، وعند فوز أحد اللاعبين ستُعرض مع رسالة الفوز. المكافأة رمزية واتفاقية بين اللاعبين — اللعبة لا تتضمن أي دفع إلكتروني.',
+  q6:'هل يمكنني مشاركة الأسئلة مع أصدقائي؟',a6:'نعم، وهذه من أهم ميزات اللعبة. حوّل أي سؤال إلى بطاقة أنيقة، وشاركها على واتساب أو تليجرام أو انستغرام، أو نزّلها كصورة. عند فتح الرابط، ينتقل صديقك إلى السؤال نفسه داخل اللعبة مباشرة.',
+  q7:'هل اللعبة بالعربية والإنجليزية؟',a7:'نعم، الواجهة والأسئلة متوفرة بلغتين. يمكنك التبديل بينهما بضغطة واحدة، دون إعادة تحميل الصفحة.',
+  ctaTitle:'جاهز لفتح توبيك جديد؟',
+  ctaBody:'لا تسجيل، لا تنزيل، ولا انتظار. افتح اللعبة الآن، وابدأ أول سؤال خلال ثوانٍ. ثم شاركها مع من تحب.',
+  ctaPlay:'▶ ابدأ اللعب مجانًا',ctaLearnMore:'تعرّف أكثر',
+  footerTag:'لعبة بطاقات أسئلة — Question Card Game',
+  footPlay:'العب الآن',footPrivacy:'سياسة الخصوصية'
+},
+en:{
+  playNowMini:'▶ Play now',
+  heroEyebrow:'One question. A whole new conversation.',
+  heroTitle:'Open a question,<br><em>open the topic!</em>',
+  heroLead:'An Arabic and English question card game to play solo or with friends. Discover unexpected answers, get to know the people around you, and share the cards worth talking about.',
+  playFree:'▶ Play free now',seeHow:'How it works',
+  chip1Label:'Question of the day',chip1Text:'Ready for a question? ✦',
+  chip2Label:'No sign-up',chip2Text:'Jump right in and play',
+  adLabel:'Ad space',
+  howTitle:'How to play — in three steps',
+  howSub:'No app to download. No account to create. Open the link, pick a mode, and start playing within seconds.',
+  step1Title:'1. Pick a mode',
+  step1Body:'Solo for personal reflection, Together with friends and family, or create a question card to send to a friend.',
+  step2Title:'2. Pick a category',
+  step2Body:'Five categories: Fun & silly, Friends, Deep questions, Would you rather, and Family.',
+  step3Title:'3. Play and share',
+  step3Body:'Draw a question, answer it, vote on the best answer, then share the card to WhatsApp or Instagram in one tap.',
+  featTitle:'Why players love it',
+  featSub:'A question game designed for unforgettable moments — not just passing questions.',
+  f1t:'Built for real moments',f1b:'Every question is crafted to spark a real conversation — not a yes/no answer.',
+  f2t:'Solo & group play',f2b:'Use it for personal reflection, a lively group discussion, or an exciting vote with friends.',
+  f3t:'Shareable cards',f3b:'Turn any question into an elegant card you can save or share on WhatsApp, Telegram, and Instagram.',
+  f4t:'Winner reward',f4b:'Before you start, agree on a tangible reward for the winner — a more competitive, thrilling game.',
+  f5t:'Arabic & English',f5b:'Interface and questions in both languages. Switch with one tap — no page reload.',
+  f6t:'Runs in your browser',f6b:'No download, no sign-up. Open the link and play. Optionally add it to your home screen as an app.',
+  modesTitle:'Two modes… one great time',
+  modesSub:'Choose the mode that fits the moment: a quiet personal reflection, or a lively interactive session with loved ones.',
+  soloTag:'Play Solo',groupTag:'Play Together',
+  soloTitle:'Play Solo',
+  soloBody:'Take your time with the questions. Discover how you think, save what moves you, and share what is worth sharing.',
+  soloL1:'Draw a new question with one tap',soloL2:'Move between categories easily',
+  soloL3:'Download or share the question card instantly',soloL4:'No timer, no pressure — this is your moment',
+  groupTitle:'Play Together',
+  groupBody:'Gather 2 to 4 players on one device. Each player answers, then everyone votes for the best answer. First to 5 stars wins.',
+  groupL1:'Add player names and pick a category',groupL2:'All players answer the same question in turn',
+  groupL3:'Vote for the best answer',groupL4:'Agree on a reward beforehand to raise the stakes',
+  catsTitle:'Pick a category to match your mood',
+  catsSub:'Each category has a different feel — from light laughter to questions that touch the heart.',
+  catFun:'Fun & silly',catFunSub:'Light questions everyone laughs at',
+  catFriends:'Friends',catFriendsSub:'Get to know each other more',
+  catDeep:'Deep questions',catDeepSub:'Think deeply and answer honestly',
+  catChoices:'Would you rather?',catChoicesSub:'Choose between two tough options',
+  catFamily:'Family',catFamilySub:'Safe and fun questions for all ages',
+  sampleQ1:'"What would you like to be remembered for?"',
+  sampleQ2:'"Would you rather have more time or more money?"',
+  sampleQ3:'"What family tradition would you want to pass down?"',
+  rewardTitle:'🏆 New feature: Winner reward',
+  rewardBody:'Before the game, agree on a tangible reward for the winner: dinner on the losers, a favorite meal, or anything you like. The reward appears on the star board throughout the match — raising the stakes and turning every round into a real challenge.',
+  rewardExample:'Example: "Winner doesn\'t pay the bill tonight"',
+  faqTitle:'Frequently asked questions',
+  faqSub:'Everything you want to know before you start.',
+  q1:'Is the game really free?',a1:'Yes. It is completely free and requires no mandatory sign-up. You can start right from your browser.',
+  q2:'Do I need to download an app?',a2:'No. The game runs directly in your browser. Optionally, you can add it to your phone\'s home screen with one tap from the browser menu.',
+  q3:'How many players in group mode?',a3:'2 to 4 players on a single device. Each answers the same question in turn, then everyone votes for the best answer.',
+  q4:'Are there questions for kids and family?',a4:'Yes. The Family category is carefully written to be suitable for all ages and is safe for dinner table play.',
+  q5:'How does the winner reward work?',a5:'Before the game, write in the "Winner reward" field what you agreed on (e.g., "doesn\'t pay the bill tonight"). The reward shows on the star board throughout the match, and appears with the winner\'s message when someone wins. It is a symbolic agreement between players — the game itself involves no electronic payment.',
+  q6:'Can I share questions with friends?',a6:'Yes, and it is one of the game\'s most popular features. Turn any question into an elegant card, share it on WhatsApp, Telegram, or Instagram, or download it as an image. When your friend opens the link, they land directly on that question.',
+  q7:'Is the game available in Arabic and English?',a7:'Yes. Both the interface and the questions are available in both languages. Switch with one tap — no page reload.',
+  ctaTitle:'Ready to open a new topic?',
+  ctaBody:'No sign-up, no download, no waiting. Open the game now and start your first question within seconds. Then share it with someone you love.',
+  ctaPlay:'▶ Start playing free',ctaLearnMore:'Learn more',
+  footerTag:'Question Card Game',
+  footPlay:'Play now',footPrivacy:'Privacy Policy'
+}};
+
+let lang='ar';
+function applyLang(){
+  document.documentElement.lang=lang;
+  document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  $$('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(T[lang][k]!==undefined)el.textContent=T[lang][k]});
+  $$('[data-i18n-html]').forEach(el=>{const k=el.dataset.i18nHtml;if(T[lang][k]!==undefined)el.innerHTML=T[lang][k]});
+  document.querySelector('#b-ar').classList.toggle('hidden',lang!=='ar');
+  document.querySelector('#b-en').classList.toggle('hidden',lang==='ar');
+  document.querySelector('#langLabel').textContent=lang==='ar'?'English':'العربية';
+  document.title=lang==='ar'
+    ?'افتح توبيك | Open Topic — لعبة بطاقات أسئلة للعائلة والأصدقاء'
+    :'Open Topic — A Question Card Game for Family & Friends';
+}
+document.querySelector('#langBtn').addEventListener('click',()=>{lang=lang==='ar'?'en':'ar';applyLang()});
+document.querySelector('#year').textContent=new Date().getFullYear();
+applyLang();
+})();
+</script>
+</body>
+</html>
