@@ -245,7 +245,7 @@ window.HERO_DATA = {
         "ذكاء"
       ],
       "buyUrl": "",
-      "landingUrl": "https://www.googletagmanager.com/gtag/js?id=G-MJ2R74SMY5",
+      "landingUrl": "https://github.com/alkhapeer/opentopic/releases/download/v1.0.0/app4217368-umfs0l.apk",
       "landingHtml": ""
     }
   ],
