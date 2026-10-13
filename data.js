@@ -244,9 +244,9 @@ window.HERO_DATA = {
         "ضحك",
         "ذكاء"
       ],
-      "buyUrl": "",
-      "landingUrl": "opentopicLP.html",
-      "landingHtml": ""
+      "buyUrl": "https://www.googletagmanager.com/gtag/js?id=G-MJ2R74SMY5",
+      "landingUrl": "https://www.googletagmanager.com/gtag/js?id=G-MJ2R74SMY5",
+      "landingHtml": "https://www.googletagmanager.com/gtag/js?id=G-MJ2R74SMY5"
     }
   ],
   "settings": {
