@@ -457,6 +457,7 @@ input,select,textarea{font:inherit;font-family:inherit}
 <div class="toast" id="toast"></div>
 
 <script src="data.js"></script>
+<script src="articles.js"></script>
 <script>
 (function(){
 'use strict';
@@ -825,11 +826,11 @@ function showProduct(id){
 function route(){
   var h = location.hash || '#/';
   if (h.indexOf('#/product/')===0){ showProduct(h.substring('#/product/'.length)); return; }
+  if (h.indexOf('#/article/')===0){ showArticle(h.substring('#/article/'.length)); return; }
   if (h.indexOf('#/category/')===0){ showResults({category:h.substring('#/category/'.length)}); return; }
+  if (h === '#/articles'){ showArticles(); return; }
   if (h === '#/all'){ showResults({}); return; }
   goHome();
-  if (h.indexOf('#/article/')===0){ showArticle(h.substring('#/article/'.length)); return; }
-  if (h === '#/articles'){ showArticles(); return; }
 }
 
 /* ============================================================
@@ -975,6 +976,6 @@ else init();
 
 })();
 </script>
-<script src="articles.js"></script>
+
 </body>
 </html>
