@@ -245,7 +245,7 @@ window.HERO_DATA = {
         "ذكاء"
       ],
       "buyUrl": "",
-      "landingUrl": "/opentopicLP.html",
+      "landingUrl": "opentopicLP.html",
       "landingHtml": ""
     }
   ],
