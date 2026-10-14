@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#006C35">
+<title>🎮 قدرات — لعبة التحدي السعودية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+--green:#006C35;--green-dark:#004d26;--green-light:#00854a;
+--gold:#D4AF37;--gold-light:#F4D03F;--gold-dark:#a8871f;
+--cream:#FDF8F0;--cream-dark:#f5ead9;
+--red:#C8102E;--red-light:#ef4444;
+--blue:#1e40af;--purple:#7c3aed;
+--text:#1a2634;--text-mute:#64748b;
+--radius:16px;--radius-sm:10px;
+--shadow:0 4px 16px rgba(0,0,0,.08);
+--shadow-lg:0 12px 40px rgba(0,0,0,.15);
+--nav-h:68px;
+}
+html,body{height:100%}
+body{font-family:'Cairo',system-ui,sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-bottom:calc(var(--nav-h) + 8px)}
+body.no-nav{padding-bottom:0}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.hide{display:none !important}
+
+/* SPLASH */
+#screen-splash{position:fixed;inset:0;z-index:1000;background:linear-gradient(160deg,var(--green) 0%,var(--green-dark) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:24px;transition:opacity .5s,transform .5s}
+#screen-splash.hide{opacity:0;transform:scale(1.1);pointer-events:none}
+.splash-logo{font-size:96px;line-height:1;margin-bottom:8px;animation:floaty 2.5s ease-in-out infinite;filter:drop-shadow(0 8px 20px rgba(0,0,0,.3))}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.splash-title{font-size:56px;font-weight:900;letter-spacing:-2px;margin-bottom:6px;background:linear-gradient(180deg,#fff,var(--gold-light));-webkit-background-clip:text;background-clip:text;color:transparent}
+.splash-sub{font-size:17px;opacity:.9;margin-bottom:36px;font-weight:600}
+.splash-flags{font-size:28px;letter-spacing:8px;margin-bottom:20px;opacity:.85}
+.btn-start{background:linear-gradient(180deg,var(--gold-light),var(--gold));color:var(--green-dark);font-size:20px;font-weight:900;padding:16px 56px;border-radius:60px;box-shadow:0 8px 0 var(--gold-dark),0 14px 30px rgba(0,0,0,.3);transition:.15s}
+.btn-start:active{transform:translateY(6px);box-shadow:0 2px 0 var(--gold-dark)}
+
+/* APP SHELL */
+#app{max-width:520px;margin:0 auto;min-height:100vh;position:relative;background:var(--cream)}
+.screen{display:none;padding:0 14px 14px;animation:fadeUp .35s ease}
+.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* HEADER */
+.main-header{position:sticky;top:0;z-index:50;background:linear-gradient(160deg,var(--green) 0%,var(--green-dark) 100%);color:#fff;padding:12px 16px;border-radius:0 0 22px 22px;box-shadow:0 6px 20px rgba(0,108,53,.25);margin:0 -14px 14px}
+.header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.header-brand{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:900}
+.header-brand .brand-icon{font-size:26px}
+.header-brand small{font-size:10px;font-weight:400;opacity:.85;display:block;margin-top:-2px}
+.header-stats{display:flex;gap:6px}
+.stat-pill{background:rgba(255,255,255,.15);backdrop-filter:blur(6px);padding:5px 11px;border-radius:30px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:4px;border:1px solid rgba(255,255,255,.15)}
+.stat-pill.coins{color:var(--gold-light)}
+.stat-pill.hearts{color:#ffb4b4}
+.header-progress{display:flex;align-items:center;gap:8px;font-size:11px}
+.header-progress .lvl{font-weight:900;font-size:13px;background:var(--gold);color:var(--green-dark);padding:2px 10px;border-radius:30px}
+.header-progress .bar{flex:1;height:8px;background:rgba(255,255,255,.2);border-radius:10px;overflow:hidden}
+.header-progress .bar .fill{height:100%;background:linear-gradient(90deg,var(--gold-light),var(--gold));border-radius:10px;transition:width .6s ease}
+
+/* HOME */
+.hero-card{background:linear-gradient(160deg,var(--green) 0%,var(--green-light) 100%);border-radius:22px;padding:18px 20px;color:#fff;box-shadow:0 10px 30px rgba(0,108,53,.28);margin-bottom:14px;position:relative;overflow:hidden}
+.hero-card::before{content:'🐪';position:absolute;left:-10px;bottom:-15px;font-size:110px;opacity:.12;transform:rotate(-8deg)}
+.hero-card h2{font-size:20px;font-weight:900;margin-bottom:4px;position:relative}
+.hero-card p{font-size:13px;opacity:.9;margin-bottom:14px;position:relative;line-height:1.6}
+.btn-continue{background:linear-gradient(180deg,var(--gold-light),var(--gold));color:var(--green-dark);font-weight:900;padding:11px 26px;border-radius:40px;font-size:15px;box-shadow:0 5px 0 var(--gold-dark),0 8px 20px rgba(0,0,0,.2);position:relative;transition:.15s;display:inline-flex;align-items:center;gap:8px}
+.btn-continue:active{transform:translateY(4px);box-shadow:0 1px 0 var(--gold-dark)}
+.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.home-tile{background:#fff;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);border:1px solid #f0e8d8;text-align:center;transition:.15s;position:relative;overflow:hidden;cursor:pointer}
+.home-tile:active{transform:scale(.97)}
+.home-tile .tile-emoji{font-size:32px;margin-bottom:4px}
+.home-tile .tile-title{font-size:13px;font-weight:700;color:var(--green)}
+.home-tile .tile-desc{font-size:10px;color:var(--text-mute);margin-top:2px}
+.home-tile .badge{position:absolute;top:6px;left:6px;background:var(--red);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:30px}
+.daily-card{background:#fff;border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);border:1px solid #f0e8d8;margin-bottom:14px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden}
+.daily-card::before{content:'';position:absolute;right:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--gold),var(--gold-dark))}
+.daily-icon{font-size:34px;flex-shrink:0}
+.daily-info{flex:1;min-width:0}
+.daily-info h4{font-size:14px;font-weight:900;color:var(--green);margin-bottom:2px}
+.daily-info p{font-size:11px;color:var(--text-mute);margin-bottom:6px}
+.btn-daily{background:var(--green);color:#fff;padding:6px 16px;border-radius:30px;font-size:12px;font-weight:700}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:16px 4px 8px;font-size:14px;font-weight:900;color:var(--green)}
+.section-title span{font-size:11px;font-weight:600;color:var(--text-mute)}
+
+/* MAP */
+.map-wrap{padding:10px 0 30px}
+.map-path{position:relative}
+.map-node{display:flex;align-items:center;margin-bottom:6px;position:relative;padding:8px 0}
+.map-node.right{flex-direction:row-reverse}
+.map-node::before{content:'';position:absolute;top:-10px;bottom:-10px;width:4px;background-image:linear-gradient(to bottom,rgba(0,108,53,.25) 60%,transparent 60%);background-size:4px 14px;right:50%;transform:translateX(50%);z-index:0;border-radius:2px}
+.map-node:first-child::before{display:none}
+.node-circle{width:74px;height:74px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:30px;background:#fff;border:4px solid var(--cream-dark);box-shadow:0 4px 0 rgba(0,0,0,.08);position:relative;z-index:2;transition:.2s;flex-shrink:0;cursor:pointer}
+.node-circle.locked{filter:grayscale(1);opacity:.5;cursor:not-allowed}
+.node-circle.current{border-color:var(--gold);box-shadow:0 0 0 4px rgba(212,175,55,.25),0 6px 0 var(--gold-dark);animation:pulseNode 2s ease-in-out infinite}
+.node-circle.completed{border-color:var(--green);background:linear-gradient(160deg,#fff,#e8f5ec)}
+@keyframes pulseNode{0%,100%{box-shadow:0 0 0 4px rgba(212,175,55,.25),0 6px 0 var(--gold-dark)}50%{box-shadow:0 0 0 12px rgba(212,175,55,.08),0 6px 0 var(--gold-dark)}}
+.node-info{flex:1;padding:0 12px;position:relative;z-index:2}
+.node-info h4{font-size:15px;font-weight:900;color:var(--green);margin-bottom:2px}
+.node-info p{font-size:11px;color:var(--text-mute)}
+.node-stars{margin-top:5px;font-size:14px;letter-spacing:1px}
+.node-stars .on{color:var(--gold)}
+.node-stars .off{color:var(--cream-dark)}
+
+/* GAME */
+.game-top{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-top:10px}
+.game-top .btn-icon{width:38px;height:38px;border-radius:50%;background:#fff;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.game-top .progress-pill{flex:1;background:#fff;border-radius:30px;padding:6px 14px;box-shadow:var(--shadow);display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--green)}
+.game-top .progress-bar{flex:1;height:7px;background:var(--cream-dark);border-radius:10px;overflow:hidden}
+.game-top .progress-bar .fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:10px;transition:width .4s ease}
+.timer-wrap{height:10px;background:#fff;border-radius:10px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:14px;position:relative}
+.timer-wrap .fill{height:100%;background:linear-gradient(90deg,var(--green),var(--green-light));border-radius:10px;transition:width 1s linear,background .3s}
+.timer-wrap.warn .fill{background:linear-gradient(90deg,var(--gold),#f97316)}
+.timer-wrap.danger .fill{background:linear-gradient(90deg,var(--red),#f97316)}
+.timer-text{position:absolute;top:50%;right:12px;transform:translateY(-50%);font-size:11px;font-weight:900;color:var(--green)}
+.hearts-row{display:flex;justify-content:center;gap:6px;margin-bottom:12px;font-size:22px}
+.heart.lost{opacity:.25;filter:grayscale(1);transform:scale(.85)}
+.question-card{background:#fff;border-radius:var(--radius);padding:20px 18px;box-shadow:var(--shadow);border:1px solid #f0e8d8;margin-bottom:14px;min-height:110px;display:flex;flex-direction:column;justify-content:center}
+.question-card .q-tag{display:inline-flex;align-items:center;gap:6px;background:var(--cream-dark);color:var(--green-dark);font-size:10px;font-weight:700;padding:3px 12px;border-radius:30px;margin-bottom:10px;align-self:flex-start}
+.question-card .q-text{font-size:16px;font-weight:700;line-height:1.7;color:var(--text);white-space:pre-line}
+.options-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.option-btn{background:#fff;border-radius:var(--radius-sm);padding:14px 16px;box-shadow:var(--shadow);border:2px solid transparent;display:flex;align-items:center;gap:12px;font-size:15px;font-weight:600;text-align:right;transition:.18s;color:var(--text);position:relative}
+.option-btn:active{transform:scale(.98)}
+.option-letter{width:32px;height:32px;border-radius:50%;background:var(--cream-dark);color:var(--green-dark);font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;transition:.18s}
+.option-btn.correct{border-color:var(--green);background:#e8f5ec}
+.option-btn.correct .option-letter{background:var(--green);color:#fff}
+.option-btn.wrong{border-color:var(--red);background:#fdeaea}
+.option-btn.wrong .option-letter{background:var(--red);color:#fff}
+.option-btn.disabled{pointer-events:none}
+.option-btn.eliminated{opacity:.25;text-decoration:line-through;pointer-events:none}
+.option-btn.shake{animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+.feedback-bar{background:#fff;border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow-lg);margin-bottom:14px;border-right:5px solid var(--green);display:none}
+.feedback-bar.show{display:block;animation:fadeUp .3s}
+.feedback-bar.wrong{border-right-color:var(--red)}
+.feedback-bar h4{font-size:15px;font-weight:900;color:var(--green);margin-bottom:4px}
+.feedback-bar.wrong h4{color:var(--red)}
+.feedback-bar p{font-size:13px;color:var(--text);line-height:1.7}
+.btn-primary{background:linear-gradient(180deg,var(--green-light),var(--green));color:#fff;font-weight:900;padding:14px 24px;border-radius:50px;font-size:16px;width:100%;box-shadow:0 5px 0 var(--green-dark),0 10px 24px rgba(0,108,53,.3);transition:.15s}
+.btn-primary:active{transform:translateY(4px);box-shadow:0 1px 0 var(--green-dark)}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+
+/* POWER-UPS BAR (FIX #1) */
+.powerups-bar{display:flex;gap:8px;margin-bottom:12px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.powerups-bar::-webkit-scrollbar{display:none}
+.pu-btn{background:#fff;border:2px solid #f0e8d8;border-radius:14px;padding:8px 12px;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:68px;box-shadow:var(--shadow);transition:.15s;position:relative;flex-shrink:0}
+.pu-btn:active{transform:scale(.95)}
+.pu-btn .pu-icon{font-size:22px}
+.pu-btn .pu-lbl{font-size:9px;font-weight:700;color:var(--text-mute)}
+.pu-btn .pu-count{position:absolute;top:-6px;right:-6px;background:var(--gold);color:var(--green-dark);font-size:10px;font-weight:900;min-width:20px;height:20px;border-radius:30px;display:flex;align-items:center;justify-content:center;border:2px solid #fff}
+.pu-btn.disabled{opacity:.4;pointer-events:none}
+.pu-btn.active{border-color:var(--green);background:#e8f5ec}
+
+/* RESULT */
+.result-hero{background:linear-gradient(160deg,var(--green) 0%,var(--green-light) 100%);border-radius:22px;padding:26px 20px;color:#fff;text-align:center;box-shadow:0 12px 36px rgba(0,108,53,.3);margin-bottom:14px;position:relative;overflow:hidden}
+.result-title{font-size:26px;font-weight:900;margin-bottom:6px;text-shadow:0 2px 8px rgba(0,0,0,.2)}
+.result-sub{font-size:14px;opacity:.9;margin-bottom:18px}
+.result-stars{display:flex;justify-content:center;gap:14px;margin-bottom:20px}
+.result-stars .star{font-size:56px;color:rgba(255,255,255,.2);transform:scale(.5);opacity:0}
+.result-stars .star.on{color:var(--gold-light);text-shadow:0 4px 16px rgba(212,175,55,.6)}
+.result-stars .star.animate{animation:starIn .6s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes starIn{0%{transform:scale(.3) rotate(-180deg);opacity:0}100%{transform:scale(1) rotate(0);opacity:1}}
+.result-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.result-stat{background:rgba(255,255,255,.15);backdrop-filter:blur(8px);padding:12px 8px;border-radius:14px;border:1px solid rgba(255,255,255,.2)}
+.result-stat .num{font-size:22px;font-weight:900;color:var(--gold-light);line-height:1.1}
+.result-stat .lbl{font-size:10px;opacity:.9;margin-top:3px}
+.result-actions{display:flex;gap:10px;margin-top:14px}
+.result-actions button{flex:1;padding:14px;border-radius:50px;font-weight:900;font-size:14px}
+.btn-secondary{background:#fff;color:var(--green);border:2px solid var(--green);box-shadow:0 4px 0 rgba(0,108,53,.15)}
+
+/* SHOP (FIX #1) */
+.shop-hero{background:linear-gradient(160deg,var(--gold-dark),var(--gold));border-radius:22px;padding:18px;color:#fff;text-align:center;margin-bottom:14px;box-shadow:0 10px 30px rgba(212,175,55,.3)}
+.shop-hero h3{font-size:20px;font-weight:900;margin-bottom:4px}
+.shop-hero .balance{font-size:32px;font-weight:900;color:var(--green-dark);background:#fff;display:inline-block;padding:6px 24px;border-radius:40px;margin-top:8px}
+.shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.shop-item{background:#fff;border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);border:2px solid #f0e8d8;text-align:center;position:relative;transition:.15s}
+.shop-item:active{transform:scale(.98)}
+.shop-item .si-icon{font-size:38px;margin-bottom:6px}
+.shop-item .si-name{font-size:13px;font-weight:900;color:var(--green);margin-bottom:2px}
+.shop-item .si-desc{font-size:10px;color:var(--text-mute);margin-bottom:10px;line-height:1.4;min-height:28px}
+.shop-item .si-price{background:linear-gradient(180deg,var(--gold-light),var(--gold));color:var(--green-dark);font-weight:900;padding:6px 14px;border-radius:30px;font-size:13px;display:inline-block;box-shadow:0 3px 0 var(--gold-dark)}
+.shop-item .si-owned{position:absolute;top:8px;left:8px;background:var(--green);color:#fff;font-size:10px;font-weight:900;padding:3px 9px;border-radius:30px}
+.shop-item.poor{opacity:.55}
+
+/* MISTAKE BOOK (FIX #3) */
+.mistake-item{background:#fff;border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;box-shadow:var(--shadow);border-right:5px solid var(--red);position:relative}
+.mistake-item .mi-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px}
+.mistake-item .mi-id{font-size:10px;font-weight:700;color:var(--text-mute);background:var(--cream-dark);padding:2px 8px;border-radius:30px}
+.mistake-item .mi-tag{font-size:10px;font-weight:700;padding:2px 9px;border-radius:30px;background:#dbeafe;color:var(--blue)}
+.mistake-item .mi-tag.verb{background:#ede9fe;color:var(--purple)}
+.mistake-item .mi-q{font-size:14px;font-weight:700;line-height:1.6;margin-bottom:8px;color:var(--text)}
+.mistake-item .mi-ans{display:flex;gap:10px;font-size:12px;margin-bottom:8px;flex-wrap:wrap}
+.mistake-item .mi-ans .wrong{color:var(--red);font-weight:700;background:#fee2e2;padding:3px 10px;border-radius:8px}
+.mistake-item .mi-ans .correct{color:var(--green);font-weight:700;background:#dcfce7;padding:3px 10px;border-radius:8px}
+.mistake-item .mi-exp{font-size:12px;color:var(--text-mute);line-height:1.7;padding:8px 12px;background:var(--cream);border-radius:8px;border-right:3px solid var(--gold)}
+.mistake-item .mi-actions{margin-top:10px;display:flex;gap:8px}
+.btn-mini{padding:6px 14px;border-radius:30px;font-size:11px;font-weight:700;transition:.15s;border:1.5px solid var(--green);color:var(--green);background:#fff}
+.btn-mini.danger{border-color:var(--red);color:var(--red)}
+.btn-mini.solid{background:var(--green);color:#fff;border-color:var(--green)}
+
+/* LEADERBOARD (FIX #2) */
+.lb-week-badge{background:linear-gradient(160deg,var(--gold),var(--gold-dark));color:#fff;font-size:11px;font-weight:900;padding:6px 14px;border-radius:30px;display:inline-flex;align-items:center;gap:6px;margin:0 4px 12px;box-shadow:0 4px 12px rgba(212,175,55,.3)}
+.lb-list{display:flex;flex-direction:column;gap:8px}
+.lb-row{background:#fff;border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow);border:1px solid #f0e8d8}
+.lb-row.me{background:linear-gradient(160deg,#fff9e6,#fff);border-color:var(--gold);box-shadow:0 4px 20px rgba(212,175,55,.25)}
+.lb-rank{width:34px;height:34px;border-radius:50%;background:var(--cream-dark);color:var(--green-dark);font-weight:900;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.lb-rank.r1{background:linear-gradient(160deg,var(--gold-light),var(--gold));color:#fff}
+.lb-rank.r2{background:linear-gradient(160deg,#e2e8f0,#94a3b8);color:#fff}
+.lb-rank.r3{background:linear-gradient(160deg,#f5d0a9,#c17c3c);color:#fff}
+.lb-avatar{width:42px;height:42px;border-radius:50%;background:var(--cream-dark);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.lb-info{flex:1;min-width:0}
+.lb-info h4{font-size:14px;font-weight:700}
+.lb-info p{font-size:11px;color:var(--text-mute)}
+.lb-score{font-size:15px;font-weight:900;color:var(--green);text-align:left}
+.lb-score small{display:block;font-size:10px;font-weight:600;color:var(--gold-dark)}
+
+/* STUDY */
+.study-tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:12px;scrollbar-width:none}
+.study-tabs::-webkit-scrollbar{display:none}
+.study-tab{background:#fff;padding:8px 16px;border-radius:30px;font-size:12px;font-weight:700;color:var(--text-mute);white-space:nowrap;box-shadow:var(--shadow);transition:.15s;border:1.5px solid transparent;flex-shrink:0}
+.study-tab.active{background:var(--green);color:#fff}
+.study-content{background:#fff;border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);border:1px solid #f0e8d8;margin-bottom:14px;line-height:1.9;font-size:13px}
+.study-content h3{font-size:17px;font-weight:900;color:var(--green);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--cream-dark)}
+.study-content h4{font-size:14px;font-weight:900;color:var(--green-dark);margin:14px 0 6px}
+.study-content p{margin-bottom:8px;color:#475569}
+.study-content ul{list-style:none;padding:0;margin:8px 0}
+.study-content ul li{padding:5px 22px 5px 0;position:relative;color:#475569}
+.study-content ul li::before{content:'◆';position:absolute;right:0;color:var(--gold);font-size:11px;top:7px}
+.study-content code{background:#fef3c7;color:#92400e;padding:2px 8px;border-radius:6px;font-family:'Courier New',monospace;font-size:12px;font-weight:700}
+.study-content table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.study-content th,.study-content td{border:1px solid #e8e0d0;padding:7px 9px;text-align:right}
+.study-content th{background:var(--cream-dark);font-weight:700;color:var(--green)}
+
+/* ACHIEVEMENTS */
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ach-card{background:#fff;border-radius:var(--radius);padding:14px 8px;text-align:center;box-shadow:var(--shadow);border:1px solid #f0e8d8;position:relative}
+.ach-card.locked{opacity:.5;filter:grayscale(.6)}
+.ach-card .ach-icon{font-size:36px;margin-bottom:6px;display:block}
+.ach-card .ach-name{font-size:11px;font-weight:700;color:var(--green);line-height:1.3}
+.ach-card .ach-desc{font-size:9px;color:var(--text-mute);margin-top:3px}
+.ach-card.unlocked::after{content:'✓';position:absolute;top:6px;left:6px;width:20px;height:20px;background:var(--green);color:#fff;border-radius:50%;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:#fff;border-top:1px solid #f0e8d8;display:flex;justify-content:space-around;align-items:center;padding:6px 4px calc(6px + env(safe-area-inset-bottom));height:var(--nav-h);z-index:100;box-shadow:0 -6px 24px rgba(0,0,0,.06);border-radius:20px 20px 0 0}
+.nav-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:6px 4px;border-radius:14px;flex:1;min-width:0;position:relative}
+.nav-btn .nav-ic{font-size:20px;line-height:1;filter:grayscale(1);opacity:.45;transition:.2s}
+.nav-btn .nav-lbl{font-size:9px;font-weight:700;color:var(--text-mute)}
+.nav-btn.active .nav-ic{filter:none;opacity:1;transform:scale(1.15)}
+.nav-btn.active .nav-lbl{color:var(--green);font-weight:900}
+.nav-btn.active::before{content:'';position:absolute;top:2px;left:50%;transform:translateX(-50%);width:24px;height:3px;background:var(--gold);border-radius:3px}
+.nav-badge{position:absolute;top:2px;right:8px;background:var(--red);color:#fff;font-size:9px;font-weight:900;min-width:16px;height:16px;border-radius:30px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+
+/* TOAST & CONFETTI */
+.toast{position:fixed;top:20px;left:50%;transform:translate(-50%,-60px);background:var(--green-dark);color:#fff;padding:11px 22px;border-radius:40px;font-size:13px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:2000;opacity:0;transition:.35s cubic-bezier(.34,1.56,.64,1);pointer-events:none;max-width:90%}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.gold{background:linear-gradient(160deg,var(--gold-light),var(--gold));color:var(--green-dark)}
+.toast.red{background:var(--red)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:999;overflow:hidden}
+.confetti-piece{position:absolute;width:10px;height:14px;opacity:.9;animation:confettiFall linear forwards}
+@keyframes confettiFall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}
+.streak-pop{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:60px;font-weight:900;color:var(--gold);text-shadow:0 4px 20px rgba(212,175,55,.6);pointer-events:none;opacity:0;z-index:100;animation:streakPop 1s ease-out}
+@keyframes streakPop{0%{opacity:0;transform:translate(-50%,-50%) scale(.3) rotate(-15deg)}30%{opacity:1;transform:translate(-50%,-50%) scale(1.2) rotate(5deg)}70%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.5)}}
+
+/* EMPTY */
+.empty-state{text-align:center;padding:40px 16px;color:var(--text-mute)}
+.empty-state .icon{font-size:52px;margin-bottom:10px}
+.empty-state h3{font-size:16px;font-weight:900;color:var(--green);margin-bottom:6px}
+.empty-state p{font-size:13px;line-height:1.7}
+
+@media(max-width:380px){
+.splash-title{font-size:44px}
+.node-circle{width:64px;height:64px;font-size:26px}
+.shop-grid{grid-template-columns:1fr}
+}
+.splash-links{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap;justify-content:center}
+.splash-link{background:rgba(255,255,255,.12);color:#fff;text-decoration:none;padding:10px 20px;border-radius:30px;font-size:13px;font-weight:700;border:1.5px solid rgba(255,255,255,.25);backdrop-filter:blur(8px);transition:.2s;display:inline-flex;align-items:center;gap:6px}
+.splash-link:hover,.splash-link:active{background:rgba(255,255,255,.25);transform:translateY(-2px)}
+
+.home-tile.external{background:linear-gradient(160deg,#fff,#f8f4ea);border-color:var(--gold);position:relative}
+.home-tile.external::after{content:'↗';position:absolute;top:8px;left:8px;font-size:14px;color:var(--gold);font-weight:900}
+.home-tile.external:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(212,175,55,.2)}
+
+/* LINK CARDS */
+.link-card{background:#fff;border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);border:1px solid #f0e8d8;display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;transition:.2s;position:relative}
+.link-card:hover,.link-card:active{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.link-card .lc-icon{font-size:32px;flex-shrink:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:var(--cream);border-radius:12px}
+.link-card .lc-info{flex:1;min-width:0}
+.link-card .lc-info h4{font-size:15px;font-weight:900;color:var(--green);margin-bottom:2px}
+.link-card .lc-info p{font-size:11px;color:var(--text-mute);line-height:1.4}
+.link-card .lc-arrow{font-size:20px;color:var(--gold);font-weight:900;flex-shrink:0}
+
+/* GAME CARDS */
+.game-card{border-radius:var(--radius);padding:16px 14px;color:#fff;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.15);transition:.2s;display:flex;flex-direction:column;justify-content:space-between;min-height:110px;position:relative;overflow:hidden}
+.game-card:hover,.game-card:active{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+.game-card::before{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;background:rgba(255,255,255,.1);border-radius:50%}
+.game-card .gc-emoji{font-size:36px;position:relative;z-index:1}
+.game-card .gc-title{font-size:14px;font-weight:900;margin-top:8px;position:relative;z-index:1}
+.game-card .gc-sub{font-size:10px;opacity:.85;position:relative;z-index:1}
+
+</style>
+</head>
+<body class="no-nav">
+
+<div id="confetti"></div>
+<div class="toast" id="toast"></div>
+
+<!-- SPLASH -->
+<div id="screen-splash">
+  <div class="splash-flags">🇸🇦 ❇️ 🇸🇦</div>
+  <div class="splash-logo">🐪</div>
+  <div class="splash-title">قدرات</div>
+  <div class="splash-sub">لعبة التحدي السعودية للقدرات العامة</div>
+  <button class="btn-start" id="btnStart">ابدأ اللعب 🎮</button>
+    <!-- ✅ روابط سريعة أسفل الزر -->
+  <div class="splash-links">
+    <a href="https://store.hero1.vip/" target="_blank" class="splash-link">
+      🛍️ هيرو ستور
+    </a>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" class="hide">
+
+  <header class="main-header">
+    <div class="header-top">
+      <div class="header-brand">
+        <span class="brand-icon">🐪</span>
+        <div>قدرات<small>Hero Academy</small></div>
+      </div>
+      <div class="header-stats">
+        <div class="stat-pill coins">🪙 <span id="hCoins">0</span></div>
+        <div class="stat-pill hearts">❤️ <span id="hHearts">3</span></div>
+      </div>
+    </div>
+    <div class="header-progress">
+      <span class="lvl" id="hLevel">مستوى 1</span>
+      <div class="bar"><div class="fill" id="hXPBar" style="width:0%"></div></div>
+      <span id="hXP" style="font-weight:700">0/100</span>
+    </div>
+  </header>
+
+  <!-- HOME -->
+  <section class="screen active" id="screen-home">
+    <div class="hero-card">
+      <h2 id="homeGreeting">أهلاً بك يا بطل! 👋</h2>
+      <p id="homeSubGreeting">جاهز لتحدي اليوم؟ ابدأ رحلتك من الرياض إلى نيوم!</p>
+      <button class="btn-continue" id="btnContinue">▶ استئناف اللعب</button>
+    </div>
+
+    <div class="daily-card" id="dailyCard">
+      <div class="daily-icon">🎁</div>
+      <div class="daily-info">
+        <h4>تحدي اليوم</h4>
+        <p id="dailyDesc">سؤال واحد فقط، لكن الذهب مضاعف!</p>
+      </div>
+      <button class="btn-daily" id="btnDaily">ابدأ</button>
+    </div>
+
+    <div class="section-title">🎯 التحديات السريعة <span id="quickStats"></span></div>
+    <div class="home-grid">
+  <div class="home-tile" data-quick="km">
+    <div class="tile-emoji">📐</div>
+    <div class="tile-title">تحدي كمي</div>
+    <div class="tile-desc">6 أسئلة سريعة</div>
+  </div>
+  <div class="home-tile" data-quick="lf">
+    <div class="tile-emoji">🧠</div>
+    <div class="tile-title">تحدي لفظي</div>
+    <div class="tile-desc">6 أسئلة سريعة</div>
+  </div>
+  <div class="home-tile" data-go="shop">
+    <div class="tile-emoji">🛒</div>
+    <div class="tile-title">المتجر</div>
+    <div class="tile-desc">قوى خارقة!</div>
+  </div>
+  <div class="home-tile" data-go="mistakes">
+    <div class="tile-emoji">📕</div>
+    <div class="tile-title">دفتر أخطائي</div>
+    <div class="tile-desc" id="mistakesTileDesc">لا أخطاء بعد</div>
+  </div>
+</div>
+
+<!-- ✅ صف الروابط الخارجية -->
+<div class="section-title">🌐 عالم هيرو <span>استكشف المزيد</span></div>
+<div class="home-grid">
+  <a href="https://store.hero1.vip/" target="_blank" class="home-tile external" style="text-decoration:none">
+    <div class="tile-emoji">🛍️</div>
+    <div class="tile-title">هيرو ستور</div>
+    <div class="tile-desc">كتب وملخصات القدرات</div>
+  </a>
+  <a href="https://store.hero1.vip/" target="_blank" class="home-tile external" style="text-decoration:none">
+    <div class="tile-emoji">🎮</div>
+    <div class="tile-title">ألعاب أخرى</div>
+    <div class="tile-desc">حصص تفاعلية ممتعة</div>
+  </a>
+  <a href="https://store.hero1.vip/" target="_blank" class="home-tile external" style="text-decoration:none">
+    <div class="tile-emoji">🏫</div>
+    <div class="tile-title">أكاديمية هيرو</div>
+    <div class="tile-desc">دورات القدرات والتحصيلي</div>
+  </a>
+  <a href="https://wa.me/249915886600" target="_blank" class="home-tile external" style="text-decoration:none">
+    <div class="tile-emoji">💬</div>
+    <div class="tile-title">تواصل واتساب</div>
+    <div class="tile-desc">استفسارات ودعم</div>
+  </a>
+</div>
+      <div class="home-tile" data-quick="lf">
+        <div class="tile-emoji">🧠</div>
+        <div class="tile-title">تحدي لفظي</div>
+        <div class="tile-desc">6 أسئلة سريعة</div>
+      </div>
+      <div class="home-tile" data-go="shop">
+        <div class="tile-emoji">🛒</div>
+        <div class="tile-title">المتجر</div>
+        <div class="tile-desc">قوى خارقة!</div>
+        <div class="badge" id="shopBadge">جديد</div>
+      </div>
+      <div class="home-tile" data-go="mistakes">
+        <div class="tile-emoji">📕</div>
+        <div class="tile-title">دفتر أخطائي</div>
+        <div class="tile-desc" id="mistakesTileDesc">لا أخطاء بعد</div>
+      </div>
+    </div>
+
+    <div class="section-title">📊 ملخص تقدمك</div>
+    <div class="home-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="home-tile" style="padding:12px 6px">
+        <div class="tile-emoji" style="font-size:24px">⭐</div>
+        <div class="tile-title" style="font-size:20px" id="sumStars">0</div>
+        <div class="tile-desc">نجمة</div>
+      </div>
+      <div class="home-tile" style="padding:12px 6px">
+        <div class="tile-emoji" style="font-size:24px">🎯</div>
+        <div class="tile-title" style="font-size:20px" id="sumAccuracy">0%</div>
+        <div class="tile-desc">دقة</div>
+      </div>
+      <div class="home-tile" style="padding:12px 6px">
+        <div class="tile-emoji" style="font-size:24px">🔥</div>
+        <div class="tile-title" style="font-size:20px" id="sumBestStreak">0</div>
+        <div class="tile-desc">أطول سلسلة</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section class="screen" id="screen-map">
+    <div class="section-title">🗺️ رحلة عبر المملكة <span id="mapProgress">0 / 7</span></div>
+    <div class="map-wrap"><div class="map-path" id="mapPath"></div></div>
+  </section>
+
+  <!-- GAME -->
+  <section class="screen" id="screen-game">
+    <div class="game-top">
+      <button class="btn-icon" id="btnGameBack">✕</button>
+      <div class="progress-pill">
+        <span id="gameProgressText">1 / 7</span>
+        <div class="progress-bar"><div class="fill" id="gameProgressFill" style="width:0%"></div></div>
+      </div>
+    </div>
+    <div class="timer-wrap" id="timerWrap">
+      <div class="fill" id="timerFill" style="width:100%"></div>
+      <div class="timer-text" id="timerText">20</div>
+    </div>
+    <div class="hearts-row" id="heartsRow"></div>
+
+    <div class="powerups-bar" id="powerupsBar"></div>
+
+    <div class="question-card">
+      <span class="q-tag" id="qTag">🎯 سؤال</span>
+      <div class="q-text" id="qText">...</div>
+    </div>
+
+    <div class="options-grid" id="optionsGrid"></div>
+
+    <div class="feedback-bar" id="feedbackBar">
+      <h4 id="feedbackTitle">✅ صحيح!</h4>
+      <p id="feedbackText">...</p>
+      <button class="btn-primary" id="btnNext" style="margin-top:12px">التالي ›</button>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="screen" id="screen-result">
+    <div class="result-hero">
+      <div class="result-title" id="resultTitle">أحسنت!</div>
+      <div class="result-sub" id="resultSub">أكملت المرحلة</div>
+      <div class="result-stars">
+        <div class="star" id="star1">★</div>
+        <div class="star" id="star2">★</div>
+        <div class="star" id="star3">★</div>
+      </div>
+      <div class="result-stats-row">
+        <div class="result-stat"><div class="num" id="rCoins">0</div><div class="lbl">🪙 ذهب</div></div>
+        <div class="result-stat"><div class="num" id="rXP">0</div><div class="lbl">⚡ خبرة</div></div>
+        <div class="result-stat"><div class="num" id="rAcc">0%</div><div class="lbl">🎯 دقة</div></div>
+      </div>
+    </div>
+    <div class="result-actions">
+      <button class="btn-secondary" id="btnResultHome">🏠 الرئيسية</button>
+      <button class="btn-primary" id="btnResultNext" style="flex:1.4">التالي ›</button>
+    </div>
+  </section>
+
+  <!-- SHOP (FIX #1) -->
+  <section class="screen" id="screen-shop">
+    <div class="shop-hero">
+      <h3>🛒 متجر الأبطال</h3>
+      <p style="font-size:12px;opacity:.9;margin-top:4px">استخدم ذهبك في القوى الخارقة</p>
+      <div class="balance">🪙 <span id="shopCoins">0</span></div>
+    </div>
+    <div class="section-title">⚡ قوى الحل السريع</div>
+    <div class="shop-grid" id="shopGrid"></div>
+    <div class="section-title" style="margin-top:16px">📦 مخزونك</div>
+    <div class="shop-grid" id="inventoryGrid"></div>
+  </section>
+
+  <!-- MISTAKE BOOK (FIX #3) -->
+  <section class="screen" id="screen-mistakes">
+    <div class="section-title">📕 دفتر أخطائي <span id="mistakesCount">0 سؤال</span></div>
+    <div id="mistakesList"></div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section class="screen" id="screen-achievements">
+    <div class="section-title">🏆 إنجازاتك <span id="achProgress">0 / 12</span></div>
+    <div class="ach-grid" id="achGrid"></div>
+  </section>
+
+  <!-- LEADERBOARD (FIX #2) -->
+  <section class="screen" id="screen-leaderboard">
+    <div class="section-title">🥇 تحدي الأسبوع <span>يتجدد كل أسبوع</span></div>
+    <div id="lbWeekBadge"></div>
+    <div class="lb-list" id="lbList"></div>
+  </section>
+
+  <!-- STUDY -->
+  <section class="screen" id="screen-study">
+    <div class="section-title">📚 ركن الدراسة <span>ملخصات ذهبية</span></div>
+    <div class="study-tabs" id="studyTabs"></div>
+    <div class="study-content" id="studyContent"></div>
+  </section>
+  
+  <!-- MORE / LINKS SCREEN -->
+<section class="screen" id="screen-more">
+  <div class="shop-hero" style="background:linear-gradient(160deg,var(--green),var(--green-light))">
+    <h3>🌐 عالم هيرو</h3>
+    <p style="font-size:12px;opacity:.9;margin-top:4px">كل ما تحتاجه لرحلة القدرات</p>
+  </div>
+
+  <div class="section-title">🛍️ التسوق والتعلّم</div>
+  <div class="home-grid" style="grid-template-columns:1fr">
+    <a href="https://hero-store.com" target="_blank" class="link-card">
+      <div class="lc-icon">🛍️</div>
+      <div class="lc-info">
+        <h4>هيرو ستور</h4>
+        <p>كتب، ملخصات، ومراجع القدرات</p>
+      </div>
+      <div class="lc-arrow">↗</div>
+    </a>
+    <a href="https://hero-academy.com/courses" target="_blank" class="link-card">
+      <div class="lc-icon">🏫</div>
+      <div class="lc-info">
+        <h4>أكاديمية هيرو</h4>
+        <p>دورات القدرات والتحصيلي</p>
+      </div>
+      <div class="lc-arrow">↗</div>
+    </a>
+  </div>
+
+  <div class="section-title" style="margin-top:16px">🎮 ألعاب أخرى</div>
+  <div class="home-grid">
+    <a href="https://store.hero1.vip/" target="_blank" class="game-card" style="background:linear-gradient(135deg,#7c3aed,#a855f7)">
+      <div class="gc-emoji">🔬</div>
+      <div class="gc-title">تحدي التحصيلي</div>
+      <div class="gc-sub">لعبة العلوم</div>
+    </a>
+    <a href="https://store.hero1.vip/" target="_blank" class="game-card" style="background:linear-gradient(135deg,#1e40af,#3b82f6)">
+      <div class="gc-emoji">🇬🇧</div>
+      <div class="gc-title">English Hero</div>
+      <div class="gc-sub">قواعد ومفردات</div>
+    </a>
+    <a href="https://store.hero1.vip/" target="_blank" class="game-card" style="background:linear-gradient(135deg,#dc2626,#ef4444)">
+      <div class="gc-emoji">➗</div>
+      <div class="gc-title">حرب الأرقام</div>
+      <div class="gc-sub">تحدي الرياضيات</div>
+    </a>
+    <a href="https://store.hero1.vip/" target="_blank" class="game-card" style="background:linear-gradient(135deg,#059669,#10b981)">
+      <div class="gc-emoji">🎯</div>
+      <div class="gc-title">كل الألعاب</div>
+      <div class="gc-sub">المكتبة الكاملة</div>
+    </a>
+  </div>
+
+  <div class="section-title" style="margin-top:16px">💬 تواصل معنا</div>
+  <div class="home-grid">
+    <a href="https://wa.me/249915886600" target="_blank" class="link-card" style="background:#25D366;color:#fff;border:none">
+      <div class="lc-icon">📱</div>
+      <div class="lc-info">
+        <h4 style="color:#fff">واتساب</h4>
+        <p style="color:rgba(255,255,255,.85)">دعم واستفسارات</p>
+      </div>
+      <div class="lc-arrow" style="color:#fff">↗</div>
+    </a>
+    <a href="https://t.me/Herocourses" target="_blank" class="link-card" style="background:#0088cc;color:#fff;border:none">
+      <div class="lc-icon">💬</div>
+      <div class="lc-info">
+        <h4 style="color:#fff">تيليجرام</h4>
+        <p style="color:rgba(255,255,255,.85)">قناة هيرو</p>
+      </div>
+      <div class="lc-arrow" style="color:#fff">↗</div>
+    </a>
+  </div>
+
+  <div style="text-align:center;margin-top:20px;font-size:11px;color:var(--text-mute)">
+    🐪 قدرات v2 · Hero Academy © 2026
+  </div>
+</section>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav" id="bottomNav">
+    <button class="nav-btn active" data-go="home"><span class="nav-ic">🏠</span><span class="nav-lbl">الرئيسية</span></button>
+    <button class="nav-btn" data-go="map"><span class="nav-ic">🗺️</span><span class="nav-lbl">الخريطة</span></button>
+    <button class="nav-btn" data-go="shop"><span class="nav-ic">🛒</span><span class="nav-lbl">المتجر</span></button>
+    <button class="nav-btn" data-go="mistakes"><span class="nav-ic">📕</span><span class="nav-lbl">أخطائي</span><span class="nav-badge" id="navMistakeBadge" style="display:none">0</span></button>
+    <button class="nav-btn" data-go="leaderboard"><span class="nav-ic">🥇</span><span class="nav-lbl">الأبطال</span></button>
+    <button class="nav-btn" data-go="study"><span class="nav-ic">📚</span><span class="nav-lbl">دراسة</span></button>
+  </nav>
+</div>
+
+<script>
+/* ============================================================
+   🎮 قدرات v2 — مع إصلاح النقاط الحمراء الخمس
+   ============================================================ */
+
+/* ---------- FIX #4: EXPANDED QUESTION BANK (100+ سؤال) ---------- */
+const QUESTIONS = {
+// ===== مهارة الضرب في 1، 2، 5، 10 =====
+"Q-NUM-001":{id:"Q-NUM-001",track:"كمي",topic:"الضرب",skill:"الضرب في 1",difficulty:"سهل",q:"ما ناتج: 1592 × 1؟",opts:["1","1592","1593","15920"],correct:1,exp:"قاعدة المراية: أي عدد × 1 = نفسه."},
+"Q-NUM-004":{id:"Q-NUM-004",track:"كمي",topic:"الضرب",skill:"الضرب في 1",difficulty:"سهل",q:"ما ناتج: 0.005 × 1؟",opts:["0.05","0.005","0.5","1"],correct:1,exp:"الضرب في 1 ينسخ العدد بفواصله."},
+"Q-NUM-002":{id:"Q-NUM-002",track:"كمي",topic:"الضرب",skill:"الضرب في 2",difficulty:"سهل",q:"أوجد ناتج: 1.25 × 2؟",opts:["2.25","1.50","2.50","3.00"],correct:2,exp:"الدبل: 1.25 + 1.25 = 2.50."},
+"Q-NUM-003":{id:"Q-NUM-003",track:"كمي",topic:"الضرب",skill:"الضرب في 2",difficulty:"سهل",q:"ناتج 350 × 2 هو:",opts:["600","700","750","800"],correct:1,exp:"350 + 350 = 700."},
+"Q-NUM-005":{id:"Q-NUM-005",track:"كمي",topic:"الضرب",skill:"الضرب في 2",difficulty:"سهل",q:"ما حاصل ضرب 48 × 2؟",opts:["86","92","96","88"],correct:2,exp:"40+40=80، 8+8=16 → 96."},
+"Q-NUM-006":{id:"Q-NUM-006",track:"كمي",topic:"الضرب",skill:"الضرب في 5",difficulty:"سهل",q:"ما ناتج ضرب 12 × 5؟",opts:["50","60","70","120"],correct:1,exp:"نصف 12 = 6 ثم ضيف صفر → 60."},
+"Q-NUM-008":{id:"Q-NUM-008",track:"كمي",topic:"الضرب",skill:"الضرب في 5",difficulty:"سهل",q:"ما حاصل ضرب 160 × 5؟",opts:["80","800","600","8000"],correct:1,exp:"نصف 160 = 80 ثم صفر → 800."},
+"Q-NUM-010":{id:"Q-NUM-010",track:"كمي",topic:"الضرب",skill:"الضرب في 5",difficulty:"سهل",q:"ما ناتج 26 × 5؟",opts:["130","120","150","260"],correct:0,exp:"نصف 26 = 13 ثم صفر → 130."},
+"Q-NUM-007":{id:"Q-NUM-007",track:"كمي",topic:"الضرب",skill:"الضرب في 5",difficulty:"متوسط",q:"أوجد ناتج: 4.4 × 5؟",opts:["2.2","220","22","44"],correct:2,exp:"نصف 4.4 = 2.2، شيل الفاصلة → 22."},
+"Q-NUM-009":{id:"Q-NUM-009",track:"كمي",topic:"الضرب",skill:"الضرب في 5",difficulty:"متوسط",q:"ناتج 0.8 × 5 يساوي:",opts:["40","0.4","4","400"],correct:2,exp:"نصف 0.8 = 0.4، شيل الفاصلة → 4."},
+"Q-TRAP-031":{id:"Q-TRAP-031",track:"كمي",topic:"فخاخ الحريف",skill:"الضرب في 5",difficulty:"متوسط",q:"ما ناتج: 424 × 5؟",opts:["2120","2010","212","4240"],correct:0,exp:"نصف 424 = 212 ثم صفر → 2120."},
+"Q-TRAP-032":{id:"Q-TRAP-032",track:"كمي",topic:"فخاخ الحريف",skill:"الضرب في 5",difficulty:"صعب",q:"أوجد: 0.008 × 5؟",opts:["0.04","0.4","0.004","0.0004"],correct:0,exp:"نصف 0.008 = 0.004، حرّك الفاصلة → 0.04."},
+"Q-TRAP-033":{id:"Q-TRAP-033",track:"كمي",topic:"فخاخ الحريف",skill:"الضرب في 5",difficulty:"متوسط",q:"ما ناتج: (124 × 10) ÷ 2؟",opts:["1240","620","62","124"],correct:1,exp:"1240 ÷ 2 = 620."},
+"Q-NUM-011":{id:"Q-NUM-011",track:"كمي",topic:"الضرب",skill:"الضرب في 10",difficulty:"متوسط",q:"ناتج 0.75 × 10 هو:",opts:["75","7.5","0.075","750"],correct:1,exp:"حرّك الفاصلة يمين → 7.5."},
+"Q-NUM-012":{id:"Q-NUM-012",track:"كمي",topic:"الضرب",skill:"الضرب في 10",difficulty:"سهل",q:"ما حاصل ضرب 12.5 × 10؟",opts:["1.25","125","1250","135"],correct:1,exp:"حرّك الفاصلة يمين → 125."},
+"Q-NUM-013":{id:"Q-NUM-013",track:"كمي",topic:"الضرب",skill:"الضرب في 10",difficulty:"سهل",q:"أوجد: 88 × 10؟",opts:["880","808","8800","8.8"],correct:0,exp:"ضيف صفر → 880."},
+"Q-NUM-014":{id:"Q-NUM-014",track:"كمي",topic:"الضرب",skill:"الضرب في 10",difficulty:"متوسط",q:"ما ناتج 0.002 × 10؟",opts:["0.0002","0.02","0.2","2"],correct:1,exp:"حرّك الفاصلة يمين → 0.02."},
+"Q-NUM-015":{id:"Q-NUM-015",track:"كمي",topic:"الضرب",skill:"الضرب في 10",difficulty:"سهل",q:"حاصل ضرب 1.01 × 10:",opts:["10.1","101","11","10.01"],correct:0,exp:"الفاصلة تقع بين الصفر والواحد → 10.1."},
+
+// ===== NEW: قسمة وأعداد كبيرة =====
+"Q-NUM-101":{id:"Q-NUM-101",track:"كمي",topic:"القسمة",skill:"قسمة الأعداد الكبيرة",difficulty:"سهل",q:"توزيع ميزانية 852 ألف ريال بالتساوي على 4 مشاريع. كم لكل مشروع؟",opts:["203","213","223","303"],correct:1,exp:"اختصار خطوط القسمة: 852 ÷ 4 = 213 ألف."},
+"Q-NUM-102":{id:"Q-NUM-102",track:"كمي",topic:"القسمة",skill:"قسمة الأعداد الكبيرة",difficulty:"سهل",q:"ما ناتج 642 ÷ 3؟",opts:["214","212","206","312"],correct:0,exp:"خطوط القسمة: 6÷3=2، 4÷3=1، 12÷3=4 → 214."},
+
+// ===== NEW: الكسور =====
+"Q-NUM-103":{id:"Q-NUM-103",track:"كمي",topic:"الكسور",skill:"عمليات الكسور",difficulty:"متوسط",q:"أوجد: (12/25 × 5/6) ÷ 4/5",opts:["1/2","2/3","3/4","1/4"],correct:0,exp:"حرب الكسور: 12/25 × 5/6 = 2/5. ثم ÷4/5 = 2/5 × 5/4 = 1/2."},
+"Q-NUM-104":{id:"Q-NUM-104",track:"كمي",topic:"الكسور",skill:"الأعداد العشرية",difficulty:"سهل",q:"أوجد: 14.5 + 3.25 - 0.75",opts:["16.5","17","17.5","18"],correct:1,exp:"14.5+3.25=17.75؛ 17.75-0.75=17."},
+"Q-NUM-105":{id:"Q-NUM-105",track:"كمي",topic:"الكسور",skill:"الأعداد المكسورة",difficulty:"متوسط",q:"خزان يمتلئ بمعدل 2⅓ م³/ساعة. كم يمتلئ في 6 ساعات؟",opts:["12","13","14","15"],correct:2,exp:"2⅓ = 7/3. 7/3 × 6 = 42/3 = 14 م³."},
+
+// ===== NEW: النسب والربح =====
+"Q-NUM-106":{id:"Q-NUM-106",track:"كمي",topic:"النسب المئوية",skill:"الكل من الجزء",difficulty:"متوسط",q:"إذا كان 35% من رصيد بضائع يعادل 140 طناً، فما الرصيد الكامل؟",opts:["400","450","500","350"],correct:0,exp:"الكل = الجزء × 100 / النسبة = 140 × 100 / 35 = 400 طن."},
+"Q-NUM-107":{id:"Q-NUM-107",track:"كمي",topic:"النسب المئوية",skill:"الخصم المزدوج",difficulty:"صعب",q:"سعر قطعة 1000 ريال، عليها خصم 20% ثم خصم إضافي 10% على السعر الجديد. كم يصبح السعر النهائي؟",opts:["700","720","750","680"],correct:1,exp:"فخ: لا تجمع 20%+10%=30%. الأول: 1000×0.8=800. الثاني: 800×0.9=720."},
+
+// ===== الأسس والجذور =====
+"Q-ADV-001":{id:"Q-ADV-001",track:"كمي",topic:"الأسس",skill:"الأسس",difficulty:"متوسط",q:"إذا كان 8³ = 2^x، فما قيمة x؟",opts:["6","9","12","15"],correct:1,exp:"8 = 2³. (2³)³ = 2⁹ → x = 9."},
+"Q-ADV-002":{id:"Q-ADV-002",track:"كمي",topic:"المتتابعات",skill:"المتتابعات",difficulty:"سهل",q:"الحد العاشر في متتابعة حسابية a₁=3، d=2؟",opts:["18","21","23","25"],correct:1,exp:"aₙ = a₁+(n-1)d = 3+9×2 = 21."},
+"Q-ADV-003":{id:"Q-ADV-003",track:"كمي",topic:"التوافيق",skill:"التوافيق",difficulty:"متوسط",q:"بكم طريقة نختار 3 من 10 دون ترتيب؟",opts:["30","120","240","720"],correct:1,exp:"₁₀C₃ = 720/6 = 120."},
+"Q-ADV-004":{id:"Q-ADV-004",track:"كمي",topic:"الهندسة",skill:"القطعة المتوسطة",difficulty:"سهل",q:"شبه منحرف قاعدتاه 20 و 40. القطعة المتوسطة؟",opts:["25","30","35","60"],correct:1,exp:"m = (20+40)/2 = 30."},
+"Q-ADV-005":{id:"Q-ADV-005",track:"كمي",topic:"الاحتمال",skill:"الاحتمال المشروط",difficulty:"متوسط",q:"P(A|B)=1/3 و P(B)=1/2. ما P(A∩B)؟",opts:["1/6","2/3","5/6","1/5"],correct:0,exp:"P(A∩B) = (1/3)×(1/2) = 1/6."},
+"Q-ADV-006":{id:"Q-ADV-006",track:"كمي",topic:"التناسب",skill:"التغير العكسي",difficulty:"متوسط",q:"y تتغير عكسياً مع x. y=6 عندما x=4. ما y عندما x=3؟",opts:["4.5","8","12","18"],correct:1,exp:"x₁y₁ = x₂y₂ → 24 = 3y₂ → y₂ = 8."},
+"Q-ADV-007":{id:"Q-ADV-007",track:"كمي",topic:"المتسلسلات",skill:"المتسلسلة الهندسية",difficulty:"متوسط",q:"مجموع: 25 + 5 + 1 + ...؟",opts:["30","31.25","35","37.5"],correct:1,exp:"r=0.2. S=25/0.8 = 31.25."},
+"Q-ADV-008":{id:"Q-ADV-008",track:"كمي",topic:"الإحصاء",skill:"هامش المعاينة",difficulty:"متوسط",q:"عينة n=10000، هامش خطأ المعاينة؟",opts:["±0.1%","±1%","±5%","±10%"],correct:1,exp:"1/√10000 = 1/100 = 1%."},
+
+// ===== NEW: أسس متقدمة =====
+"Q-ADV-101":{id:"Q-ADV-101",track:"كمي",topic:"الأسس",skill:"الأس السالب والصفري",difficulty:"متوسط",q:"أوجد: (5)⁻² × 10² × (87)⁰",opts:["2","4","10","25"],correct:1,exp:"(5)⁻² = 1/25، (87)⁰ = 1. الناتج = (1/25)×100×1 = 4."},
+"Q-ADV-102":{id:"Q-ADV-102",track:"كمي",topic:"الأسس",skill:"العامل المشترك",difficulty:"صعب",q:"ما قيمة: (4²⁰ + 4¹⁹) ÷ 4¹⁹؟",opts:["3","4","5","16"],correct:2,exp:"سحب الأس الأصغر: 4¹⁹(4+1)/4¹⁹ = 5."},
+"Q-ADV-103":{id:"Q-ADV-103",track:"كمي",topic:"الجبر",skill:"فرق المربعين",difficulty:"متوسط",q:"احسب: (1002)² − (998)²",opts:["4000","8000","16000","2000"],correct:1,exp:"(1002-998)(1002+998) = 4 × 2000 = 8000."},
+"Q-ADV-104":{id:"Q-ADV-104",track:"كمي",topic:"الأسس",skill:"قسمة الكسور الأُسّية",difficulty:"متوسط",q:"ما قيمة: 2⁻⁴؟",opts:["1/16","-16","16","-1/16"],correct:0,exp:"الأس السالب يقلب: 2⁻⁴ = 1/2⁴ = 1/16."},
+
+// ===== NEW: متتابعات =====
+"Q-ADV-105":{id:"Q-ADV-105",track:"كمي",topic:"المتتابعات",skill:"النمط المركب",difficulty:"متوسط",q:"الحد التالي في المتتالية: 3, 6, 11, 18, 27, ...؟",opts:["36","38","40","42"],correct:1,exp:"الفرق يزيد بمقدار 2: (+3,+5,+7,+9) فالفرق التالي +11 → 27+11=38."},
+
+// ===== NEW: الهندسة =====
+"Q-GEO-101":{id:"Q-GEO-101",track:"كمي",topic:"الهندسة",skill:"ثلاثيات فيثاغورس",difficulty:"سهل",q:"مثلث قائم وتره 25م وأحد ضلعيه 15م. ما الضلع الآخر؟",opts:["10","20","22","24"],correct:1,exp:"ثلاثية (3,4,5)×5 = (15,20,25). الضلع = 20."},
+"Q-GEO-102":{id:"Q-GEO-102",track:"كمي",topic:"الهندسة",skill:"مساحة المظلل",difficulty:"صعب",q:"مربع ضلعه 8سم، داخله دائرة تمس أضلاعه. مساحة المنطقة بين المربع والدائرة؟",opts:["64−16π","64−8π","32−16π","64−4π"],correct:0,exp:"مساحة المربع 64، مساحة الدائرة π×4² = 16π. الفرق = 64−16π."},
+"Q-GEO-103":{id:"Q-GEO-103",track:"كمي",topic:"الهندسة",skill:"زوايا التوازي",difficulty:"متوسط",q:"خطان متوازيان يقطعهما مستعرض. زاويتان متناظرتان (2x+10) و 70°. أوجد x؟",opts:["25","30","35","40"],correct:1,exp:"زوايا متناظرة (شكل F) متساوية: 2x+10=70 → 2x=60 → x=30."},
+"Q-GEO-104":{id:"Q-GEO-104",track:"كمي",topic:"الهندسة",skill:"مساحة المعين",difficulty:"سهل",q:"معين قطراه 12 و 16. ما مساحته؟",opts:["96","192","48","24"],correct:0,exp:"مساحة المعين = (ق₁×ق₂)/2 = 192/2 = 96."},
+
+// ===== NEW: إحصاء ومسائل =====
+"Q-STA-101":{id:"Q-STA-101",track:"كمي",topic:"الإحصاء",skill:"القطاعات الدائرية",difficulty:"متوسط",q:"قطاع دائري زاويته 90° يمثل نسبة من الميزانية. ما النسبة؟",opts:["20%","25%","30%","35%"],correct:1,exp:"90/360 = 1/4 = 25%."},
+"Q-STA-102":{id:"Q-STA-102",track:"كمي",topic:"المسائل الكلامية",skill:"السرعة النسبية",difficulty:"متوسط",q:"سيارتان من نفس المكان، الأولى 90 كم/س والثانية 110 كم/س. المسافة بينهما بعد 3 ساعات؟",opts:["30","60","90","120"],correct:1,exp:"الفرق = 20 كم/س. المسافة = 20 × 3 = 60 كم."},
+"Q-STA-103":{id:"Q-STA-103",track:"كمي",topic:"الاحتمال",skill:"مجموع الاحتمالات",difficulty:"سهل",q:"في تجربة عشوائية، إذا كان احتمال A = 0.3 واحتمال B = 0.5، وحوادث متنافية، ما احتمال A أو B؟",opts:["0.15","0.8","0.2","1"],correct:1,exp:"متنافية: P(A∪B) = 0.3 + 0.5 = 0.8."},
+"Q-STA-104":{id:"Q-STA-104",track:"كمي",topic:"الإحصاء",skill:"القاعدة التجريبية",difficulty:"متوسط",q:"متوسط 80، انحراف 5. ما نسبة القيم بين 70 و 90؟",opts:["68%","95%","99.7%","50%"],correct:1,exp:"الفترة [70,90] = μ±2σ = 95%."},
+
+// ===== القسم اللفظي: التناظر =====
+"Q-VER-016":{id:"Q-VER-016",track:"لفظي",topic:"التناظر",skill:"العلاقة المكانية",difficulty:"متوسط",q:"محراب : مسجد\nما العلاقة المماثلة؟",opts:["منبر : خطبة","نجم : سماء","غصن : شجرة","مدرسة : فصل"],correct:1,exp:"المحراب مكانه في المسجد، والنجم مكانه في السماء."},
+"Q-VER-017":{id:"Q-VER-017",track:"لفظي",topic:"التناظر",skill:"سبب ونتيجة",difficulty:"سهل",q:"صوم : رمضان\nما المماثل؟",opts:["حج : ذي الحجة","زكاة : مال","صلاة : طهارة","شمس : قمر"],correct:0,exp:"الصوم وقته رمضان، والحج وقته ذي الحجة."},
+"Q-VER-018":{id:"Q-VER-018",track:"لفظي",topic:"التناظر",skill:"سبب ونتيجة",difficulty:"سهل",q:"فيروس : مرض\nما المماثل؟",opts:["تذاكر : تنجح","نار : حريق","سيارة : وقود","اجتهاد : فشل"],correct:1,exp:"الفيروس يسبب المرض، والنار تسبب الحريق."},
+"Q-VER-019":{id:"Q-VER-019",track:"لفظي",topic:"التناظر",skill:"العلاقة المكانية",difficulty:"سهل",q:"ريشة : جناح\nما المماثل؟",opts:["ورقة : كتاب","غابة : أشجار","يد : أصبع","بحر : سمك"],correct:0,exp:"الريشة جزء من الجناح، والورقة جزء من الكتاب."},
+"Q-VER-020":{id:"Q-VER-020",track:"لفظي",topic:"التناظر",skill:"سبب ونتيجة",difficulty:"سهل",q:"سكين : قطع\nما المماثل؟",opts:["قلم : كتابة","مشي : حذاء","مفتاح : باب","طبيب : سماعة"],correct:0,exp:"وظيفة السكين القطع، ووظيفة القلم الكتابة."},
+
+// ===== NEW: تناظر موسع =====
+"Q-VER-101":{id:"Q-VER-101",track:"لفظي",topic:"التناظر",skill:"جزء من كل",difficulty:"سهل",q:"محرّك : سيارة\nما المماثل؟",opts:["شراع : سفينة","غلاف : كتاب","شجرة : غابة","هاتف : شاشة"],correct:0,exp:"المحرّك جزء أساسي محرّك من السيارة، والشراع جزء أساسي من السفينة."},
+"Q-VER-102":{id:"Q-VER-102",track:"لفظي",topic:"التناظر",skill:"الحماية والوقاية",difficulty:"متوسط",q:"خوذة : رأس\nما المماثل؟",opts:["درع : محارب","نظارة : عين","قفاز : يد","مظلة : مطر"],correct:1,exp:"الخوذة تحمي الرأس من أذى خارجي، والنظارة تحمي العين."},
+"Q-VER-103":{id:"Q-VER-103",track:"لفظي",topic:"التناظر",skill:"المراحل والتدرج",difficulty:"متوسط",q:"بذرة : شجرة\nما المماثل؟",opts:["نطفة : علقة","طفولة : شباب","عجين : خبز","ليل : نهار"],correct:2,exp:"البذرة تتحول لتصبح شجرة، والعجين يتحول بالصنع لخبز."},
+"Q-VER-104":{id:"Q-VER-104",track:"لفظي",topic:"التناظر",skill:"التضاد",difficulty:"سهل",q:"أمل : يأس\nما المماثل؟",opts:["ليل : نهار","شمس : قمر","ماء : نار","حبر : قلم"],correct:0,exp:"علاقة تضاد مباشر: أمل/يأس = ليل/نهار."},
+"Q-VER-105":{id:"Q-VER-105",track:"لفظي",topic:"التناظر",skill:"الترادف",difficulty:"سهل",q:"ليث : أسد\nما المماثل؟",opts:["منزل : بيت","قلم : ورقة","شمس : قمر","كتاب : مكتبة"],correct:0,exp:"ليث وأسد مترادفان، ومنزل وبيت مترادفان."},
+
+// ===== إكمال الجمل =====
+"Q-VER-021":{id:"Q-VER-021",track:"لفظي",topic:"إكمال الجمل",skill:"السياق الحكمي",difficulty:"متوسط",q:"الحلم سيد الأخلاق، و........ رأس الحكمة.",opts:["الصدق","التقوى","الخوف من الله","العمل"],correct:2,exp:"حكمة مأثورة: «رأس الحكمة مخافة الله»."},
+"Q-VER-022":{id:"Q-VER-022",track:"لفظي",topic:"إكمال الجمل",skill:"السياق الحكمي",difficulty:"سهل",q:"الشمس المصدر الرئيسي لـ ........ على الأرض.",opts:["الرياح","الطاقة","الأمطار","الزلازل"],correct:1,exp:"الشمس مصدر الطاقة الأول."},
+"Q-VER-023":{id:"Q-VER-023",track:"لفظي",topic:"إكمال الجمل",skill:"السياق الحكمي",difficulty:"سهل",q:"من كثر كلامه كثر ........",opts:["أصدقاؤه","سقطه","ماله","علمه"],correct:1,exp:"حكمة: كثرة الكلام = كثرة الأخطاء (السقطات)."},
+"Q-VER-024":{id:"Q-VER-024",track:"لفظي",topic:"إكمال الجمل",skill:"السياق الحكمي",difficulty:"سهل",q:"التعليم في الصغر كـ........ على الحجر.",opts:["الكتابة","الرسم","النقش","الضرب"],correct:2,exp:"مثل عربي شهير: النقش على الحجر."},
+"Q-VER-025":{id:"Q-VER-025",track:"لفظي",topic:"إكمال الجمل",skill:"السياق الحكمي",difficulty:"سهل",q:"خير الكلام ما ........ ودل.",opts:["طال","قل","زاد","صمت"],correct:1,exp:"قاعدة بلاغية: «ما قلّ ودلّ»."},
+
+// ===== NEW: إكمال جمل موسع =====
+"Q-VER-106":{id:"Q-VER-106",track:"لفظي",topic:"إكمال الجمل",skill:"أدوات الاستدراك",difficulty:"متوسط",q:"على الرغم من ........ الإمكانيات المادية للمشروع، إلا أن القائمين عليه حققوا نجاحاً ........ في فترة وجيزة.",opts:["خفوت - محدوداً","ضآلة - باهراً","توفر - ضعيفاً","اتساع - مبهراً"],correct:1,exp:"أداة «على الرغم من ... إلا أن» تقتضي تضاد: ضآلة الإمكانيات + نجاح باهر."},
+"Q-VER-107":{id:"Q-VER-107",track:"لفظي",topic:"إكمال الجمل",skill:"التطابق الصرفي",difficulty:"متوسط",q:"تعتبر التجارب الناجحة ........ يستضيء بها السالكون، و........ يعصم من الوقوع في الخطأ.",opts:["مناراً - درساً","عقبة - فخاً","سياجاً - خطراً","دليلاً - مؤشراً"],correct:0,exp:"مناراً ودرساً إيجابيتان تناسبان الاستضاءة والعصمة."},
+"Q-VER-108":{id:"Q-VER-108",track:"لفظي",topic:"إكمال الجمل",skill:"السبب والنتيجة",difficulty:"سهل",q:"من يزرع الخير في الناس ........ في الدنيا والآخرة.",opts:["يخسر","يحصد","يفشل","يندم"],correct:1,exp:"السبب (زرع الخير) → النتيجة (الحصاد) - سياق طردي إيجابي."},
+
+// ===== الخطأ السياقي =====
+"Q-VER-026":{id:"Q-VER-026",track:"لفظي",topic:"الخطأ السياقي",skill:"اتساق المعنى",difficulty:"متوسط",q:"«الإنسان المتفائل يرى ضوءاً لا يوجد، والجاهل يصدقه».\nما الكلمة الخطأ؟",opts:["المتفائل","ضوءاً","الجاهل","يصدقه"],correct:2,exp:"الصواب: «والمتشائم يطفئه»."},
+"Q-VER-027":{id:"Q-VER-027",track:"لفظي",topic:"الخطأ السياقي",skill:"اتساق المعنى",difficulty:"سهل",q:"«الكتب خزائن الفكر، فاحرص على إهمالها لتستنير».\nما الخطأ؟",opts:["الكتب","خزائن","إهمالها","لتستنير"],correct:2,exp:"الصواب: «قراءتها»."},
+"Q-VER-028":{id:"Q-VER-028",track:"لفظي",topic:"الخطأ السياقي",skill:"اتساق المعنى",difficulty:"سهل",q:"«العمل الناجح يجمع بين التخطيط السيئ والتنفيذ المتقن».\nما الخطأ؟",opts:["الناجح","يجمع","السيئ","المتقن"],correct:2,exp:"الصواب: «التخطيط السليم»."},
+"Q-VER-029":{id:"Q-VER-029",track:"لفظي",topic:"الخطأ السياقي",skill:"اتساق المعنى",difficulty:"متوسط",q:"«عظمة عقلك تخلق الحساد، وعظمة قلبك تخلق الأعداء».\nما الخطأ؟",opts:["عظمة","الحساد","قلبك","الأعداء"],correct:3,exp:"الصواب: «الأصدقاء»."},
+"Q-VER-030":{id:"Q-VER-030",track:"لفظي",topic:"الخطأ السياقي",skill:"اتساق المعنى",difficulty:"سهل",q:"«الشجرة المثمرة يهاجمها الناس بالمديح».\nما الخطأ؟",opts:["المثمرة","يهاجمها","الناس","المديح"],correct:3,exp:"الصواب: «بالحجارة»."},
+
+// ===== NEW: خطأ سياقي موسع =====
+"Q-VER-109":{id:"Q-VER-109",track:"لفظي",topic:"الخطأ السياقي",skill:"عكس الحكمة",difficulty:"متوسط",q:"«من شاور ذوي الخبرة قَلّت أخطاؤه وساءت قراراته في مواجهة الأزمات».\nما الخطأ؟",opts:["شاور","الخبرة","قَلّت","ساءت"],correct:3,exp:"مشاورة أهل الخبرة تُحسّن القرارات، والصواب: «حَسُنت»."},
+"Q-VER-110":{id:"Q-VER-110",track:"لفظي",topic:"الخطأ السياقي",skill:"فخ العطف",difficulty:"صعب",q:"«تسعى الدولة لتطوير التعليم العالي من خلال دعم البحوث، وتجهيز المعامل، وتقليص الكفاءات الوطنية».\nما الخطأ؟",opts:["تطوير","دعم","تجهيز","تقليص"],correct:3,exp:"سياق إيجابي معطوف، والصواب: «استقطاب/تمكين الكفاءات»."},
+"Q-VER-111":{id:"Q-VER-111",track:"لفظي",topic:"الخطأ السياقي",skill:"عكس الحكمة",difficulty:"سهل",q:"«ازرع البسمة في وجهك تحصد النفرة في قلوب الناس».\nما الخطأ؟",opts:["ازرع","البسمة","تحصد","النفرة"],correct:3,exp:"البسمة تجلب المحبة لا النفرة."},
+
+// ===== المفردة الشاذة =====
+"Q-TRAP-034":{id:"Q-TRAP-034",track:"لفظي",topic:"المفردة الشاذة",skill:"اتساق المعنى",difficulty:"سهل",q:"المفردة الشاذة: (أسد، نمر، ذئب، بقرة)",opts:["أسد","نمر","ذئب","بقرة"],correct:3,exp:"البقرة آكلة عشب، والباقي مفترسة."},
+"Q-TRAP-035":{id:"Q-TRAP-035",track:"لفظي",topic:"المفردة الشاذة",skill:"اتساق المعنى",difficulty:"متوسط",q:"المفردة الشاذة: (سيف، رمح، درع، سهم)",opts:["سيف","رمح","درع","سهم"],correct:2,exp:"الدرع دفاعي، والباقي هجومي."},
+
+// ===== NEW: مفردة شاذة موسع =====
+"Q-TRAP-101":{id:"Q-TRAP-101",track:"لفظي",topic:"المفردة الشاذة",skill:"التصنيف المعجمي",difficulty:"متوسط",q:"المفردة الشاذة: (زمهرير، سموم، هجير، لافح)",opts:["زمهرير","سموم","هجير","لافح"],correct:0,exp:"السموم والهجير واللافح حرارة، أما زمهرير فالبرد."},
+"Q-TRAP-102":{id:"Q-TRAP-102",track:"لفظي",topic:"المفردة الشاذة",skill:"تصنيف المدن",difficulty:"سهل",q:"المفردة الشاذة: (الرياض، القاهرة، الخرطوم، جدة)",opts:["الرياض","القاهرة","الخرطوم","جدة"],correct:3,exp:"كلهم عواصم إلا جدة مدينة ساحلية."},
+
+// ===== استيعاب المقروء =====
+"Q-TRAP-036":{id:"Q-TRAP-036",track:"لفظي",topic:"استيعاب المقروء",skill:"الفكرة الرئيسية",difficulty:"متوسط",q:"«الماء سر الحياة، يدخل في الصناعة والزراعة والطاقة».\nالفكرة الرئيسية؟",opts:["فوائد شرب الماء","الماء والزراعة","أهمية الماء المتعددة","توفير الماء"],correct:2,exp:"النص ذكر استخدامات كثيرة، فالجواب شامل."},
+
+// ===== NEW: استيعاب موسع =====
+"Q-RC-101":{id:"Q-RC-101",track:"لفظي",topic:"استيعاب المقروء",skill:"الفكرة الرئيسية",difficulty:"متوسط",q:"«الأمن السيبراني أصبح ضرورة في المؤسسات الحديثة لحماية البيانات من الاختراقات، ويشمل سياسات وتقنيات وتدريب الموظفين».\nما الفكرة الرئيسية؟",opts:["سياسات الشركات","أهمية الأمن السيبراني الشاملة","تدريب الموظفين","أنواع الاختراقات"],correct:1,exp:"النص يذكر عدة جوانب (سياسات، تقنيات، تدريب) → الفكرة شاملة."},
+"Q-RC-102":{id:"Q-RC-102",track:"لفظي",topic:"استيعاب المقروء",skill:"حساب العقود",difficulty:"سهل",q:"تأسست أول مدرسة نظامية عام 1342 هـ. في أي قرن وعقد؟",opts:["القرن 13 - العقد الرابع","القرن 14 - العقد الخامس","القرن 14 - العقد الرابع","القرن 13 - العقد الخامس"],correct:1,exp:"القرن: 13+1=14. العقد: 4+1=5 → القرن 14، العقد الخامس."},
+"Q-RC-103":{id:"Q-RC-103",track:"لفظي",topic:"استيعاب المقروء",skill:"حساب العقود",difficulty:"سهل",q:"انتهت الخلافة العباسية عام 1519م. ما القرن والعقد؟",opts:["القرن 15 - العقد الأول","القرن 16 - العقد الثاني","القرن 16 - العقد الأول","القرن 15 - العقد الثاني"],correct:1,exp:"15+1=16 (القرن)، 1+1=2 (العقد الثاني)."},
+"Q-RC-104":{id:"Q-RC-104",track:"لفظي",topic:"استيعاب المقروء",skill:"الاستنتاج",difficulty:"صعب",q:"«القراءة المنتظمة تحسن الذاكرة وتزيد التركيز، وقد أظهرت الدراسات أن القراء أكثر قدرة على اتخاذ القرارات».\nما الاستنتاج المنطقي؟",opts:["القراءة تحل كل المشاكل","للقراءة فوائد معرفية ونفسية","القراء لا يخطئون","الدراسات لا تُعتمد"],correct:1,exp:"النص ذكر فوائد معرفية (ذاكرة، تركيز) وسلوكية (قرارات)، فالجواب شامل."},
+
+// ===== NEW: تناظر متقدم =====
+"Q-VER-112":{id:"Q-VER-112",track:"لفظي",topic:"التناظر",skill:"الأداة والاستخدام",difficulty:"سهل",q:"مشرط : جراح\nما المماثل؟",opts:["قلم : كاتب","كتاب : مكتبة","ماء : نهر","شمس : قمر"],correct:0,exp:"المشرط أداة الجراح، والقلم أداة الكاتب."},
+"Q-VER-113":{id:"Q-VER-113",track:"لفظي",topic:"التناظر",skill:"الفئة والتصنيف",difficulty:"متوسط",q:"نحو : بلاغة\nما المماثل؟",opts:["جغرافيا : جيولوجيا","قلم : ورقة","سيارة : طريق","شمس : نهار"],correct:0,exp:"نحو وبلاغة من فئة العلوم اللغوية، وجغرافيا وجيولوجيا من فئة علوم الأرض."},
+"Q-VER-114":{id:"Q-VER-114",track:"لفظي",topic:"التناظر",skill:"التعاقب الزمني",difficulty:"سهل",q:"فجر : شروق\nما المماثل؟",opts:["غروب : ليل","ظلام : نوم","صباح : ظهر","سحاب : مطر"],correct:0,exp:"الفجر يأتي ثم الشروق (تعاقب)، والغروب ثم الليل."},
+"Q-VER-115":{id:"Q-VER-115",track:"لفظي",topic:"التناظر",skill:"احتياج",difficulty:"سهل",q:"سمكة : ماء\nما المماثل؟",opts:["إنسان : أكسجين","قلم : ورق","سيارة : طريق","شمس : قمر"],correct:0,exp:"السمكة تحتاج الماء للبقاء، والإنسان يحتاج الأكسجين."},
+
+// ===== NEW: إكمال جمل متقدم =====
+"Q-VER-116":{id:"Q-VER-116",track:"لفظي",topic:"إكمال الجمل",skill:"حكم مأثورة",difficulty:"متوسط",q:"من جد ........ ومن زرع حصد.",opts:["تعب","وجد","سعد","نجح"],correct:1,exp:"مثل شهير: «من جدّ وجد ومن زرع حصد»."},
+"Q-VER-117":{id:"Q-VER-117",track:"لفظي",topic:"إكمال الجمل",skill:"أدوات التحول",difficulty:"متوسط",q:"الفكرة ليست صعبة ........ تحتاج إلى تركيز.",opts:["لكنها","لأنها","حتى","مع أنها"],correct:0,exp:"أداة استدراك: «ليست صعبة لكنها تحتاج تركيز» - تضاد."},
+"Q-VER-118":{id:"Q-VER-118",track:"لفظي",topic:"إكمال الجمل",skill:"السبب والنتيجة",difficulty:"سهل",q:"كلما ارتفع مستوى التعليم ........ الوعي المجتمعي.",opts:["انخفض","ارتفع","توقف","تراجع"],correct:1,exp:"علاقة طردية: ارتفاع → ارتفاع."}
+};
+
+/* ---------- FIX #5: UNIFIED STAGES (كل مرحلة 7 أسئلة) ---------- */
+const STAGES=[
+{id:1,name:"الرياض",sub:"بداية الرحلة",emoji:"🏙️",
+qIds:["Q-NUM-001","Q-NUM-004","Q-NUM-002","Q-NUM-003","Q-NUM-005","Q-NUM-006","Q-NUM-008"]},
+{id:2,name:"جدة",sub:"عروس البحر",emoji:"🌊",
+qIds:["Q-NUM-010","Q-NUM-007","Q-NUM-009","Q-NUM-101","Q-NUM-011","Q-NUM-012","Q-NUM-013"]},
+{id:3,name:"الدمام",sub:"مدينة الطاقة",emoji:"⚡",
+qIds:["Q-NUM-014","Q-NUM-015","Q-NUM-102","Q-NUM-103","Q-TRAP-031","Q-TRAP-032","Q-TRAP-033"]},
+{id:4,name:"أبها",sub:"قمم الضباب",emoji:"⛰️",
+qIds:["Q-NUM-104","Q-NUM-105","Q-NUM-106","Q-NUM-107","Q-ADV-101","Q-ADV-102","Q-ADV-103"]},
+{id:5,name:"مكة",sub:"أطهر البقاع",emoji:"🕋",
+qIds:["Q-ADV-001","Q-ADV-002","Q-ADV-003","Q-ADV-104","Q-ADV-105","Q-ADV-004","Q-ADV-005"]},
+{id:6,name:"المدينة",sub:"طيبة الطيبة",emoji:"🕌",
+qIds:["Q-ADV-006","Q-ADV-007","Q-ADV-008","Q-GEO-101","Q-GEO-102","Q-GEO-103","Q-GEO-104"]},
+{id:7,name:"نيوم",sub:"مستقبل المملكة",emoji:"🚀",
+qIds:["Q-STA-101","Q-STA-102","Q-STA-103","Q-STA-104","Q-VER-016","Q-VER-101","Q-VER-102"]},
+{id:8,name:"العلا",sub:"مرآة التاريخ",emoji:"🏛️",
+qIds:["Q-VER-017","Q-VER-018","Q-VER-019","Q-VER-020","Q-VER-103","Q-VER-104","Q-VER-105"]},
+{id:9,name:"أبحر",sub:"جواهر البحر",emoji:"🐚",
+qIds:["Q-VER-021","Q-VER-022","Q-VER-023","Q-VER-024","Q-VER-025","Q-VER-106","Q-VER-107"]},
+{id:10,name:"الطائف",sub:"مدينة الورد",emoji:"🌸",
+qIds:["Q-VER-026","Q-VER-027","Q-VER-028","Q-VER-029","Q-VER-030","Q-VER-109","Q-VER-110"]},
+{id:11,name:"حائل",sub:"جبل أجا وسلمى",emoji:"🏔️",
+qIds:["Q-VER-111","Q-TRAP-034","Q-TRAP-035","Q-TRAP-101","Q-TRAP-102","Q-TRAP-036","Q-RC-101"]},
+{id:12,name:"جزر فرسان",sub:"لؤلؤ الجنوب",emoji:"🏝️",
+qIds:["Q-RC-102","Q-RC-103","Q-RC-104","Q-VER-112","Q-VER-113","Q-VER-114","Q-VER-115"]},
+{id:13,name:"نيوم 2.0",sub:"قمة الاحتراف",emoji:"👑",
+qIds:["Q-VER-116","Q-VER-117","Q-VER-118","Q-ADV-001","Q-ADV-102","Q-TRAP-032","Q-VER-110"]}
+];
+
+/* ---------- ACHIEVEMENTS ---------- */
+const ACHIEVEMENTS=[
+{id:"first",icon:"🌟",name:"الخطوة الأولى",desc:"أكمل أول مرحلة"},
+{id:"perfect",icon:"💎",name:"العلامة الكاملة",desc:"3 نجوم في مرحلة"},
+{id:"streak5",icon:"🔥",name:"سلسلة نارية",desc:"5 إجابات صحيحة متتالية"},
+{id:"streak10",icon:"⚡",name:"البرق",desc:"10 إجابات صحيحة"},
+{id:"coins200",icon:"🪙",name:"كنز صغير",desc:"اجمع 200 عملة"},
+{id:"coins1000",icon:"💰",name:"ثري",desc:"اجمع 1000 عملة"},
+{id:"shopper",icon:"🛒",name:"متسوق ماهر",desc:"اشترِ 3 قوى"},
+{id:"mistakes10",icon:"📕",name:"متعلم",desc:"10 أسئلة في دفتر أخطائك"},
+{id:"map_half",icon:"🗺️",name:"منتصف الرحلة",desc:"أكمل 7 محطات"},
+{id:"map_all",icon:"🏆",name:"فاتح المملكة",desc:"أكمل كل المحطات"},
+{id:"level5",icon:"🎖️",name:"المحترف",desc:"المستوى 5"},
+{id:"level10",icon:"👑",name:"الأسطورة",desc:"المستوى 10"}
+];
+
+/* ---------- FIX #1: SHOP DATA ---------- */
+const SHOP_ITEMS=[
+{id:"heart",icon:"❤️",name:"قلب إضافي",desc:"+1 قلب فوراً للمرحلة الحالية",price:60},
+{id:"fifty",icon:"✂️",name:"حذف خيارين",desc:"يزيل خيارين خاطئين",price:40},
+{id:"skip",icon:"⏭️",name:"تخطي سؤال",desc:"انتقل للسؤال التالي بدون خسارة",price:50},
+{id:"freeze",icon:"❄️",name:"تجميد الوقت",desc:"يوقف المؤقت 15 ثانية",price:30},
+{id:"hint",icon:"💡",name:"تلميح ذكي",desc:"يظهر تلميحاً للحل الصحيح",price:35}
+];
+
+/* ---------- FIX #2: WEEKLY LEADERBOARD ---------- */
+const LB_NAMES=[
+{name:"أبو فهد",avatar:"🧔"},{name:"سلطان الشمري",avatar:"👨‍🦱"},
+{name:"نورة العتيبي",avatar:"👩"},{name:"محمد القحطاني",avatar:"🧑"},
+{name:"سارة الدوسري",avatar:"👩‍🦰"},{name:"عبدالله الحربي",avatar:"👨‍🦳"},
+{name:"ريم الزهراني",avatar:"👩‍🦱"},{name:"خالد المطيري",avatar:"🧑‍🦱"},
+{name:"هيا السبيعي",avatar:"👩‍🦳"},{name:"فهد الغامدي",avatar:"🧔"}
+];
+
+/* ---------- STUDY ---------- */
+const STUDY=[
+{id:"mult",icon:"⚡",title:"اختصارات الضرب",content:`<h3>⚡ اختصارات الضرب</h3><h4>×1 — المراية</h4><p>أي عدد × 1 = نفسه.</p><h4>×2 — الدبل</h4><p>48×2 = 40+40+8+8 = 96</p><h4>×5 — نصف + صفر</h4><p>12×5 → 6 → 60</p><h4>×10 — حرّك الفاصلة</h4><p>0.75×10 = 7.5</p>`},
+{id:"div",icon:"➗",title:"القسمة والكسور",content:`<h3>➗ القسمة والكسور</h3><h4>خطوط القسمة</h4><p>642÷3: 6÷3=2، 4÷3=1، 12÷3=4 → 214</p><h4>حرب الكسور</h4><p>القسمة تُقلب ضرباً: (2/5) ÷ (4/5) = 2/5 × 5/4</p>`},
+{id:"exp",icon:"🔢",title:"الأسس",content:`<h3>🔢 الأسس والجذور</h3><h4>الأس الصفري</h4><p>x⁰ = 1</p><h4>الأس السالب</h4><p>2⁻⁴ = 1/16</p><h4>سحب العامل المشترك</h4><p>(4²⁰+4¹⁹)/4¹⁹ = 4¹⁹(5)/4¹⁹ = 5</p><h4>فرق المربعين</h4><p>1002²-998² = (1002-998)(1002+998) = 8000</p>`},
+{id:"geo",icon:"📐",title:"الهندسة",content:`<h3>📐 الهندسة</h3><h4>ثلاثيات فيثاغورس</h4><p>(3,4,5)، (5,12,13)، (8,15,17)</p><h4>القطعة المتوسطة</h4><p>m = (a+b)/2</p><h4>زوايا التوازي</h4><p>F: متناظرة | Z: متبادلة | X: متقابلة | U: مجموعها 180°</p>`},
+{id:"stat",icon:"📊",title:"الإحصاء",content:`<h3>📊 الإحصاء</h3><h4>هامش المعاينة</h4><p>± 1/√n</p><h4>القاعدة التجريبية</h4><p>μ±1σ=68% | μ±2σ=95% | μ±3σ=99.7%</p>`},
+{id:"hasad",icon:"🧠",title:"استراتيجية احصد",content:`<h3>🧠 احصد</h3><ol style="padding-right:20px;font-size:13px;line-height:2"><li>اقرأ السؤال أولاً</li><li>صِد الكلمة المفتاحية</li><li>ابحث في النص</li><li>اقرأ ما حولها</li><li>استبعد الخيارات</li></ol><h4>العقود والقرون</h4><p>القرن: خانة المئات + 1 | العقد: خانة العشرات + 1</p>`},
+{id:"abjad",icon:"🎯",title:"استراتيجية أبجد",content:`<h3>🎯 أبجد للتناظر</h3><p>كوّن جملة رابطة وطبّقها بنفس الاتجاه على الخيارات.</p><h4>العلاقات المتكررة</h4><p>جزء من كل، سبب ونتيجة، آلة ووظيفة، مكان، حماية، فئة، تعاقب، ترادف، تضاد</p>`}
+];
+
+/* ---------- STATE ---------- */
+const LS_KEY="qudurat_v2";
+const defaultState=()=>({
+coins:100,hearts:3,maxHearts:3,xp:0,level:1,stars:0,
+bestStreak:0,totalCorrect:0,totalAnswered:0,
+unlockedStages:[1],completedStages:{},stageStars:{},
+achievements:{},lastPlayedStage:1,dailyDoneDate:"",
+kmAnswered:0,lfAnswered:0,
+inventory:{heart:1,fifty:1,skip:0,freeze:0,hint:0},
+mistakes:[],purchasesCount:0
+});
+let S=loadState();
+function loadState(){try{const r=localStorage.getItem(LS_KEY);if(r){const p=JSON.parse(r);const d=defaultState();for(let k in d){if(!(k in p))p[k]=d[k];else if(typeof d[k]==='object'&&d[k]!==null&&!Array.isArray(d[k]))p[k]={...d[k],...p[k]}}}return p}catch(e){}return defaultState()}
+function saveState(){try{localStorage.setItem(LS_KEY,JSON.stringify(S))}catch(e){}}
+
+/* ---------- SOUND ---------- */
+let audioCtx=null;
+function sound(type){
+  try{
+    if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==="suspended")audioCtx.resume();
+    const now=audioCtx.currentTime;
+    const play=(f,d,delay=0,v=.12,w="sine")=>{
+      const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+      o.type=w;o.frequency.value=f;
+      g.gain.setValueAtTime(v,now+delay);
+      g.gain.exponentialRampToValueAtTime(.001,now+delay+d);
+      o.connect(g);g.connect(audioCtx.destination);
+      o.start(now+delay);o.stop(now+delay+d);
+    };
+    if(type==="click")play(600,.08,0,.06,"square");
+    else if(type==="correct"){play(523,.12,0,.13);play(784,.18,.09,.13);}
+    else if(type==="wrong"){play(280,.15,0,.13,"sawtooth");play(180,.22,.1,.13,"sawtooth");}
+    else if(type==="win"){[523,659,784,1047].forEach((f,i)=>play(f,.22,i*.09,.14));}
+    else if(type==="star"){play(880,.1,0,.14);play(1175,.15,.08,.14);}
+    else if(type==="lose"){[400,320,250].forEach((f,i)=>play(f,.25,i*.15,.13,"triangle"));}
+    else if(type==="unlock"){play(659,.12,0,.15);play(880,.18,.1,.15);play(1319,.25,.22,.15);}
+    else if(type==="buy"){play(500,.1,0,.12);play(700,.15,.08,.12);}
+  }catch(e){}
+}
+function haptic(ms=20){try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}}
+
+/* ---------- TOAST / CONFETTI ---------- */
+let toastTimer=null;
+function toast(msg,type=""){
+  const el=document.getElementById("toast");
+  el.textContent=msg;el.className="toast show "+type;
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.className="toast "+type,2200);
+}
+function confetti(n=80){
+  const c=document.getElementById("confetti");
+  const colors=["#006C35","#D4AF37","#F4D03F","#C8102E","#ffffff","#1e40af"];
+  for(let i=0;i<n;i++){
+    const p=document.createElement("div");
+    p.className="confetti-piece";
+    p.style.left=Math.random()*100+"vw";
+    p.style.top="-20px";
+    p.style.background=colors[Math.floor(Math.random()*colors.length)];
+    p.style.animationDuration=(2+Math.random()*2)+"s";
+    p.style.animationDelay=(Math.random()*.5)+"s";
+    if(Math.random()>.5)p.style.borderRadius="50%";
+    c.appendChild(p);
+    setTimeout(()=>p.remove(),4500);
+  }
+}
+
+/* ---------- XP ---------- */
+function levelThreshold(l){return 100+(l-1)*50}
+function addXP(amount){
+  S.xp+=amount;
+  let leveled=false;
+  while(S.xp>=levelThreshold(S.level)){S.xp-=levelThreshold(S.level);S.level++;leveled=true;}
+  if(leveled){sound("unlock");haptic(80);toast("🎉 مبروك! المستوى "+S.level,"gold");confetti(60);}
+  return leveled;
+}
+
+/* ---------- NAV ---------- */
+function show(screen){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  const el=document.getElementById("screen-"+screen);
+  if(el)el.classList.add("active");
+  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.go===screen));
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(screen==="home")renderHome();
+  if(screen==="map")renderMap();
+  if(screen==="shop")renderShop();
+  if(screen==="mistakes")renderMistakes();
+  if(screen==="achievements")renderAchievements();
+  if(screen==="leaderboard")renderLeaderboard();
+  if(screen==="study")renderStudy();
+  if(screen==="more")renderMore(); 
+}
+function updateHeader(){
+  document.getElementById("hCoins").textContent=S.coins;
+  document.getElementById("hHearts").textContent=S.hearts;
+  document.getElementById("hLevel").textContent="مستوى "+S.level;
+  const need=levelThreshold(S.level);
+  document.getElementById("hXPBar").style.width=Math.min(100,(S.xp/need)*100)+"%";
+  document.getElementById("hXP").textContent=S.xp+"/"+need;
+  // FIX #3: Mistake badge
+  const mc=S.mistakes.length;
+  document.getElementById("navMistakeBadge").style.display=mc>0?"flex":"none";
+  document.getElementById("navMistakeBadge").textContent=mc;
+}
+
+/* ---------- HOME ---------- */
+function renderHome(){
+  updateHeader();
+  const tot=S.totalAnswered;
+  const acc=tot?Math.round(S.totalCorrect/tot*100):0;
+  document.getElementById("sumStars").textContent=S.stars;
+  document.getElementById("sumAccuracy").textContent=acc+"%";
+  document.getElementById("sumBestStreak").textContent=S.bestStreak;
+  document.getElementById("mistakesTileDesc").textContent=S.mistakes.length>0?S.mistakes.length+" سؤال":"لا أخطاء بعد";
+  document.getElementById("shopBadge").style.display=S.purchasesCount>0?"none":"block";
+  const hour=new Date().getHours();
+  let greet="أهلاً بك يا بطل! 👋";
+  if(hour<12)greet="صباح الخير يا بطل! ☀️";
+  else if(hour<17)greet="مساء النور! 🌤️";
+  else greet="مساء الخير! 🌙";
+  document.getElementById("homeGreeting").textContent=greet;
+  const last=S.lastPlayedStage||1;
+  const stage=STAGES.find(s=>s.id===last);
+  document.getElementById("btnContinue").innerHTML="▶ "+(S.completedStages[last]?"إعادة: ":"استئناف: ")+(stage?stage.name:"البداية");
+  const today=new Date().toISOString().slice(0,10);
+  const dailyBtn=document.getElementById("btnDaily");
+  const dailyDesc=document.getElementById("dailyDesc");
+  if(S.dailyDoneDate===today){
+    dailyBtn.textContent="✅ تم";dailyBtn.disabled=true;dailyBtn.style.opacity=".55";
+    dailyDesc.textContent="رجعت بكرة لتحدي جديد! 💪";
+  } else {
+    dailyBtn.textContent="ابدأ";dailyBtn.disabled=false;dailyBtn.style.opacity="1";
+    dailyDesc.textContent="سؤال واحد، الذهب مضاعف ×3!";
+  }
+}
+
+/* ---------- MAP ---------- */
+function renderMap(){
+  const done=Object.values(S.stageStars).filter(v=>v>0).length;
+  document.getElementById("mapProgress").textContent=done+" / "+STAGES.length;
+  const path=document.getElementById("mapPath");
+  path.innerHTML=STAGES.map((st,i)=>{
+    const unlocked=S.unlockedStages.includes(st.id);
+    const stars=S.stageStars[st.id]||0;
+    const current=unlocked&&stars===0&&S.unlockedStages.indexOf(st.id)===S.unlockedStages.length-1;
+    let cls="node-circle "+(unlocked?"unlocked":"locked")+(current?" current":"")+(stars===3?" completed":"");
+    let starsHtml="";
+    for(let k=1;k<=3;k++)starsHtml+=`<span class="${k<=stars?'on':'off'}">★</span>`;
+    return `<div class="map-node ${i%2?'right':'left'}">
+      <div class="${cls}" data-stage="${st.id}">${unlocked?st.emoji:"🔒"}</div>
+      <div class="node-info">
+        <h4>${st.name}</h4>
+        <p>${st.sub}</p>
+        <div class="node-stars">${unlocked?starsHtml:'<span class="off">★★★</span>'}</div>
+      </div>
+    </div>`;
+  }).join("");
+  path.querySelectorAll(".node-circle.unlocked").forEach(n=>n.addEventListener("click",()=>{sound("click");startStage(parseInt(n.dataset.stage))}));
+  path.querySelectorAll(".node-circle.locked").forEach(n=>n.addEventListener("click",()=>{sound("wrong");toast("🔒 أكمل المحطة السابقة","red")}));
+}
+
+/* ---------- ACHIEVEMENTS ---------- */
+function checkAchievements(){
+  const checks={
+    first:()=>Object.values(S.stageStars).some(v=>v>0),
+    perfect:()=>Object.values(S.stageStars).some(v=>v===3),
+    streak5:()=>S.bestStreak>=5,
+    streak10:()=>S.bestStreak>=10,
+    coins200:()=>S.coins>=200,
+    coins1000:()=>S.coins>=1000,
+    shopper:()=>S.purchasesCount>=3,
+    mistakes10:()=>S.mistakes.length>=10,
+    map_half:()=>Object.values(S.stageStars).filter(v=>v>0).length>=7,
+    map_all:()=>Object.values(S.stageStars).filter(v=>v>0).length>=STAGES.length,
+    level5:()=>S.level>=5,
+    level10:()=>S.level>=10
+  };
+  ACHIEVEMENTS.forEach(a=>{
+    if(!S.achievements[a.id]&&checks[a.id]&&checks[a.id]()){
+      S.achievements[a.id]=true;
+      sound("unlock");toast("🏆 إنجاز: "+a.name,"gold");confetti(40);
+    }
+  });
+  saveState();
+}
+function renderAchievements(){
+  const grid=document.getElementById("achGrid");
+  const unlocked=Object.values(S.achievements).filter(v=>v).length;
+  document.getElementById("achProgress").textContent=unlocked+" / "+ACHIEVEMENTS.length;
+  grid.innerHTML=ACHIEVEMENTS.map(a=>{
+    const isU=S.achievements[a.id];
+    return `<div class="ach-card ${isU?'unlocked':'locked'}">
+      <span class="ach-icon">${isU?a.icon:"🔒"}</span>
+      <div class="ach-name">${a.name}</div>
+      <div class="ach-desc">${a.desc}</div>
+    </div>`;
+  }).join("");
+}
+
+/* ---------- FIX #2: WEEKLY LEADERBOARD ---------- */
+function getWeekSeed(){
+  const now=new Date();
+  const start=new Date(now.getFullYear(),0,1);
+  const week=Math.floor((now-start)/(7*24*60*60*1000));
+  return now.getFullYear()*100+week;
+}
+function seededRandom(seed){
+  const x=Math.sin(seed++)*10000;
+  return x-Math.floor(x);
+}
+function renderLeaderboard(){
+  const seed=getWeekSeed();
+  const list=LB_NAMES.map((p,i)=>({
+    ...p,
+    score:Math.floor(seededRandom(seed+i*13)*2500)+800
+  }));
+  const myScore=S.coins*3+S.level*100+S.stars*50+S.mistakes.length*10;
+  list.push({name:"أنت 😎",avatar:"🐪",score:myScore,me:true});
+  list.sort((a,b)=>b.score-a.score);
+  const weekStart=new Date();
+  const day=weekStart.getDay();
+  weekStart.setDate(weekStart.getDate()-day);
+  const weekEnd=new Date(weekStart);weekEnd.setDate(weekEnd.getDate()+6);
+  document.getElementById("lbWeekBadge").innerHTML=`<div class="lb-week-badge">📅 ${weekStart.toLocaleDateString('ar-SA',{day:'numeric',month:'short'})} — ${weekEnd.toLocaleDateString('ar-SA',{day:'numeric',month:'short'})}</div>`;
+  document.getElementById("lbList").innerHTML=list.map((p,i)=>{
+    const r=i+1;
+    const rankCls=r===1?"r1":r===2?"r2":r===3?"r3":"";
+    const medal=r===1?"🥇":r===2?"🥈":r===3?"🥉":r;
+    return `<div class="lb-row ${p.me?'me':''}">
+      <div class="lb-rank ${rankCls}">${medal}</div>
+      <div class="lb-avatar">${p.avatar}</div>
+      <div class="lb-info"><h4>${p.name}</h4><p>${p.me?'تحديث مباشر':'لاعب نشط'}</p></div>
+      <div class="lb-score">${p.score}<small>نقطة</small></div>
+    </div>`;
+  }).join("");
+}
+
+/* ---------- STUDY ---------- */
+let studyTab="mult";
+function renderStudy(){
+  document.getElementById("studyTabs").innerHTML=STUDY.map(t=>
+    `<button class="study-tab ${studyTab===t.id?'active':''}" data-tab="${t.id}">${t.icon} ${t.title}</button>`
+  ).join("");
+  const active=STUDY.find(t=>t.id===studyTab)||STUDY[0];
+  document.getElementById("studyContent").innerHTML=active.content;
+  document.querySelectorAll(".study-tab").forEach(b=>{
+    b.addEventListener("click",()=>{sound("click");studyTab=b.dataset.tab;renderStudy()});
+  });
+}
+
+/* ---------- MORE / EXTERNAL LINKS ---------- */
+function renderMore(){
+  updateHeader();
+}
+
+/* ---------- FIX #1: SHOP ---------- */
+function renderShop(){
+  updateHeader();
+  document.getElementById("shopCoins").textContent=S.coins;
+  const grid=document.getElementById("shopGrid");
+  grid.innerHTML=SHOP_ITEMS.map(item=>{
+    const canAfford=S.coins>=item.price;
+    return `<div class="shop-item ${canAfford?'':'poor'}" data-buy="${item.id}">
+      <div class="si-icon">${item.icon}</div>
+      <div class="si-name">${item.name}</div>
+      <div class="si-desc">${item.desc}</div>
+      <div class="si-price">🪙 ${item.price}</div>
+    </div>`;
+  }).join("");
+  grid.querySelectorAll("[data-buy]").forEach(el=>el.addEventListener("click",()=>buyItem(el.dataset.buy)));
+
+  // Inventory
+  const inv=document.getElementById("inventoryGrid");
+  inv.innerHTML=SHOP_ITEMS.map(item=>{
+    const count=S.inventory[item.id]||0;
+    return `<div class="shop-item" style="border-color:${count>0?'var(--green)':'#f0e8d8'}">
+      ${count>0?`<div class="si-owned">×${count}</div>`:''}
+      <div class="si-icon">${item.icon}</div>
+      <div class="si-name">${item.name}</div>
+      <div class="si-desc">${count>0?'في مخزونك':'غير مُشترى بعد'}</div>
+    </div>`;
+  }).join("");
+}
+function buyItem(id){
+  const item=SHOP_ITEMS.find(x=>x.id===id);
+  if(!item)return;
+  if(S.coins<item.price){sound("wrong");toast("💸 ذهبك لا يكفي","red");return;}
+  S.coins-=item.price;
+  S.inventory[id]=(S.inventory[id]||0)+1;
+  S.purchasesCount=(S.purchasesCount||0)+1;
+  saveState();
+  sound("buy");haptic(30);
+  toast(`✅ اشتريت: ${item.name}`,"gold");
+  renderShop();checkAchievements();updateHeader();
+}
+
+/* ---------- FIX #3: MISTAKE BOOK ---------- */
+function addMistake(qid,userAnswer){
+  const existing=S.mistakes.find(m=>m.qid===qid);
+  if(existing){
+    existing.userAnswer=userAnswer;
+    existing.timestamp=Date.now();
+    existing.count=(existing.count||1)+1;
+  } else {
+    S.mistakes.unshift({qid,userAnswer,timestamp:Date.now(),count:1});
+  }
+  if(S.mistakes.length>100)S.mistakes=S.mistakes.slice(0,100);
+  saveState();
+}
+function removeMistake(qid){
+  S.mistakes=S.mistakes.filter(m=>m.qid!==qid);
+  saveState();
+  renderMistakes();
+  toast("✅ تمت المراجعة");
+}
+function renderMistakes(){
+  updateHeader();
+  const list=document.getElementById("mistakesList");
+  document.getElementById("mistakesCount").textContent=S.mistakes.length+" سؤال";
+  if(S.mistakes.length===0){
+    list.innerHTML=`<div class="empty-state">
+      <div class="icon">🎉</div>
+      <h3>ممتاز! دفترك نظيف</h3>
+      <p>لا توجد أخطاء حتى الآن. استمر!</p>
+    </div>`;
+    return;
+  }
+  list.innerHTML=S.mistakes.map(m=>{
+    const q=QUESTIONS[m.qid];
+    if(!q)return '';
+    const correctText=q.opts[q.correct];
+    const userText=m.userAnswer>=0?q.opts[m.userAnswer]:'لم تُجب';
+    const letters=["أ","ب","ج","د"];
+    const trackCls=q.track==="كمي"?"":"verb";
+    return `<div class="mistake-item">
+      <div class="mi-head">
+        <span class="mi-id">${m.qid}</span>
+        <span class="mi-tag ${trackCls}">${q.track}</span>
+        ${m.count>1?`<span class="mi-id" style="background:#fee2e2;color:var(--red)">×${m.count} خطأ</span>`:''}
+      </div>
+      <div class="mi-q">${q.q.replace(/\n/g,'<br>')}</div>
+      <div class="mi-ans">
+        <span class="wrong">✘ إجابتك: ${userText}</span>
+        <span class="correct">✔ الصحيح: ${letters[q.correct]} — ${correctText}</span>
+      </div>
+      <div class="mi-exp">${q.exp}</div>
+      <div class="mi-actions">
+        <button class="btn-mini solid" data-review="${m.qid}">🔄 راجع السؤال</button>
+        <button class="btn-mini danger" data-remove="${m.qid}">✓ حفظته</button>
+      </div>
+    </div>`;
+  }).join("");
+  list.querySelectorAll("[data-review]").forEach(b=>b.addEventListener("click",()=>{
+    sound("click");
+    const q=QUESTIONS[b.dataset.review];
+    if(q)startSingleReview(q);
+  }));
+  list.querySelectorAll("[data-remove]").forEach(b=>b.addEventListener("click",()=>{
+    removeMistake(b.dataset.remove);
+  }));
+}
+function startSingleReview(q){
+  G={
+    stageId:-2,
+    questions:[q],
+    idx:0,correct:0,streak:0,startCoins:S.coins,stageStartXP:S.xp,
+    answered:false,selected:null,timer:30,
+    reviewMode:true
+  };
+  if(S.hearts<=0)S.hearts=S.maxHearts;
+  document.getElementById("gameProgressText").textContent="📕 مراجعة";
+  document.getElementById("gameProgressFill").style.width="0%";
+  document.body.classList.add("no-nav");
+  document.getElementById("bottomNav").style.display="none";
+  show("game");
+  renderHearts();
+  loadQuestion();
+}
+
+/* ---------- GAME ---------- */
+let G=null;
+let timerInt=null;
+let powerupState=null;
+
+function renderPowerupsBar(){
+  const bar=document.getElementById("powerupsBar");
+  if(!G||G.reviewMode){bar.innerHTML='';return;}
+  const puList=[
+    {id:"fifty",icon:"✂️",label:"50:50"},
+    {id:"skip",icon:"⏭️",label:"تخطي"},
+    {id:"freeze",icon:"❄️",label:"تجميد"},
+    {id:"hint",icon:"💡",label:"تلميح"},
+    {id:"heart",icon:"❤️",label:"قلب"}
+  ];
+  bar.innerHTML=puList.map(pu=>{
+    const count=S.inventory[pu.id]||0;
+    const disabled=count<=0||G.answered||powerupState.used[pu.id]||(pu.id==="heart"&&S.hearts>=5);
+    return `<button class="pu-btn ${disabled?'disabled':''}" data-pu="${pu.id}">
+      ${count>0?`<span class="pu-count">${count}</span>`:''}
+      <span class="pu-icon">${pu.icon}</span>
+      <span class="pu-lbl">${pu.label}</span>
+    </button>`;
+  }).join("");
+  bar.querySelectorAll("[data-pu]").forEach(b=>b.addEventListener("click",()=>usePowerup(b.dataset.pu)));
+}
+function usePowerup(id){
+  if(!G||G.answered)return;
+  if(powerupState.used[id])return;
+  const count=S.inventory[id]||0;
+  if(count<=0){toast("لا تملك هذه القوة","red");return;}
+  if(id==="fifty"){
+    const q=G.questions[G.idx];
+    const wrongs=[0,1,2,3].filter(i=>i!==q.correct);
+    const toEliminate=wrongs.sort(()=>Math.random()-0.5).slice(0,2);
+    document.querySelectorAll("#optionsGrid .option-btn").forEach(b=>{
+      const bi=parseInt(b.dataset.i);
+      if(toEliminate.includes(bi))b.classList.add("eliminated");
+    });
+    powerupState.used[id]=true;
+    S.inventory[id]--;saveState();
+    sound("buy");toast("✂️ حذفت خيارين");renderPowerupsBar();
+  } else if(id==="skip"){
+    powerupState.used[id]=true;
+    S.inventory[id]--;saveState();
+    sound("buy");toast("⏭️ تخطي السؤال");
+    setTimeout(()=>{G.idx++;if(G.idx>=G.questions.length)endStage();else loadQuestion();},500);
+  } else if(id==="freeze"){
+    powerupState.used[id]=true;
+    S.inventory[id]--;saveState();
+    powerupState.frozen=true;
+    sound("buy");toast("❄️ تجميد 15 ثانية");
+    renderPowerupsBar();
+    setTimeout(()=>{powerupState.frozen=false;},15000);
+  } else if(id==="hint"){
+    const q=G.questions[G.idx];
+    powerupState.used[id]=true;
+    S.inventory[id]--;saveState();
+    sound("buy");
+    toast("💡 "+q.exp.substring(0,70)+"...");
+    renderPowerupsBar();
+  } else if(id==="heart"){
+    if(S.hearts>=5){toast("لديك قلوب كافية","red");return;}
+    powerupState.used[id]=true;
+    S.inventory[id]--;S.hearts++;saveState();
+    sound("buy");toast("❤️ +1 قلب","gold");
+    renderHearts();renderPowerupsBar();updateHeader();
+  }
+}
+
+function startStage(stageId){
+  const stage=STAGES.find(s=>s.id===stageId);
+  if(!stage)return;
+  if(S.hearts<=0){S.hearts=S.maxHearts;toast("❤️ تم تجديد القلوب!","gold");}
+  sound("click");haptic(20);
+  G={
+    stageId:stageId,
+    questions:stage.qIds.map(id=>QUESTIONS[id]).filter(Boolean),
+    idx:0,correct:0,streak:0,startCoins:S.coins,stageStartXP:S.xp,
+    answered:false,selected:null,timer:20
+  };
+  powerupState={used:{},frozen:false};
+  S.lastPlayedStage=stageId;saveState();
+  document.getElementById("gameProgressText").textContent="1 / "+G.questions.length;
+  document.getElementById("gameProgressFill").style.width="0%";
+  document.body.classList.add("no-nav");
+  document.getElementById("bottomNav").style.display="none";
+  show("game");
+  renderHearts();
+  loadQuestion();
+}
+
+function renderHearts(){
+  const row=document.getElementById("heartsRow");
+  let html="";
+  for(let i=0;i<Math.max(S.maxHearts,S.hearts);i++){
+    html+=`<span class="heart ${i<S.hearts?'':'lost'}">${i<S.hearts?'❤️':'🖤'}</span>`;
+  }
+  row.innerHTML=html;
+}
+
+function loadQuestion(){
+  clearInterval(timerInt);
+  if(G.idx>=G.questions.length){endStage();return;}
+  const q=G.questions[G.idx];
+  G.answered=false;G.selected=null;G.timer=q.track==="كمي"?20:25;
+  powerupState={used:{},frozen:powerupState?powerupState.frozen:false};
+
+  document.getElementById("gameProgressText").textContent=(G.idx+1)+" / "+G.questions.length;
+  document.getElementById("gameProgressFill").style.width=(G.idx/G.questions.length*100)+"%";
+  document.getElementById("qTag").textContent=(q.track==="كمي"?"📐":"🧠")+" "+q.topic+" · "+q.difficulty;
+  document.getElementById("qText").textContent=q.q;
+
+  const og=document.getElementById("optionsGrid");
+  const letters=["أ","ب","ج","د"];
+  og.innerHTML=q.opts.map((opt,i)=>
+    `<button class="option-btn" data-i="${i}">
+      <span class="option-letter">${letters[i]}</span>
+      <span>${opt}</span>
+    </button>`
+  ).join("");
+  og.querySelectorAll(".option-btn").forEach(b=>b.addEventListener("click",()=>selectAnswer(parseInt(b.dataset.i))));
+
+  document.getElementById("feedbackBar").classList.remove("show");
+  document.getElementById("feedbackBar").classList.remove("wrong");
+  renderPowerupsBar();
+  startTimer();
+  renderHearts();
+}
+
+function startTimer(){
+  const wrap=document.getElementById("timerWrap");
+  const fill=document.getElementById("timerFill");
+  const text=document.getElementById("timerText");
+  let t=G.timer;
+  const max=t;
+  wrap.classList.remove("warn","danger");
+  fill.style.width="100%";text.textContent=t;
+  timerInt=setInterval(()=>{
+    if(powerupState&&powerupState.frozen)return;
+    t--;
+    fill.style.width=(t/max*100)+"%";
+    text.textContent=t;
+    if(t<=max*0.5)wrap.classList.add("warn");
+    if(t<=max*0.25)wrap.classList.add("danger");
+    if(t<=0){clearInterval(timerInt);if(!G.answered)selectAnswer(-1);}
+  },1000);
+}
+
+function selectAnswer(i){
+  if(G.answered)return;
+  clearInterval(timerInt);
+  G.answered=true;G.selected=i;
+  const q=G.questions[G.idx];
+  const correct=q.correct;
+  const isCorrect=i===correct;
+
+  document.querySelectorAll("#optionsGrid .option-btn").forEach(b=>{
+    b.classList.add("disabled");
+    const bi=parseInt(b.dataset.i);
+    if(bi===correct)b.classList.add("correct");
+    if(bi===i&&!isCorrect)b.classList.add("wrong");
+    if(bi===i&&!isCorrect)b.classList.add("shake");
+  });
+
+  S.totalAnswered++;
+  if(q.track==="كمي")S.kmAnswered++;else S.lfAnswered++;
+
+  const fb=document.getElementById("feedbackBar");
+  const fbTitle=document.getElementById("feedbackTitle");
+  const fbText=document.getElementById("feedbackText");
+
+  if(isCorrect){
+    sound("correct");haptic(30);
+    G.correct++;G.streak++;
+    if(G.streak>S.bestStreak)S.bestStreak=G.streak;
+    S.totalCorrect++;
+    const baseCoins=G.reviewMode?0:10;
+    const streakBonus=G.streak>=3?Math.min(G.streak-2,5)*3:0;
+    const totalCoins=baseCoins+streakBonus;
+    S.coins+=totalCoins;
+    const xpGain=G.reviewMode?5:10+streakBonus;
+    if(!G.reviewMode)addXP(xpGain);
+    fb.classList.remove("wrong");
+    fbTitle.textContent="✅ "+pickPraise();
+    fbText.innerHTML=`${totalCoins>0?`<b>+${totalCoins} 🪙</b> | `:''}<b>+${xpGain} ⚡</b>${G.streak>=3?` | 🔥 سلسلة ${G.streak}`:""}<br>${q.exp}`;
+    // FIX #3: remove from mistakes if correct
+    if(G.reviewMode||S.mistakes.find(m=>m.qid===q.id)){
+      removeMistake(q.id);
+    }
+    if(G.streak>=3){
+      const pop=document.createElement("div");
+      pop.className="streak-pop";pop.textContent="🔥 x"+G.streak;
+      document.body.appendChild(pop);setTimeout(()=>pop.remove(),1000);
+    }
+  } else {
+    sound("wrong");haptic(80);
+    if(!G.reviewMode)S.hearts--;
+    G.streak=0;
+    fb.classList.add("wrong");
+    fbTitle.textContent="❌ "+(i===-1?"انتهى الوقت!":"خطأ");
+    const letters=["أ","ب","ج","د"];
+    fbText.innerHTML=`الإجابة الصحيحة: <b>${letters[correct]} — ${q.opts[correct]}</b><br>${q.exp}`;
+    // FIX #3: add to mistakes
+    addMistake(q.id,i);
+    if(!G.reviewMode&&S.hearts<=0){
+      setTimeout(()=>{fbText.innerHTML+="<br><b style='color:var(--red)'>💔 نفدت القلوب!</b>";},200);
+    }
+  }
+  renderHearts();saveState();checkAchievements();updateHeader();
+  fb.classList.add("show");
+  document.getElementById("btnNext").textContent=G.idx+1>=G.questions.length?"إنهاء ›":"التالي ›";
+}
+
+function pickPraise(){
+  const arr=["أحسنت! 👏","كفو! 💪","عاش! 🔥","تمام! ⭐","بطل! 🌟","ممتاز! ✨","رهيب! ⚡","وحش! 🦁"];
+  return arr[Math.floor(Math.random()*arr.length)];
+}
+
+function endStage(failed=false){
+  clearInterval(timerInt);
+  const total=G.questions.length;
+  const correct=G.correct;
+  const acc=total?Math.round(correct/total*100):0;
+  const failedRun=failed||(!G.reviewMode&&S.hearts<=0);
+
+  let stars=0;
+  if(!failedRun){
+    if(correct===total)stars=3;
+    else if(acc>=75)stars=2;
+    else if(acc>=50)stars=1;
+  }
+
+  if(G.stageId>0){
+    const prevStars=S.stageStars[G.stageId]||0;
+    if(stars>prevStars){S.stageStars[G.stageId]=stars;S.stars+=stars-prevStars;}
+    if(stars>0&&!S.completedStages[G.stageId]){
+      S.completedStages[G.stageId]=true;
+      const nextId=G.stageId+1;
+      if(STAGES.find(s=>s.id===nextId)&&!S.unlockedStages.includes(nextId)){
+        S.unlockedStages.push(nextId);
+        setTimeout(()=>toast("🎉 فتحت: "+STAGES.find(s=>s.id===nextId).name,"gold"),800);
+      }
+    }
+  }
+
+  const coinsEarned=S.coins-G.startCoins;
+  saveState();checkAchievements();
+
+  document.getElementById("rCoins").textContent="+"+coinsEarned;
+  const xpDiff=S.xp-G.stageStartXP;
+  document.getElementById("rXP").textContent=xpDiff>=0?"+"+xpDiff:"+"+(xpDiff+levelThreshold(S.level-1));
+  document.getElementById("rAcc").textContent=acc+"%";
+
+  let sub;
+  if(G.reviewMode)sub="📕 مراجعة سؤال";
+  else if(G.stageId>0){const stage=STAGES.find(s=>s.id===G.stageId);sub="محطة "+(stage?stage.name:"")+" · "+correct+"/"+total;}
+  else sub=correct+"/"+total+" صحيحة";
+  document.getElementById("resultSub").textContent=sub;
+
+  let title;
+  if(failedRun)title="حاول مرة أخرى! 💪";
+  else if(stars===3)title="🏆 أسطورة!";
+  else if(stars===2)title="🎯 ممتاز!";
+  else if(stars===1)title="👍 جيد!";
+  else title=G.reviewMode?"📖 راجعته!":"📖 واصل التدريب!";
+  document.getElementById("resultTitle").textContent=title;
+
+  [1,2,3].forEach(i=>{const el=document.getElementById("star"+i);el.classList.remove("on","animate");el.style.animationDelay="";});
+  setTimeout(()=>{
+    for(let i=1;i<=stars;i++){
+      const el=document.getElementById("star"+i);
+      el.style.animationDelay=(i*0.25)+"s";
+      el.classList.add("animate","on");
+      setTimeout(()=>sound("star"),i*250);
+    }
+  },200);
+  if(stars>0){setTimeout(()=>{sound("win");confetti(stars===3?120:60);},400);}
+  else setTimeout(()=>sound("lose"),300);
+
+  if(failedRun){S.hearts=S.maxHearts;saveState();}
+
+  document.getElementById("bottomNav").style.display="";
+  document.body.classList.remove("no-nav");
+  show("result");
+  G=null;
+}
+
+/* ---------- QUICK / DAILY ---------- */
+function startQuick(track){
+  const pool=Object.values(QUESTIONS).filter(q=>q.track===track);
+  if(pool.length<6){toast("لا توجد أسئلة كافية");return;}
+  const shuffled=[...pool].sort(()=>Math.random()-0.5).slice(0,6);
+  G={stageId:0,questions:shuffled,idx:0,correct:0,streak:0,startCoins:S.coins,stageStartXP:S.xp,answered:false,selected:null,timer:20};
+  powerupState={used:{},frozen:false};
+  if(S.hearts<=0)S.hearts=S.maxHearts;
+  document.getElementById("gameProgressText").textContent="1 / 6";
+  document.getElementById("gameProgressFill").style.width="0%";
+  document.body.classList.add("no-nav");
+  document.getElementById("bottomNav").style.display="none";
+  show("game");renderHearts();loadQuestion();
+}
+function startDaily(){
+  const today=new Date().toISOString().slice(0,10);
+  if(S.dailyDoneDate===today)return;
+  const pool=Object.values(QUESTIONS);
+  const q=pool[Math.floor(Math.random()*pool.length)];
+  S.dailyDoneDate=today;saveState();
+  G={stageId:-1,questions:[q],idx:0,correct:0,streak:0,startCoins:S.coins,stageStartXP:S.xp,answered:false,selected:null,timer:30,dailyBonus:true};
+  powerupState={used:{},frozen:false};
+  document.getElementById("gameProgressText").textContent="🎁 تحدي اليوم";
+  document.getElementById("gameProgressFill").style.width="0%";
+  document.body.classList.add("no-nav");
+  document.getElementById("bottomNav").style.display="none";
+  show("game");renderHearts();loadQuestion();
+}
+
+/* ---------- EVENT BINDINGS ---------- */
+document.getElementById("btnStart").addEventListener("click",()=>{
+  sound("click");
+  const sp=document.getElementById("screen-splash");
+  sp.classList.add("hide");
+  setTimeout(()=>{sp.style.display="none";},500);
+  document.getElementById("app").classList.remove("hide");
+  document.body.classList.remove("no-nav");
+  renderHome();
+});
+document.querySelectorAll("[data-go]").forEach(el=>el.addEventListener("click",()=>{sound("click");show(el.dataset.go);}));
+document.querySelectorAll("[data-quick]").forEach(el=>el.addEventListener("click",()=>{
+  sound("click");haptic(20);
+  startQuick(el.dataset.quick==="km"?"كمي":"لفظي");
+}));
+document.getElementById("btnContinue").addEventListener("click",()=>{sound("click");startStage(S.lastPlayedStage||1);});
+document.getElementById("btnDaily").addEventListener("click",()=>{sound("click");startDaily();});
+document.getElementById("btnGameBack").addEventListener("click",()=>{
+  if(!confirm("الخروج من المرحلة؟ سيتم فقدان تقدمك."))return;
+  clearInterval(timerInt);G=null;
+  document.getElementById("bottomNav").style.display="";
+  document.body.classList.remove("no-nav");
+  show("map");
+});
+document.getElementById("btnResultHome").addEventListener("click",()=>{sound("click");show("home");});
+document.getElementById("btnResultNext").addEventListener("click",()=>{
+  sound("click");
+  const current=S.lastPlayedStage;
+  if(current<=0||current>=STAGES.length){show("map");return;}
+  const nextId=current+1;
+  if(STAGES.find(s=>s.id===nextId)&&S.unlockedStages.includes(nextId))startStage(nextId);
+  else show("map");
+});
+
+/* ---------- INIT ---------- */
+updateHeader();
+console.log("🎮 قدرات v2 جاهز |",Object.keys(QUESTIONS).length,"سؤال |",STAGES.length,"مرحلة | 5 إصلاحات");
+</script>
+</body>
+</html>
