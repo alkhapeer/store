@@ -1,7 +1,7 @@
 /* HERO Games data — auto-generated */
 window.HERO_GAMES = {
   "version": 1,
-  "updatedAt": "2026-10-14T17:36:20.747Z",
+  "updatedAt": "2026-10-14T17:39:05.395Z",
   "categories": [
     {
       "id": "sport",
@@ -82,7 +82,7 @@ window.HERO_GAMES = {
       "players": "70K",
       "size": "MB33",
       "version": "1.2.0",
-      "url": "https://www.appcreator24.com/app4218207-f0sz54",
+      "url": "https://github.com/alkhapeer/pulse-of-excellence/releases/download/qudrat/app4218207-f0sz54.apk",
       "badge": "",
       "featured": true
     }
