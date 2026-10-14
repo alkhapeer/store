@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-14T10:54:43.874Z",
+  "updatedAt": "2026-10-14T16:24:22.305Z",
   "categories": [
     {
       "id": "games",
@@ -102,7 +102,7 @@ window.HERO_DATA = {
         "أكاديمية هيرو",
         "اختبار قدرات تجريبي"
       ],
-      "buyUrl": "https://www.appcreator24.com/app4218207-f0sz54",
+      "buyUrl": "https://github.com/alkhapeer/pulse-of-excellence/releases/download/qudrat/app4218207-f0sz54.apk",
       "landingUrl": "",
       "landingHtml": ""
     },
@@ -282,6 +282,41 @@ window.HERO_DATA = {
       ],
       "buyUrl": "https://apk.e-droid.net/apk/app4218207-f0sz54.apk?v=2",
       "landingUrl": "",
+      "landingHtml": ""
+    },
+    {
+      "id": "opentopic-01-copy-7u1",
+      "name": "افتح توبيك Open Topic (نسخة)",
+      "seller": "HERO",
+      "category": "games",
+      "description": "🔥 جاهزين للتحدي؟ لمّوا صحابكم وشوفوا مين فيكم أذكى ومين إجاباته هتفجّر الضحك! 😂\nاختاروا الأسئلة، جاوبوا بالدور، اجمعوا النجوم، واكسبوا الجولة! 🏆\nادخلوا افتح توبيك دلوقتي… والتحدي يبدأ! مين هيطلع البطل؟ 🔥",
+      "emoji": "📦",
+      "image": "/assets/opentopic-full-logo.png",
+      "c1": "#6366f1",
+      "c2": "#a855f7",
+      "price": "0",
+      "priceValue": 0,
+      "rating": 5,
+      "reviews": 40,
+      "ctaText": "",
+      "featured": false,
+      "new": false,
+      "tags": [
+        "game",
+        "games",
+        "fun",
+        "funny",
+        "usa",
+        "مصر",
+        "لعب",
+        "لعبة",
+        "ترفيه",
+        "ربح",
+        "ضحك",
+        "ذكاء"
+      ],
+      "buyUrl": "",
+      "landingUrl": "https://github.com/alkhapeer/opentopic/releases/download/v1.0.0/app4217368-umfs0l.apk",
       "landingHtml": ""
     }
   ],
