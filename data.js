@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-12T21:46:12.000Z",
+  "updatedAt": "2026-10-14T10:49:08.091Z",
   "categories": [
     {
       "id": "games",
@@ -246,6 +246,42 @@ window.HERO_DATA = {
       ],
       "buyUrl": "",
       "landingUrl": "https://github.com/alkhapeer/opentopic/releases/download/v1.0.0/app4217368-umfs0l.apk",
+      "landingHtml": ""
+    },
+    {
+      "id": "qudrat-01",
+      "name": "قدرات — لعبة التحدي السعودية 🎮🇸🇦",
+      "seller": "HERO",
+      "category": "games",
+      "description": "حوّل تدريبك على اختبار القدرات العامة إلى تحدّي ممتع! 🏆\nاختبر نفسك في القدرات الكمي والقدرات اللفظي، جاوب على الأسئلة، طوّر مهاراتك، وتحدّى أصحابك — مجانًا.\nإذا كنت تستعد لـ اختبار القدرات في السعودية وتبي طريقة مختلفة عن المذاكرة التقليدية، جرّب اللعبة وخلّ التحدي يبدأ! 🔥",
+      "emoji": "📦",
+      "image": "https://saatgat.hero1.vip/Modern_Qudrat_logo.jpg",
+      "c1": "#6366f1",
+      "c2": "#a855f7",
+      "price": "0",
+      "priceValue": 0,
+      "rating": 5,
+      "reviews": 0,
+      "ctaText": "",
+      "featured": true,
+      "new": false,
+      "tags": [
+        "اختبار قدرات",
+        "القدرات العامة",
+        "قدرات كمي",
+        "قدرات لفظي",
+        "أسئلة قدرات",
+        "تدريب قدرات",
+        "اختبار القدرات السعودية",
+        "التحضير للقدرات",
+        "طلاب السعودية",
+        "ألعاب تعليمية",
+        "لعبة قدرات",
+        "لعبة تعليمية",
+        "تحدي القدرات"
+      ],
+      "buyUrl": "https://apk.e-droid.net/apk/app4218207-f0sz54.apk?v=2",
+      "landingUrl": "",
       "landingHtml": ""
     }
   ],
