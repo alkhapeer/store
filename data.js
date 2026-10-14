@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-14T17:58:47.748Z",
+  "updatedAt": "2026-10-14T17:59:50.964Z",
   "categories": [
     {
       "id": "games",
@@ -50,7 +50,7 @@ window.HERO_DATA = {
       "rating": 4.5,
       "reviews": 27,
       "ctaText": "",
-      "featured": true,
+      "featured": false,
       "new": false,
       "tags": [
         "محتوى",
@@ -121,7 +121,7 @@ window.HERO_DATA = {
       "rating": 5,
       "reviews": 9,
       "ctaText": "",
-      "featured": true,
+      "featured": false,
       "new": false,
       "tags": [
         "تنمية مهارات الطفل",
@@ -161,7 +161,7 @@ window.HERO_DATA = {
       "rating": 4.5,
       "reviews": 0,
       "ctaText": "",
-      "featured": true,
+      "featured": false,
       "new": false,
       "tags": [
         "HeroStore",
@@ -193,7 +193,7 @@ window.HERO_DATA = {
       "rating": 5,
       "reviews": 18,
       "ctaText": "",
-      "featured": true,
+      "featured": false,
       "new": false,
       "tags": [
         "مولّد متاجر",
