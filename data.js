@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-14T17:28:13.347Z",
+  "updatedAt": "2026-10-14T17:30:23.915Z",
   "categories": [
     {
       "id": "games",
@@ -280,7 +280,7 @@ window.HERO_DATA = {
         "لعبة تعليمية",
         "تحدي القدرات"
       ],
-      "buyUrl": "https://apk.e-droid.net/apk/app4218207-f0sz54.apk?v=2",
+      "buyUrl": "https://www.appcreator24.com/app4218207-f0sz54",
       "landingUrl": "",
       "landingHtml": ""
     },
