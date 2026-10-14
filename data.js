@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-14T17:59:50.964Z",
+  "updatedAt": "2026-10-14T18:01:21.540Z",
   "categories": [
     {
       "id": "games",
@@ -264,7 +264,7 @@ window.HERO_DATA = {
       "rating": 5,
       "reviews": 40,
       "ctaText": "",
-      "featured": false,
+      "featured": true,
       "new": false,
       "tags": [
         "game",
