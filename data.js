@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-14T17:38:41.179Z",
+  "updatedAt": "2026-10-14T17:44:03.547Z",
   "categories": [
     {
       "id": "games",
@@ -214,41 +214,6 @@ window.HERO_DATA = {
       "landingHtml": ""
     },
     {
-      "id": "opentopic-01",
-      "name": "افتح توبيك Open Topic",
-      "seller": "HERO",
-      "category": "games",
-      "description": "🔥 جاهزين للتحدي؟ لمّوا صحابكم وشوفوا مين فيكم أذكى ومين إجاباته هتفجّر الضحك! 😂\nاختاروا الأسئلة، جاوبوا بالدور، اجمعوا النجوم، واكسبوا الجولة! 🏆\nادخلوا افتح توبيك دلوقتي… والتحدي يبدأ! مين هيطلع البطل؟ 🔥",
-      "emoji": "📦",
-      "image": "/assets/opentopic-full-logo.png",
-      "c1": "#6366f1",
-      "c2": "#a855f7",
-      "price": "0",
-      "priceValue": 0,
-      "rating": 5,
-      "reviews": 40,
-      "ctaText": "",
-      "featured": true,
-      "new": false,
-      "tags": [
-        "game",
-        "games",
-        "fun",
-        "funny",
-        "usa",
-        "مصر",
-        "لعب",
-        "لعبة",
-        "ترفيه",
-        "ربح",
-        "ضحك",
-        "ذكاء"
-      ],
-      "buyUrl": "",
-      "landingUrl": "https://apk.e-droid.net/apk/app4217368-umfs0l.apk?v=1",
-      "landingHtml": ""
-    },
-    {
       "id": "qudrat-01",
       "name": "قدرات — لعبة التحدي السعودية 🎮🇸🇦",
       "seller": "HERO",
@@ -286,7 +251,7 @@ window.HERO_DATA = {
     },
     {
       "id": "opentopic-01-copy-7u1",
-      "name": "افتح توبيك Open Topic (نسخة)",
+      "name": "افتح توبيك Open Topic",
       "seller": "HERO",
       "category": "games",
       "description": "🔥 جاهزين للتحدي؟ لمّوا صحابكم وشوفوا مين فيكم أذكى ومين إجاباته هتفجّر الضحك! 😂\nاختاروا الأسئلة، جاوبوا بالدور، اجمعوا النجوم، واكسبوا الجولة! 🏆\nادخلوا افتح توبيك دلوقتي… والتحدي يبدأ! مين هيطلع البطل؟ 🔥",
