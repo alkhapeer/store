@@ -1,7 +1,7 @@
 /* HERO Games data — auto-generated */
 window.HERO_GAMES = {
   "version": 1,
-  "updatedAt": "2026-10-14T14:52:37.762Z",
+  "updatedAt": "2026-10-14T17:22:25.699Z",
   "categories": [
     {
       "id": "sport",
@@ -64,7 +64,7 @@ window.HERO_GAMES = {
       "players": "100K",
       "size": "MB33",
       "version": "1.2.0",
-      "url": "https://opentopic.hero1.vip/",
+      "url": "https://apk.e-droid.net/apk/app4217368-umfs0l.apk?v=1",
       "badge": "hot",
       "featured": true
     }
