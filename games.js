@@ -1,7 +1,7 @@
 /* HERO Games data — auto-generated */
 window.HERO_GAMES = {
   "version": 1,
-  "updatedAt": "2026-10-14T17:27:43.715Z",
+  "updatedAt": "2026-10-14T17:30:03.324Z",
   "categories": [
     {
       "id": "sport",
@@ -71,7 +71,7 @@ window.HERO_GAMES = {
     {
       "id": "qudrat-01",
       "title": "قدرات — لعبة التحدي السعودية 🎮🇸🇦",
-      "category": "strategy",
+      "category": "",
       "developer": "Hero Games",
       "description": "حوّل تدريبك على اختبار القدرات العامة إلى تحدّي ممتع! 🏆\nاختبر نفسك في القدرات الكمي والقدرات اللفظي، جاوب على الأسئلة، طوّر مهاراتك، وتحدّى أصحابك — مجانًا.\nإذا كنت تستعد لـ اختبار القدرات في السعودية وتبي طريقة مختلفة عن المذاكرة التقليدية، جرّب اللعبة وخلّ التحدي يبدأ! 🔥",
       "emoji": "🎮",
@@ -82,7 +82,7 @@ window.HERO_GAMES = {
       "players": "70K",
       "size": "MB33",
       "version": "1.2.0",
-      "url": "https://apk.e-droid.net/apk/app4218207-f0sz54.apk?v=2",
+      "url": "https://www.appcreator24.com/app4218207-f0sz54",
       "badge": "",
       "featured": true
     }
