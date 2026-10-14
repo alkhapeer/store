@@ -1,7 +1,7 @@
 /* HERO Games data — auto-generated */
 window.HERO_GAMES = {
   "version": 1,
-  "updatedAt": "2026-10-14T17:31:18.370Z",
+  "updatedAt": "2026-10-14T17:36:20.747Z",
   "categories": [
     {
       "id": "sport",
@@ -64,7 +64,7 @@ window.HERO_GAMES = {
       "players": "100K",
       "size": "MB33",
       "version": "1.2.0",
-      "url": "https://www.appcreator24.com/app4217368-umfs0l",
+      "url": "https://github.com/alkhapeer/opentopic/releases/download/v1.0.0/app4217368-umfs0l.apk",
       "badge": "hot",
       "featured": true
     },
