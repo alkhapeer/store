@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-14T16:24:22.305Z",
+  "updatedAt": "2026-10-14T16:46:59.778Z",
   "categories": [
     {
       "id": "games",
@@ -102,7 +102,7 @@ window.HERO_DATA = {
         "أكاديمية هيرو",
         "اختبار قدرات تجريبي"
       ],
-      "buyUrl": "https://github.com/alkhapeer/pulse-of-excellence/releases/download/qudrat/app4218207-f0sz54.apk",
+      "buyUrl": "https://nabdh.hero1.vip/download/app4218207-f0sz54.apk",
       "landingUrl": "",
       "landingHtml": ""
     },
