@@ -1,7 +1,7 @@
 /* HERO Games data — auto-generated */
 window.HERO_GAMES = {
   "version": 1,
-  "updatedAt": "2026-10-14T17:22:25.699Z",
+  "updatedAt": "2026-10-14T17:27:43.715Z",
   "categories": [
     {
       "id": "sport",
@@ -66,6 +66,24 @@ window.HERO_GAMES = {
       "version": "1.2.0",
       "url": "https://apk.e-droid.net/apk/app4217368-umfs0l.apk?v=1",
       "badge": "hot",
+      "featured": true
+    },
+    {
+      "id": "qudrat-01",
+      "title": "قدرات — لعبة التحدي السعودية 🎮🇸🇦",
+      "category": "strategy",
+      "developer": "Hero Games",
+      "description": "حوّل تدريبك على اختبار القدرات العامة إلى تحدّي ممتع! 🏆\nاختبر نفسك في القدرات الكمي والقدرات اللفظي، جاوب على الأسئلة، طوّر مهاراتك، وتحدّى أصحابك — مجانًا.\nإذا كنت تستعد لـ اختبار القدرات في السعودية وتبي طريقة مختلفة عن المذاكرة التقليدية، جرّب اللعبة وخلّ التحدي يبدأ! 🔥",
+      "emoji": "🎮",
+      "image": "https://saatgat.hero1.vip/Modern_Qudrat_logo.jpg",
+      "c1": "#f59e0b",
+      "c2": "#fbbf24",
+      "rating": 4.5,
+      "players": "70K",
+      "size": "MB33",
+      "version": "1.2.0",
+      "url": "https://apk.e-droid.net/apk/app4218207-f0sz54.apk?v=2",
+      "badge": "",
       "featured": true
     }
   ]
