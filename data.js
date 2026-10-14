@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-14T10:49:08.091Z",
+  "updatedAt": "2026-10-14T10:52:45.490Z",
   "categories": [
     {
       "id": "games",
@@ -102,7 +102,7 @@ window.HERO_DATA = {
         "أكاديمية هيرو",
         "اختبار قدرات تجريبي"
       ],
-      "buyUrl": "https://saatgat.hero1.vip/",
+      "buyUrl": "https://apk.e-droid.net/apk/app4218207-f0sz54.apk?v=2",
       "landingUrl": "",
       "landingHtml": ""
     },
