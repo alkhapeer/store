@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-14T17:17:50.762Z",
+  "updatedAt": "2026-10-14T17:22:01.114Z",
   "categories": [
     {
       "id": "games",
@@ -245,7 +245,7 @@ window.HERO_DATA = {
         "ذكاء"
       ],
       "buyUrl": "",
-      "landingUrl": "https://github.com/alkhapeer/opentopic/releases/download/v1.0.0/app4217368-umfs0l.apk",
+      "landingUrl": "https://apk.e-droid.net/apk/app4217368-umfs0l.apk?v=1",
       "landingHtml": ""
     },
     {
