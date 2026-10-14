@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-14T17:44:03.547Z",
+  "updatedAt": "2026-10-14T17:58:47.748Z",
   "categories": [
     {
       "id": "games",
@@ -282,6 +282,52 @@ window.HERO_DATA = {
       ],
       "buyUrl": "",
       "landingUrl": "https://github.com/alkhapeer/opentopic/releases/download/v1.0.0/app4217368-umfs0l.apk",
+      "landingHtml": ""
+    },
+    {
+      "id": "hg-01",
+      "name": "Hero Games",
+      "seller": "HERO",
+      "category": "games",
+      "description": "Hero Store 🎮 | ألعاب تعليمية مجانية\n\nنحوّل المذاكرة إلى لعبة 🎯\nألعاب تعليمية مجانية تساعدك تتعلّم، تتدرّب، وتتحدى نفسك بطريقة ممتعة.",
+      "emoji": "📦",
+      "image": "/assets/HeroGames.png",
+      "c1": "#6366f1",
+      "c2": "#a855f7",
+      "price": "0",
+      "priceValue": 0,
+      "rating": 4.5,
+      "reviews": 0,
+      "ctaText": "",
+      "featured": true,
+      "new": false,
+      "tags": [
+        "اختبار قدرات",
+        "القدرات العامة",
+        "قدرات كمي",
+        "قدرات لفظي",
+        "أسئلة قدرات",
+        "تدريب قدرات",
+        "اختبار القدرات السعودية",
+        "التحضير للقدرات",
+        "طلاب السعودية",
+        "ألعاب تعليمية",
+        "لعبة قدرات",
+        "لعبة تعليمية",
+        "تحدي القدرات",
+        "لعب",
+        "لعبة",
+        "العاب",
+        "ألعاب",
+        "مصر",
+        "نعليم",
+        "game",
+        "play",
+        "متجر",
+        "بلاي"
+      ],
+      "buyUrl": "",
+      "landingUrl": "https://store.hero1.vip/games.html",
       "landingHtml": ""
     }
   ],
