@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-14T18:01:21.540Z",
+  "updatedAt": "2026-10-15T13:21:41.449Z",
   "categories": [
     {
       "id": "games",
@@ -327,7 +327,29 @@ window.HERO_DATA = {
         "بلاي"
       ],
       "buyUrl": "",
-      "landingUrl": "https://store.hero1.vip/games.html",
+      "landingUrl": "https://github.com/alkhapeer/pulse-of-excellence/releases/download/HG/herogames.apk",
+      "landingHtml": ""
+    },
+    {
+      "id": "wealth01",
+      "name": "كتيب الفخ المالي",
+      "seller": "HERO",
+      "category": "digital-products",
+      "description": "اكتشف القواعد الخفية التي تمنع 95% من الناس من تحقيق الثراء... وكيف تخرج من \"طاحونة الديون والعمل\" للأبد!",
+      "emoji": "📦",
+      "image": "/welth_trick.png",
+      "c1": "#6366f1",
+      "c2": "#a855f7",
+      "price": "0",
+      "priceValue": 0,
+      "rating": 4.5,
+      "reviews": 0,
+      "ctaText": "",
+      "featured": true,
+      "new": false,
+      "tags": [],
+      "buyUrl": "",
+      "landingUrl": "https://store.hero1.vip/wealth.html",
       "landingHtml": ""
     }
   ],
