@@ -1,7 +1,7 @@
 /* HERO Games data — auto-generated */
 window.HERO_GAMES = {
   "version": 1,
-  "updatedAt": "2026-10-14T17:39:05.395Z",
+  "updatedAt": "2026-10-21T08:50:58.875Z",
   "categories": [
     {
       "id": "sport",
@@ -64,7 +64,7 @@ window.HERO_GAMES = {
       "players": "100K",
       "size": "MB33",
       "version": "1.2.0",
-      "url": "https://github.com/alkhapeer/opentopic/releases/download/v1.0.0/app4217368-umfs0l.apk",
+      "url": "https://opentopic.hero1.vip/",
       "badge": "hot",
       "featured": true
     },
@@ -82,8 +82,8 @@ window.HERO_GAMES = {
       "players": "70K",
       "size": "MB33",
       "version": "1.2.0",
-      "url": "https://github.com/alkhapeer/pulse-of-excellence/releases/download/qudrat/app4218207-f0sz54.apk",
-      "badge": "",
+      "url": "https://store.hero1.vip//qudrat-game.html",
+      "badge": "hot",
       "featured": true
     }
   ]
