@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-16T18:43:30.776Z",
+  "updatedAt": "2026-10-24T05:27:57.682Z",
   "categories": [
     {
       "id": "games",
@@ -363,6 +363,49 @@ window.HERO_DATA = {
       ],
       "buyUrl": "",
       "landingUrl": "https://store.hero1.vip/wealth.html",
+      "landingHtml": ""
+    },
+    {
+      "id": "cv001",
+      "name": "Create & Export PDFCV Studio — Bilingual CV Maker",
+      "seller": "HERO",
+      "category": "tools",
+      "description": "Build a professional English or Arabic CV in minutes. Edit your details, preview live, and export a clean A4 PDF — free, no sign-up.\n\nأنشئ سيرة ذاتية احترافية بالعربية أو الإنجليزية في دقائق. عدّل بياناتك، شاهد المعاينة المباشرة، وصدّر ملف PDF نظيفاً بمقاس A4 — مجاناً وبدون تسجيل.",
+      "emoji": "📦",
+      "image": "/assets/images/cv_generator1.png",
+      "c1": "#6366f1",
+      "c2": "#a855f7",
+      "price": "0",
+      "priceValue": 0,
+      "rating": 4.5,
+      "reviews": 0,
+      "ctaText": "",
+      "featured": false,
+      "new": true,
+      "tags": [
+        "صانع سيرة ذاتية",
+        "منشئ سيرة ذاتية",
+        "عمل سيرة ذاتية .",
+        "سيرة ذاتية احترافية",
+        "سيرة ذاتية PDF",
+        "قالب سيرة ذاتية",
+        "CV maker",
+        "resume builder",
+        "free CV builder",
+        "professional CV maker",
+        "editable CV template",
+        "CV PDF export",
+        "سيرة ذاتية بالعربي",
+        "سيرة ذاتية بالإنجليزية",
+        "سيرة ذاتية مجانية",
+        "تصدير سيرة ذاتية PDF",
+        "قالب سيرة ذاتية قابل للتعديل",
+        "سيرة ذاتية A4",
+        "bilingual resume builder",
+        "Arabic CV maker"
+      ],
+      "buyUrl": "",
+      "landingUrl": "https://store.hero1.vip/cv_generator.html",
       "landingHtml": ""
     }
   ],
