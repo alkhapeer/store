@@ -1,7 +1,7 @@
 /* HERO Games data — auto-generated */
 window.HERO_GAMES = {
   "version": 1,
-  "updatedAt": "2026-10-21T08:50:58.875Z",
+  "updatedAt": "2026-10-24T12:26:34.175Z",
   "categories": [
     {
       "id": "sport",
@@ -83,6 +83,24 @@ window.HERO_GAMES = {
       "size": "MB33",
       "version": "1.2.0",
       "url": "https://store.hero1.vip//qudrat-game.html",
+      "badge": "hot",
+      "featured": true
+    },
+    {
+      "id": "nabd002",
+      "title": "NABD ALTAMAYUZ",
+      "category": "kids",
+      "developer": "",
+      "description": "\"نبض التميز: منظومة رقمية تفاعلية لا نهائية لدعم نمو الأطفال (3-12 سنة)\"\nهو تطبيق ويب متكامل (يعمل بدون إنترنت) صُمم ليكون رفيقاً يومياً للأطفال، وخاصة ذوي التنوع العصبي (مثل طيف التوحد وفرط الحركة). يتميز التطبيق بمحرك ذكي يولد مهاماً يومية متجددة وألعاباً لا نهائية لتنمية الوظائف التنفيذية (الذاكرة، الانتباه، المرونة)، بالإضافة إلى ركن للهدوء والتنظيم الذاتي، ومساعد للنطق والقصص الاجتماعية. يربط التطبيق بين الطفل وأسرته عبر لوحة تحكم لولي الأمر، ملتزماً بالضوابط العلمية والأخلاقية (أداة مساندة وليست تشخيصية).",
+      "emoji": "🎮",
+      "image": "https://store.hero1.vip//assets/004.png",
+      "c1": "#f59e0b",
+      "c2": "#fbbf24",
+      "rating": 4.5,
+      "players": "",
+      "size": "",
+      "version": "",
+      "url": "nabd.pro/nabd-al-tamayuz.html",
       "badge": "hot",
       "featured": true
     }
