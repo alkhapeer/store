@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>منشئ السيرة الذاتية | CV Studio</title>
+<style>
+  :root{
+    --bg:#eef1f6; --panel:#fff; --ink:#1f2430; --muted:#6b7280;
+    --line:#e2e6ee; --accent:#1f4e79;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+
+  /* ===== Top bar ===== */
+  .topbar{position:sticky;top:0;z-index:30;display:flex;gap:10px;align-items:center;
+    justify-content:space-between;padding:10px 16px;background:#fff;
+    border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .brand{font-weight:800;letter-spacing:.4px;font-size:16px}
+  .brand span{color:var(--accent)}
+  .actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  button{font:inherit;font-size:13px;cursor:pointer;border:1px solid var(--line);
+    background:#fff;color:var(--ink);padding:8px 14px;border-radius:8px;transition:.15s}
+  button:hover{background:#f5f7fb}
+  button.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700}
+  button.primary:hover{filter:brightness(1.12)}
+  .colorWrap{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+  input[type=color]{width:34px;height:30px;padding:0;border:1px solid var(--line);
+    border-radius:8px;background:#fff;cursor:pointer}
+
+  /* ===== Layout ===== */
+  .app{display:grid;grid-template-columns:minmax(360px,460px) 1fr;gap:18px;
+    padding:18px;align-items:start;max-width:1680px;margin:0 auto}
+  .editor{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;
+    max-height:calc(100vh - 92px);overflow:auto}
+  .previewWrap{display:flex;justify-content:center;padding-bottom:48px;overflow:auto}
+
+  /* ===== Editor form ===== */
+  .hint{font-size:12px;line-height:1.7;color:#7a5b00;background:#fff8e6;
+    border:1px solid #f3e0a8;padding:9px 11px;border-radius:8px;margin-bottom:16px}
+  .panel{margin-bottom:18px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
+  .panel:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+  .panel h3{margin:0 0 10px;font-size:13.5px;color:var(--accent);
+    text-transform:none;letter-spacing:.2px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .grid .full{grid-column:1/-1}
+  .fld{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
+  .fld span{font-weight:600}
+  input[type=text],input[type=email],input[type=tel],input[type=url],textarea{
+    width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;
+    font:inherit;font-size:13px;color:var(--ink);background:#fbfcfe}
+  input:focus,textarea:focus{outline:none;border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(31,78,121,.13)}
+  textarea{resize:vertical;min-height:58px;line-height:1.55}
+  .card{border:1px solid var(--line);border-radius:10px;padding:10px;
+    margin-bottom:10px;background:#fafbfe}
+  .card-head{display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:8px;font-size:12px;color:var(--muted);font-weight:700}
+  .del{border:0;background:#fee2e2;color:#b91c1c;padding:3px 11px;border-radius:6px;
+    font-size:14px;line-height:1.1;font-weight:700}
+  .del:hover{background:#fecaca}
+  .add{border:1px dashed var(--accent);color:var(--accent);background:#fff;width:100%;
+    padding:9px;border-radius:8px;margin-top:2px;font-weight:600}
+  .add:hover{background:#f0f6fc}
+  .chk{display:flex;gap:7px;align-items:center;font-size:12.5px;color:var(--muted);
+    margin:8px 0 6px;cursor:pointer}
+
+  /* ===== CV Paper ===== */
+  .paper{--accent:#1f4e79;width:210mm;min-height:297mm;background:#fff;
+    padding:14mm 15mm;box-shadow:0 12px 44px rgba(16,24,40,.14);border-radius:6px;
+    font-family:'Segoe UI',Tahoma,Arial,sans-serif;color:#1f2430;
+    font-size:10.5pt;line-height:1.55}
+  .cv-head{text-align:center;border-bottom:2.2px solid var(--accent);
+    padding-bottom:10px;margin-bottom:14px}
+  .cv-head h1{font-size:22pt;margin:0;letter-spacing:.4px;color:#111827;line-height:1.25}
+  .cv-title{font-size:11.5pt;color:var(--accent);font-weight:700;margin-top:3px}
+  .cv-contact{font-size:9.3pt;color:#4b5563;margin-top:7px;line-height:1.6}
+  .cv-contact .sep{color:#9ca3af}
+  .cv-sec{margin-bottom:13px}
+  .cv-sec h2{font-size:10.8pt;text-transform:uppercase;letter-spacing:1.1px;
+    color:var(--accent);margin:0 0 7px;padding-bottom:3px;border-bottom:1px solid #dcdfe6;font-weight:800}
+  .item{margin-bottom:9px;break-inside:avoid}
+  .item:last-child{margin-bottom:0}
+  .item-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+  .item-title{font-weight:700;font-size:10.8pt}
+  .item-date{font-size:9pt;color:#6b7280;white-space:nowrap}
+  .item-sub{font-size:9.8pt;color:#4b5563;font-style:italic}
+  ul.bullets{margin:4px 0 0;padding-inline-start:17px}
+  ul.bullets li{margin-bottom:2.5px}
+  .skill-line,.lang-line{font-size:10pt}
+  .empty-note{color:#9ca3af;font-size:10pt;text-align:center;margin-top:60px;line-height:2}
+
+  /* ===== Responsive ===== */
+  @media(max-width:1000px){
+    .app{grid-template-columns:1fr;padding:12px}
+    .editor{max-height:none}
+  }
+  @media(max-width:900px){
+    .paper{width:100%;min-height:auto;padding:22px 18px;font-size:10pt}
+  }
+
+  /* ===== PRINT / PDF ===== */
+  @page{size:A4;margin:12mm}
+  @media print{
+    body{background:#fff}
+    .topbar,.editor,.hint{display:none!important}
+    .app{display:block;padding:0;margin:0;max-width:none}
+    .previewWrap{padding:0;display:block;overflow:visible}
+    .paper{width:auto;min-height:0;margin:0;padding:0;box-shadow:none;
+      border:0;border-radius:0;background:#fff}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">CV <span>Studio</span></div>
+  <div class="actions">
+    <div class="colorWrap"><span id="accentLabel">اللون</span>
+      <input type="color" id="accent" value="#1f4e79" title="Accent color">
+    </div>
+    <button type="button" id="btnLang">English</button>
+    <button type="button" id="btnSample">بيانات تجريبية</button>
+    <button type="button" id="btnClear">مسح الكل</button>
+    <button type="button" id="btnPrint" class="primary">تصدير PDF</button>
+  </div>
+</header>
+
+<main class="app">
+  <section class="editor" id="editor"></section>
+  <section class="previewWrap"><div class="paper" id="paper"></div></section>
+</main>
+
+<script>
+/* =========================================================
+   1) LABELS  (UI + CV section titles)
+   ========================================================= */
+const LABELS = {
+  ar: {
+    personal:'البيانات الأساسية', name:'الاسم الكامل', title:'المسمى الوظيفي',
+    email:'البريد الإلكتروني', phone:'رقم الهاتف', location:'المدينة، الدولة',
+    linkedin:'رابط لينكدإن', website:'الموقع / معرض الأعمال',
+    summary:'الملخص المهني', skills:'المهارات', exp:'الخبرات العملية', edu:'التعليم',
+    certs:'الشهادات والدورات', langs:'اللغات', projects:'المشاريع',
+    addExp:'+ إضافة خبرة', addEdu:'+ إضافة مؤهل تعليمي',
+    jobTitle:'المسمى الوظيفي', company:'الشركة / الجهة', start:'من (شهر/سنة)',
+    end:'إلى (شهر/سنة)', current:'أعمل هنا حتى الآن',
+    bullets:'المهام والإنجازات — كل إنجاز في سطر منفصل',
+    degree:'الدرجة العلمية والتخصص', school:'الجامعة / المعهد',
+    year:'سنة التخرج', details:'تفاصيل إضافية (اختياري)',
+    expItem:'خبرة', eduItem:'مؤهل',
+    summaryPh:'اكتب 2–3 أسطر تبرز خبرتك وأهم إنجازاتك وأرقامك...',
+    skillsPh:'Excel، تحليل البيانات، إدارة المشاريع، التواصل',
+    certsPh:'شهادة PMP — معهد إدارة المشاريع، 2023',
+    langsPh:'العربية — اللغة الأم\nالإنجليزية — متقدم (IELTS 7.0)',
+    projectsPh:'اسم المشروع — وصف مختصر ودورك فيه',
+    phName:'الاسم الكامل', present:'حتى الآن',
+    export:'تصدير PDF', sample:'بيانات تجريبية', clear:'مسح الكل',
+    lang:'English', accent:'اللون', hint:'hint_ar'
+  },
+  en: {
+    personal:'Personal Details', name:'Full Name', title:'Job Title',
+    email:'Email', phone:'Phone', location:'City, Country',
+    linkedin:'LinkedIn', website:'Website / Portfolio',
+    summary:'Professional Summary', skills:'Skills', exp:'Work Experience',
+    edu:'Education', certs:'Certifications & Training', langs:'Languages',
+    projects:'Projects',
+    addExp:'+ Add Experience', addEdu:'+ Add Education',
+    jobTitle:'Job Title', company:'Company', start:'From (Month/Year)',
+    end:'To (Month/Year)', current:'I currently work here',
+    bullets:'Achievements & responsibilities — one per line',
+    degree:'Degree & Major', school:'University / Institute',
+    year:'Graduation Year', details:'Additional details (optional)',
+    expItem:'Experience', eduItem:'Education',
+    summaryPh:'Write 2–3 lines highlighting your experience and key results...',
+    skillsPh:'SQL, Data Analysis, Project Management, Communication',
+    certsPh:'PMP — Project Management Institute, 2023',
+    langsPh:'Arabic — Native\nEnglish — Advanced (IELTS 7.0)',
+    projectsPh:'Project Name — short description and your role',
+    phName:'Your Full Name', present:'Present',
+    export:'Export PDF', sample:'Sample Data', clear:'Clear All',
+    lang:'العربية', accent:'Color', hint:'hint_en'
+  }
+};
+const HINTS = {
+  ar:'اكتب بياناتك في اللوحة المجاورة وستظهر في المعاينة مباشرة. عند الانتهاء اضغط «تصدير PDF» ثم اختر «حفظ كـ PDF» في نافذة الطباعة. يتم حفظ بياناتك تلقائياً في متصفحك.',
+  en:'Fill in your details on the left — the preview updates live. When done, click "Export PDF" then choose "Save as PDF" in the print dialog. Your data is auto-saved in your browser.'
+};
+
+/* =========================================================
+   2) STATE
+   ========================================================= */
+const STORE_KEY = 'cvstudio_v1';
+
+const blank = () => ({
+  lang:'ar', accent:'#1f4e79',
+  personal:{name:'',title:'',email:'',phone:'',location:'',linkedin:'',website:''},
+  meta:{summary:'',skills:'',certs:'',langs:'',projects:''},
+  experience:[{title:'',company:'',location:'',start:'',end:'',current:false,bullets:''}],
+  education:[{degree:'',school:'',year:'',details:''}]
+});
+
+const SAMPLE = {
+  ar: {
+    personal:{ name:'أحمد محمد السيد', title:'محلل بيانات أول',
+      email:'ahmed.sayed@email.com', phone:'+20 100 123 4567',
+      location:'القاهرة، مصر', linkedin:'linkedin.com/in/ahmedsayed', website:'' },
+    meta:{
+      summary:'محلل بيانات بخبرة تتجاوز 5 سنوات في تحليل البيانات وبناء لوحات المعلومات ودعم القرارات الاستراتيجية. متخصص في SQL وPower BI وأتمتة التقارير، مع سجل مثبت في تحسين الكفاءة التشغيلية بنسبة تصل إلى 30%.',
+      skills:'SQL، Python، Power BI، Excel المتقدم، Tableau، تحليل الأعمال، إدارة أصحاب المصلحة، العرض والتقديم',
+      certs:'شهادة Google Data Analytics — Coursera، 2023\nشهادة Microsoft Power BI — Microsoft، 2022',
+      langs:'العربية — اللغة الأم\nالإنجليزية — متقدم (IELTS 7.0)',
+      projects:'لوحة متابعة المبيعات — تصميم لوحة تفاعلية لمتابعة أداء 12 فرعاً بشكل لحظي'
+    },
+    experience:[
+      { title:'محلل بيانات أول', company:'شركة النيل للتجارة', location:'القاهرة',
+        start:'2021', end:'', current:true,
+        bullets:'أتمتة 15 تقريراً شهرياً باستخدام Python، مما وفّر 20 ساعة عمل أسبوعياً.\nبناء لوحات معلومات تنفيذية رفعت دقة التوقعات بنسبة 25%.\nقيادة فريق من 3 محللين وتدريبهم على أدوات التحليل الحديثة.' },
+      { title:'محلل بيانات', company:'مجموعة الدلتا', location:'الجيزة',
+        start:'2018', end:'2021', current:false,
+        bullets:'تحليل بيانات مبيعات أكثر من 200 منتج وتحديد فرص نمو بنسبة 12%.\nتطوير نماذج تنبؤية لتقدير الطلب الشهري.' }
+    ],
+    education:[
+      { degree:'بكالوريوس إدارة أعمال — تخصص نظم المعلومات', school:'جامعة القاهرة',
+        year:'2018', details:'تقدير جيد جداً — مشروع تخرج عن تحليل البيانات الضخمة' }
+    ]
+  },
+  en: {
+    personal:{ name:'Ahmed Mohamed Elsayed', title:'Senior Data Analyst',
+      email:'ahmed.sayed@email.com', phone:'+20 100 123 4567',
+      location:'Cairo, Egypt', linkedin:'linkedin.com/in/ahmedsayed', website:'' },
+    meta:{
+      summary:'Data Analyst with 5+ years of experience in data analysis, dashboard development, and strategic decision support. Specialized in SQL, Power BI, and report automation, with a proven record of improving operational efficiency by up to 30%.',
+      skills:'SQL, Python, Power BI, Advanced Excel, Tableau, Business Analysis, Stakeholder Management, Presentation Skills',
+      certs:'Google Data Analytics Certificate — Coursera, 2023\nMicrosoft Power BI Certificate — Microsoft, 2022',
+      langs:'Arabic — Native\nEnglish — Advanced (IELTS 7.0)',
+      projects:'Sales Tracking Dashboard — Built an interactive dashboard monitoring 12 branches in real time'
+    },
+    experience:[
+      { title:'Senior Data Analyst', company:'Nile Trading Co.', location:'Cairo',
+        start:'2021', end:'', current:true,
+        bullets:'Automated 15 monthly reports using Python, saving 20 work-hours per week.\nBuilt executive dashboards that improved forecast accuracy by 25%.\nLed a team of 3 analysts and trained them on modern analytics tools.' },
+      { title:'Data Analyst', company:'Delta Group', location:'Giza',
+        start:'2018', end:'2021', current:false,
+        bullets:'Analyzed sales data for 200+ products and identified 12% growth opportunities.\nDeveloped predictive models for monthly demand forecasting.' }
+    ],
+    education:[
+      { degree:'BSc in Business Administration — Information Systems', school:'Cairo University',
+        year:'2018', details:'Very Good — Graduation project on Big Data Analytics' }
+    ]
+  }
+};
+
+let state = load() || blank();
+
+/* =========================================================
+   3) HELPERS
+   ========================================================= */
+const $ = s => document.querySelector(s);
+const paper = $('#paper');
+const editor = $('#editor');
+const L = () => LABELS[state.lang];
+
+const esc = s => String(s ?? '').replace(/[&<>"]/g,
+  c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function save(){
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){}
+}
+function load(){
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if(!raw) return null;
+    const s = JSON.parse(raw);
+    return Object.assign(blank(), s);
+  } catch(e){ return null; }
+}
+
+/* =========================================================
+   4) EDITOR RENDERING
+   ========================================================= */
+function inp(label, sec, key, val, opts = {}){
+  const { type='text', idx, ph='' } = opts;
+  const idxAttr = idx !== undefined ? `data-idx="${idx}"` : '';
+  return `<label class="fld"><span>${label}</span>
+    <input type="${type}" data-sec="${sec}" data-key="${key}" ${idxAttr}
+      value="${esc(val)}" placeholder="${esc(ph)}"></label>`;
+}
+function ta(sec, key, val, opts = {}){
+  const { idx, ph='', rows=4 } = opts;
+  const idxAttr = idx !== undefined ? `data-idx="${idx}"` : '';
+  return `<label class="fld"><textarea rows="${rows}" data-sec="${sec}"
+    data-key="${key}" ${idxAttr} placeholder="${esc(ph)}">${esc(val)}</textarea></label>`;
+}
+
+function renderEditor(){
+  const t = L(), p = state.personal, m = state.meta;
+
+  let h = `<div class="hint">${HINTS[state.lang]}</div>`;
+
+  /* Personal */
+  h += `<div class="panel"><h3>${t.personal}</h3><div class="grid">
+    <div class="full">${inp(t.name,'personal','name',p.name,{ph:t.phName})}</div>
+    <div class="full">${inp(t.title,'personal','title',p.title)}</div>
+    ${inp(t.email,'personal','email',p.email,{type:'email',ph:'example@email.com'})}
+    ${inp(t.phone,'personal','phone',p.phone,{type:'tel',ph:'+20 1XX XXX XXXX'})}
+    ${inp(t.location,'personal','location',p.location,{ph:'Cairo, Egypt'})}
+    ${inp(t.linkedin,'personal','linkedin',p.linkedin,{ph:'linkedin.com/in/username'})}
+    <div class="full">${inp(t.website,'personal','website',p.website,{ph:'yoursite.com'})}</div>
+  </div></div>`;
+
+  /* Summary */
+  h += `<div class="panel"><h3>${t.summary}</h3>
+    ${ta('meta','summary',m.summary,{rows:4,ph:t.summaryPh})}</div>`;
+
+  /* Skills */
+  h += `<div class="panel"><h3>${t.skills}</h3>
+    ${ta('meta','skills',m.skills,{rows:3,ph:t.skillsPh})}</div>`;
+
+  /* Experience */
+  h += `<div class="panel"><h3>${t.exp}</h3>`;
+  state.experience.forEach((e,i)=>{
+    h += `<div class="card">
+      <div class="card-head"><span>${t.expItem} ${i+1}</span>
+        <button type="button" class="del" data-del="experience" data-idx="${i}">✕</button></div>
+      <div class="grid">
+        ${inp(t.jobTitle,'experience','title',e.title,{idx:i})}
+        ${inp(t.company,'experience','company',e.company,{idx:i})}
+        ${inp(t.start,'experience','start',e.start,{idx:i,ph:'2021'})}
+        ${inp(t.end,'experience','end',e.end,{idx:i,ph:'2024'})}
+        <div class="full">${inp(t.location,'experience','location',e.location,{idx:i})}</div>
+      </div>
+      <label class="chk"><input type="checkbox" data-sec="experience" data-key="current"
+        data-idx="${i}" ${e.current?'checked':''}> ${t.current}</label>
+      ${ta('experience','bullets',e.bullets,{idx:i,rows:3,ph:t.bullets})}
+    </div>`;
+  });
+  h += `<button type="button" class="add" data-add="experience">${t.addExp}</button></div>`;
+
+  /* Education */
+  h += `<div class="panel"><h3>${t.edu}</h3>`;
+  state.education.forEach((e,i)=>{
+    h += `<div class="card">
+      <div class="card-head"><span>${t.eduItem} ${i+1}</span>
+        <button type="button" class="del" data-del="education" data-idx="${i}">✕</button></div>
+      <div class="grid">
+        <div class="full">${inp(t.degree,'education','degree',e.degree,{idx:i})}</div>
+        ${inp(t.school,'education','school',e.school,{idx:i})}
+        ${inp(t.year,'education','year',e.year,{idx:i,ph:'2018'})}
+        <div class="full">${inp(t.details,'education','details',e.details,{idx:i})}</div>
+      </div>
+    </div>`;
+  });
+  h += `<button type="button" class="add" data-add="education">${t.addEdu}</button></div>`;
+
+  /* Certifications / Languages / Projects */
+  h += `<div class="panel"><h3>${t.certs}</h3>
+    ${ta('meta','certs',m.certs,{rows:3,ph:t.certsPh})}</div>`;
+  h += `<div class="panel"><h3>${t.langs}</h3>
+    ${ta('meta','langs',m.langs,{rows:3,ph:t.langsPh})}</div>`;
+  h += `<div class="panel"><h3>${t.projects}</h3>
+    ${ta('meta','projects',m.projects,{rows:3,ph:t.projectsPh})}</div>`;
+
+  editor.innerHTML = h;
+}
+
+/* =========================================================
+   5) PREVIEW RENDERING
+   ========================================================= */
+function section(title, body){
+  return body ? `<section class="cv-sec"><h2>${esc(title)}</h2>${body}</section>` : '';
+}
+
+function renderPreview(){
+  const t = L(), p = state.personal, m = state.meta;
+  paper.setAttribute('dir', state.lang === 'ar' ? 'rtl' : 'ltr');
+  paper.style.setProperty('--accent', state.accent || '#1f4e79');
+
+  const contact = [p.phone, p.email, p.location, p.linkedin, p.website]
+    .map(x => (x || '').trim()).filter(Boolean);
+
+  let h = `<div class="cv-head">
+    <h1>${esc(p.name) || esc(t.phName)}</h1>
+    ${p.title ? `<div class="cv-title">${esc(p.title)}</div>` : ''}
+    ${contact.length ? `<div class="cv-contact">${contact.map(esc)
+      .join('<span class="sep"> • </span>')}</div>` : ''}
+  </div>`;
+
+  /* Summary */
+  h += section(t.summary, m.summary.trim() ? `<div>${esc(m.summary).replace(/\n/g,'<br>')}</div>` : '');
+
+  /* Skills */
+  const skills = (m.skills || '').split(/[,،\n]/).map(s => s.trim()).filter(Boolean);
+  h += section(t.skills, skills.length
+    ? `<div class="skill-line">${skills.map(esc).join(' • ')}</div>` : '');
+
+  /* Experience */
+  const expHtml = state.experience.map(e => {
+    if (!e.title && !e.company) return '';
+    const dates = [e.start, e.current ? t.present : e.end].filter(Boolean).join(' – ');
+    const bullets = (e.bullets || '').split('\n').map(s => s.trim()).filter(Boolean);
+    return `<div class="item">
+      <div class="item-head">
+        <div class="item-title">${esc(e.title)}</div>
+        ${dates ? `<div class="item-date">${esc(dates)}</div>` : ''}
+      </div>
+      ${(e.company || e.location)
+        ? `<div class="item-sub">${esc([e.company, e.location].filter(Boolean).join(' — '))}</div>` : ''}
+      ${bullets.length ? `<ul class="bullets">${bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>` : ''}
+    </div>`;
+  }).join('');
+  h += section(t.exp, expHtml);
+
+  /* Education */
+  const eduHtml = state.education.map(e => {
+    if (!e.degree && !e.school) return '';
+    return `<div class="item">
+      <div class="item-head">
+        <div class="item-title">${esc(e.degree)}</div>
+        ${e.year ? `<div class="item-date">${esc(e.year)}</div>` : ''}
+      </div>
+      ${e.school ? `<div class="item-sub">${esc(e.school)}</div>` : ''}
+      ${e.details ? `<div>${esc(e.details)}</div>` : ''}
+    </div>`;
+  }).join('');
+  h += section(t.edu, eduHtml);
+
+  /* Certifications */
+  const certs = (m.certs || '').split('\n').map(s => s.trim()).filter(Boolean);
+  h += section(t.certs, certs.length
+    ? `<ul class="bullets">${certs.map(c => `<li>${esc(c)}</li>`).join('')}</ul>` : '');
+
+  /* Projects */
+  const projects = (m.projects || '').split('\n').map(s => s.trim()).filter(Boolean);
+  h += section(t.projects, projects.length
+    ? `<ul class="bullets">${projects.map(c => `<li>${esc(c)}</li>`).join('')}</ul>` : '');
+
+  /* Languages */
+  const langs = (m.langs || '').split('\n').map(s => s.trim()).filter(Boolean);
+  h += section(t.langs, langs.length
+    ? `<div class="lang-line">${langs.map(esc).join(' • ')}</div>` : '');
+
+  /* Empty hint */
+  if (!p.name && !m.summary && !skills.length) {
+    h += `<div class="empty-note">${state.lang === 'ar'
+      ? 'ابدأ بكتابة بياناتك وستظهر هنا مباشرة ✨'
+      : 'Start typing your details and they will appear here ✨'}</div>`;
+  }
+
+  paper.innerHTML = h;
+}
+
+/* =========================================================
+   6) EVENTS
+   ========================================================= */
+function rerenderAll(){ renderEditor(); renderPreview(); }
+
+/* typing / checkbox */
+function handleInput(e){
+  const t = e.target;
+  const sec = t.dataset.sec, key = t.dataset.key;
+  if (!sec || !key) return;
+  const val = t.type === 'checkbox' ? t.checked : t.value;
+  if (t.dataset.idx !== undefined) state[sec][+t.dataset.idx][key] = val;
+  else state[sec][key] = val;
+  renderPreview();
+  save();
+}
+editor.addEventListener('input', handleInput);
+editor.addEventListener('change', handleInput);
+
+/* add / delete */
+editor.addEventListener('click', e => {
+  const add = e.target.closest('[data-add]');
+  const del = e.target.closest('[data-del]');
+
+  if (add){
+    if (add.dataset.add === 'experience')
+      state.experience.push({title:'',company:'',location:'',start:'',end:'',current:false,bullets:''});
+    else
+      state.education.push({degree:'',school:'',year:'',details:''});
+    renderEditor(); renderPreview(); save();
+    editor.scrollTop = editor.scrollHeight;
+  }
+  if (del){
+    const arr = state[del.dataset.del];
+    if (arr.length <= 1){ // keep one empty row
+      if (del.dataset.del === 'experience')
+        state.experience[0] = {title:'',company:'',location:'',start:'',end:'',current:false,bullets:''};
+      else
+        state.education[0] = {degree:'',school:'',year:'',details:''};
+    } else {
+      arr.splice(+del.dataset.idx, 1);
+    }
+    renderEditor(); renderPreview(); save();
+  }
+});
+
+/* language toggle */
+$('#btnLang').addEventListener('click', () => {
+  state.lang = state.lang === 'ar' ? 'en' : 'ar';
+  applyLang();
+  rerenderAll();
+  save();
+});
+
+function applyLang(){
+  const isAr = state.lang === 'ar';
+  document.documentElement.lang = state.lang;
+  document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+  const t = L();
+  $('#btnLang').textContent = t.lang;
+  $('#btnSample').textContent = t.sample;
+  $('#btnClear').textContent = t.clear;
+  $('#btnPrint').textContent = t.export;
+  $('#accentLabel').textContent = t.accent;
+}
+
+/* sample data */
+$('#btnSample').addEventListener('click', () => {
+  const s = SAMPLE[state.lang];
+  state = Object.assign(blank(), JSON.parse(JSON.stringify(s)));
+  state.lang = LABELS[state.lang] ? state.lang : 'ar';
+  state.accent = $('#accent').value;
+  rerenderAll(); save();
+});
+
+/* clear all */
+$('#btnClear').addEventListener('click', () => {
+  const msg = state.lang === 'ar'
+    ? 'هل تريد مسح جميع البيانات؟'
+    : 'Clear all data?';
+  if (!confirm(msg)) return;
+  const lang = state.lang, accent = state.accent;
+  state = blank();
+  state.lang = lang; state.accent = accent;
+  rerenderAll(); save();
+});
+
+/* accent color */
+$('#accent').addEventListener('input', e => {
+  state.accent = e.target.value;
+  renderPreview(); save();
+});
+
+/* export PDF */
+$('#btnPrint').addEventListener('click', () => {
+  renderPreview();          // make sure preview is current
+  setTimeout(() => window.print(), 60);
+});
+
+/* =========================================================
+   7) INIT
+   ========================================================= */
+$('#accent').value = state.accent || '#1f4e79';
+applyLang();
+rerenderAll();
+</script>
+</body>
+</html>
