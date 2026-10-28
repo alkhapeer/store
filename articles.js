@@ -1,7 +1,7 @@
 /* HERO Store articles — auto-generated */
 window.HERO_ARTICLES = {
   "version": 1,
-  "updatedAt": "2026-10-28T14:44:20.266Z",
+  "updatedAt": "2026-10-28T14:45:40.250Z",
   "articles": [
     {
       "id": "note002",
@@ -99,7 +99,7 @@ window.HERO_ARTICLES = {
     },
     {
       "id": "note004",
-      "title": "كيف تختار الأدوات الرقمية المناسبة لمشروعك أو عملك الحر؟",
+      "title": "دليلك الشامل لفهم المنتجات الرقمية وكيفية الاستفادة منها فورياً | HERO Store",
       "author": "HERO",
       "date": "2026-10-28",
       "excerpt": "اكتشف ما هي المنتجات الرقمية وكيف تستفيد منها فورياً في تطوير أعمالك. دليلك الشامل عبر مدونة HERO Store للمنتجات والأدوات الرقمية.",
