@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-28T14:16:53.449Z",
+  "updatedAt": "2026-10-28T15:38:11.812Z",
   "categories": [
     {
       "id": "games",
@@ -103,7 +103,7 @@ window.HERO_DATA = {
         "اختبار قدرات تجريبي"
       ],
       "buyUrl": "https://apk.e-droid.net/apk/app4218207-f0sz54.apk?v=2",
-      "landingUrl": "",
+      "landingUrl": "https://appgallery.cloud.huawei.com/ag/n/app/C119366957?locale=ar_SA&source=appshare&subsource=C119366957&shareTo=com.android.bluetooth&shareFrom=appmarket&shareIds=f05ed82627ca47b1aad7a92da001d304_com.android.bluetooth&callType=SHARE",
       "landingHtml": ""
     },
     {
@@ -142,8 +142,8 @@ window.HERO_DATA = {
         "تحسين ثقة الطفل بنفسه",
         "دعم نمو الطفل"
       ],
-      "buyUrl": "",
-      "landingUrl": "https://nabdh.hero1.vip/nabd.html",
+      "buyUrl": "https://nabdh.hero1.vip/nabd.html",
+      "landingUrl": "https://appgallery.cloud.huawei.com/ag/n/app/C119366957?locale=ar_SA&source=appshare&subsource=C119366957&shareTo=com.android.bluetooth&shareFrom=appmarket&shareIds=f05ed82627ca47b1aad7a92da001d304_com.android.bluetooth&callType=SHARE",
       "landingHtml": ""
     },
     {
@@ -246,7 +246,7 @@ window.HERO_DATA = {
         "تحدي القدرات"
       ],
       "buyUrl": "https://github.com/alkhapeer/pulse-of-excellence/releases/download/qudrat/app4218207-f0sz54.apk",
-      "landingUrl": "https://github.com/alkhapeer/pulse-of-excellence/releases/download/qudrat/app4218207-f0sz54.apk",
+      "landingUrl": "https://appgallery.cloud.huawei.com/ag/n/app/C119366957?locale=ar_SA&source=appshare&subsource=C119366957&shareTo=com.android.bluetooth&shareFrom=appmarket&shareIds=f05ed82627ca47b1aad7a92da001d304_com.android.bluetooth&callType=SHARE",
       "landingHtml": ""
     },
     {
@@ -280,8 +280,8 @@ window.HERO_DATA = {
         "ضحك",
         "ذكاء"
       ],
-      "buyUrl": "",
-      "landingUrl": "https://github.com/alkhapeer/opentopic/releases/download/v1.0.0/app4217368-umfs0l.apk",
+      "buyUrl": "https://github.com/alkhapeer/opentopic/releases/download/v1.0.0/app4217368-umfs0l.apk",
+      "landingUrl": "https://appgallery.cloud.huawei.com/ag/n/app/C119366957?locale=ar_SA&source=appshare&subsource=C119366957&shareTo=com.android.bluetooth&shareFrom=appmarket&shareIds=f05ed82627ca47b1aad7a92da001d304_com.android.bluetooth&callType=SHARE",
       "landingHtml": ""
     },
     {
