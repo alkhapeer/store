@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-24T05:27:57.682Z",
+  "updatedAt": "2026-10-28T14:16:53.449Z",
   "categories": [
     {
       "id": "games",
@@ -327,7 +327,7 @@ window.HERO_DATA = {
         "بلاي"
       ],
       "buyUrl": "",
-      "landingUrl": "https://github.com/alkhapeer/pulse-of-excellence/releases/download/HG/herogames.apk",
+      "landingUrl": "https://appgallery.cloud.huawei.com/ag/n/app/C119366957?locale=ar_SA&source=appshare&subsource=C119366957&shareTo=com.android.bluetooth&shareFrom=appmarket&shareIds=f05ed82627ca47b1aad7a92da001d304_com.android.bluetooth&callType=SHARE",
       "landingHtml": ""
     },
     {
@@ -406,6 +406,38 @@ window.HERO_DATA = {
       ],
       "buyUrl": "",
       "landingUrl": "https://store.hero1.vip/cv_generator.html",
+      "landingHtml": ""
+    },
+    {
+      "id": "ts003-copy-gnt",
+      "name": "استديو الترند (نسخة)",
+      "seller": "HERO",
+      "category": "tools",
+      "description": "أداة تصنع الريلز في ثواني",
+      "emoji": "📦",
+      "image": "assets/images/123.png",
+      "c1": "#6366f1",
+      "c2": "#a855f7",
+      "price": "0",
+      "priceValue": 0,
+      "rating": 4.5,
+      "reviews": 27,
+      "ctaText": "",
+      "featured": false,
+      "new": false,
+      "tags": [
+        "محتوى",
+        "ريلز",
+        "منشيء",
+        "منشيء محتوى",
+        "فيسبوك",
+        "يوتيوب",
+        "تيك توك",
+        "انستا",
+        "انستاجرام"
+      ],
+      "buyUrl": "https://studio.hero1.vip/",
+      "landingUrl": "https://studio.hero1.vip/product-pitch-ar.html",
       "landingHtml": ""
     }
   ],
