@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-10-28T15:38:11.812Z",
+  "updatedAt": "2026-11-02T10:31:15.008Z",
   "categories": [
     {
       "id": "games",
@@ -469,12 +469,12 @@ window.HERO_DATA = {
     "social": {
       "twitter": "",
       "instagram": "",
-      "youtube": "",
-      "tiktok": "",
-      "facebook": "",
-      "whatsapp": "",
-      "email": "",
-      "website": ""
+      "youtube": "https://www.youtube.com/@Hero1vip",
+      "tiktok": "https://www.tiktok.com/@hero1vip",
+      "facebook": "https://web.facebook.com/Rawaj.services",
+      "whatsapp": "https://wa.me/249915886600",
+      "email": "info@hero1.vip",
+      "website": "https://order.hero1.vip/"
     },
     "metaTitle": "HERO Store — منتجات رقمية مميزة | أدوات، ألعاب، دورات",
     "metaDescription": "HERO Store — منتجات رقمية مميزة: أدوات، ألعاب، دورات، تصاميم وخدمات. جودة منتقاة، وصول فوري. اكتشف الفرق الآن.\n\n",
