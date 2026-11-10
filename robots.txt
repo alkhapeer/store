@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://store.hero1.vip/sitemap.xml
