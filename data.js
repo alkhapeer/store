@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-11-12T16:14:58.577Z",
+  "updatedAt": "2026-11-12T16:15:53.969Z",
   "categories": [
     {
       "id": "games",
@@ -362,7 +362,7 @@ window.HERO_DATA = {
         "الدخل السلبي"
       ],
       "buyUrl": "",
-      "landingUrl": "https://order.hero1.vip/",
+      "landingUrl": "https://order.hero1.vip/products/Financial-Workbook",
       "landingHtml": ""
     },
     {
