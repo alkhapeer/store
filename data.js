@@ -1,7 +1,7 @@
 /* HERO Store data — auto-generated */
 window.HERO_DATA = {
   "version": 1,
-  "updatedAt": "2026-11-02T10:31:15.008Z",
+  "updatedAt": "2026-11-12T16:12:10.329Z",
   "categories": [
     {
       "id": "games",
@@ -362,7 +362,7 @@ window.HERO_DATA = {
         "الدخل السلبي"
       ],
       "buyUrl": "",
-      "landingUrl": "https://store.hero1.vip/wealth.html",
+      "landingUrl": "https://order.hero1.vip/",
       "landingHtml": ""
     },
     {
