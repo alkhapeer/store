@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>الدفع الآمن — HERO Store</title>
+<title>إتمام الدفع — HERO Store</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --primary: #6366F1; --primary-2: #A855F7;
     --bg: #F7F7FB; --surface: #FFFFFF;
     --text: #0F0F1A; --muted: #6B6B80; --line: #ECECF4;
-    --success: #10B981; --danger: #EF4444; --warn: #F59E0B;
+    --success: #10B981; --danger: #EF4444;
     --voda-red: #E60000;
   }
   * { box-sizing: border-box; }
@@ -30,7 +30,29 @@
   .header { text-align: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px dashed var(--line); }
   .header h1 { margin: 0 0 6px; font-size: 20px; font-weight: 800; }
   .header .store { font-size: 14px; color: var(--muted); font-weight: 600; }
-  
+
+  /* بطاقة ملخص المنتج */
+  .product-summary {
+    background: linear-gradient(135deg, #EEF2FF, #F5F3FF);
+    border: 1.5px solid #C7D2FE;
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .product-summary .info { flex: 1; }
+  .product-summary .label { font-size: 11px; color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+  .product-summary .name { font-size: 17px; font-weight: 800; color: var(--text); }
+  .product-summary .price { font-size: 20px; font-weight: 800; color: var(--primary); direction: ltr; }
+  .product-summary .edit-btn {
+    background: white; border: 1px solid var(--line); border-radius: 8px;
+    padding: 6px 12px; font-size: 11px; font-weight: 700; cursor: pointer;
+    color: var(--muted); white-space: nowrap;
+  }
+
   .step { display: flex; gap: 12px; margin-bottom: 20px; position: relative; }
   .step:not(:last-child)::before {
     content: ''; position: absolute; right: 15px; top: 36px; bottom: -20px;
@@ -45,8 +67,7 @@
   .step-content { flex: 1; padding-top: 4px; }
   .step-content h3 { margin: 0 0 6px; font-size: 15px; font-weight: 700; }
   .step-content > p { margin: 0 0 12px; font-size: 13px; color: var(--muted); line-height: 1.6; }
-  
-  /* Wallet Box */
+
   .wallet-box {
     display: flex; align-items: center; justify-content: space-between; gap: 10px;
     background: linear-gradient(135deg, #FFF5F5, #FEF0F0);
@@ -54,14 +75,13 @@
   }
   .wallet-box .number {
     font-size: 18px; font-weight: 800; letter-spacing: 1px;
-    direction: ltr; text-align: right; color: var(--text); font-family: monospace;
+    direction: ltr; text-align: right; font-family: monospace;
   }
   .wallet-box .copy-btn {
     background: var(--voda-red); color: white; border: none;
     padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
   }
-  
-  /* Form */
+
   .form-row { margin-bottom: 12px; }
   .form-row label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
   .form-row label span { color: var(--muted); font-weight: 400; font-size: 12px; }
@@ -72,15 +92,13 @@
   .form-row input:focus { border-color: var(--primary); background: white; box-shadow: 0 0 0 3px rgba(99,102,241,0.15); }
   .field-error { display: none; font-size: 11px; color: var(--danger); margin-top: 4px; font-weight: 600; }
   .field-error.show { display: block; }
-  
-  /* Info Box for Txn ID */
+
   .info-box {
     background: #EEF2FF; border: 1px solid #C7D2FE; border-radius: 10px;
     padding: 12px; margin-bottom: 12px; font-size: 12.5px; color: #3730A3; line-height: 1.6;
   }
   .info-box strong { display: block; margin-bottom: 4px; color: var(--primary); }
 
-  /* Button */
   .btn-confirm {
     width: 100%; padding: 15px; border-radius: 12px; border: none;
     background: linear-gradient(135deg, #25D366, #128C7E); color: white;
@@ -89,8 +107,7 @@
     box-shadow: 0 8px 20px rgba(37,211,102,0.3); transition: 0.2s; margin-top: 10px;
   }
   .btn-confirm:active { transform: scale(0.98); }
-  
-  /* Success */
+
   .success-box { text-align: center; padding: 20px 0; }
   .success-icon {
     width: 70px; height: 70px; margin: 0 auto 16px;
@@ -110,12 +127,34 @@
     <div class="store">HERO Store</div>
   </div>
 
+  <!-- ملخص المنتج (يُملأ تلقائيًا من الرابط) -->
+  <div class="product-summary" id="product-summary">
+    <div class="info">
+      <div class="label">المنتج المطلوب</div>
+      <div class="name" id="sum-name">—</div>
+      <div class="price" id="sum-price">—</div>
+    </div>
+    <button class="edit-btn" onclick="toggleEdit()">تعديل</button>
+  </div>
+
+  <!-- حقول التعديل (مخفية افتراضيًا) -->
+  <div id="edit-fields" style="display:none; margin-bottom: 16px;">
+    <div class="form-row">
+      <label>اسم المنتج</label>
+      <input type="text" id="f-product" placeholder="اسم المنتج">
+    </div>
+    <div class="form-row">
+      <label>السعر</label>
+      <input type="text" id="f-price" placeholder="السعر" inputmode="decimal">
+    </div>
+  </div>
+
   <!-- Step 1: Transfer -->
   <div class="step">
     <div class="step-num">1</div>
     <div class="step-content">
       <h3>حوّل المبلغ إلى المحفظة</h3>
-      <p>افتح تطبيق <strong>فودافون كاش</strong> وحوّل المبلغ المطلوب إلى الرقم التالي:</p>
+      <p>افتح تطبيق <strong>فودافون كاش</strong> وحوّل المبلغ إلى الرقم التالي:</p>
       <div class="wallet-box">
         <div class="number" id="wallet-number">01025156059</div>
         <button class="copy-btn" onclick="copyWallet(event)">نسخ</button>
@@ -123,7 +162,7 @@
     </div>
   </div>
 
-  <!-- Step 2: Transaction ID Info -->
+  <!-- Step 2: Txn ID Info -->
   <div class="step">
     <div class="step-num">2</div>
     <div class="step-content">
@@ -140,18 +179,6 @@
     <div class="step-num">3</div>
     <div class="step-content">
       <h3>أدخل بياناتك</h3>
-      
-      <div class="form-row">
-        <label>اسم المنتج الذي تريد شراءه *</label>
-        <input type="text" id="f-product" placeholder="مثال: Trend Studio أو نبض التميز">
-        <div class="field-error" id="err-product">الرجاء كتابة اسم المنتج</div>
-      </div>
-
-      <div class="form-row">
-        <label>سعر المنتج *</label>
-        <input type="text" id="f-price" placeholder="مثال: 9 أو 100" inputmode="decimal">
-        <div class="field-error" id="err-price">الرجاء إدخال السعر</div>
-      </div>
 
       <div class="form-row">
         <label>الاسم الكامل *</label>
@@ -204,13 +231,41 @@
 </div>
 
 <script>
-  // الإعدادات
+  // ⚙️ الإعدادات
   const CONFIG = {
     walletNumber: '01025156059',
-    whatsappNumber: '201025156059' // رقمك بصيغة دولية (بدون +)
+    whatsappNumber: '201025156059'
   };
 
+  // قراءة المعلمات من الرابط
+  const params = new URLSearchParams(location.search);
+  let currentProduct = params.get('name') || 'منتج';
+  let currentPrice = params.get('amount') || '0';
+
+  // تعبئة الملخص
+  document.getElementById('sum-name').textContent = currentProduct;
+  document.getElementById('sum-price').textContent = currentPrice + ' ج.م';
   document.getElementById('wallet-number').textContent = CONFIG.walletNumber;
+
+  // تعبئة الحقول المخفية (للاستخدام عند الإرسال)
+  document.getElementById('f-product').value = currentProduct;
+  document.getElementById('f-price').value = currentPrice;
+
+  // زر التعديل
+  function toggleEdit() {
+    const fields = document.getElementById('edit-fields');
+    if (fields.style.display === 'none') {
+      fields.style.display = 'block';
+      document.getElementById('f-product').focus();
+    } else {
+      fields.style.display = 'none';
+      // تحديث الملخص من الحقول
+      currentProduct = document.getElementById('f-product').value.trim() || 'منتج';
+      currentPrice = document.getElementById('f-price').value.trim() || '0';
+      document.getElementById('sum-name').textContent = currentProduct;
+      document.getElementById('sum-price').textContent = currentPrice + ' ج.م';
+    }
+  }
 
   // نسخ رقم المحفظة
   function copyWallet(e) {
@@ -223,18 +278,14 @@
     });
   }
 
-  // التحقق من الحقول
+  // التحقق
   function validateForm() {
     let valid = true;
-    const product = document.getElementById('f-product').value.trim();
-    const price = document.getElementById('f-price').value.trim();
     const name = document.getElementById('f-name').value.trim();
     const phone = document.getElementById('f-phone').value.trim();
     const email = document.getElementById('f-email').value.trim();
     const txn = document.getElementById('f-txn').value.trim();
 
-    if (product.length < 2) { document.getElementById('err-product').classList.add('show'); valid = false; } else document.getElementById('err-product').classList.remove('show');
-    if (!price || isNaN(parseFloat(price))) { document.getElementById('err-price').classList.add('show'); valid = false; } else document.getElementById('err-price').classList.remove('show');
     if (name.length < 3) { document.getElementById('err-name').classList.add('show'); valid = false; } else document.getElementById('err-name').classList.remove('show');
     if (!/^01[0-2,5]\d{8}$/.test(phone)) { document.getElementById('err-phone').classList.add('show'); valid = false; } else document.getElementById('err-phone').classList.remove('show');
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('err-email').classList.add('show'); valid = false; } else document.getElementById('err-email').classList.remove('show');
@@ -243,14 +294,14 @@
     return valid;
   }
 
-  // منع إدخال حروف في الهاتف ورقم العملية
+  // منع الحروف في الهاتف ورقم العملية
   ['f-phone', 'f-txn'].forEach(id => {
     document.getElementById(id).addEventListener('input', function() {
       this.value = this.value.replace(/[^0-9]/g, '');
     });
   });
 
-  // إرسال النموذج
+  // إرسال
   function submitForm() {
     if (!validateForm()) {
       document.querySelector('.field-error.show').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -258,15 +309,15 @@
     }
 
     const data = {
-      product: document.getElementById('f-product').value.trim(),
-      price: document.getElementById('f-price').value.trim(),
+      product: currentProduct,
+      price: currentPrice,
       name: document.getElementById('f-name').value.trim(),
       phone: document.getElementById('f-phone').value.trim(),
       email: document.getElementById('f-email').value.trim() || 'لا يوجد',
       txn: document.getElementById('f-txn').value.trim()
     };
 
-    const message = 
+    const message =
 `🛒 *طلب جديد — HERO Store*
 
 📦 *المنتج:* ${data.product}
@@ -279,8 +330,7 @@
 ✅ أرجو التحقق وتفعيل الطلب.`;
 
     window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
-    
-    // إظهار شاشة النجاح
+
     document.getElementById('form-view').hidden = true;
     document.getElementById('success-view').hidden = false;
     window.scrollTo(0, 0);
