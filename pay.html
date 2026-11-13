@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الدفع الآمن — HERO Store</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #6366F1; --primary-2: #A855F7;
+    --bg: #F7F7FB; --surface: #FFFFFF;
+    --text: #0F0F1A; --muted: #6B6B80; --line: #ECECF4;
+    --success: #10B981; --danger: #EF4444; --warn: #F59E0B;
+    --voda-red: #E60000;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 16px;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    background: var(--bg); color: var(--text);
+    display: flex; justify-content: center; align-items: flex-start;
+    min-height: 100vh;
+  }
+  .container {
+    background: var(--surface); max-width: 500px; width: 100%;
+    border-radius: 20px; padding: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid var(--line);
+  }
+  .header { text-align: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px dashed var(--line); }
+  .header h1 { margin: 0 0 6px; font-size: 20px; font-weight: 800; }
+  .header .store { font-size: 14px; color: var(--muted); font-weight: 600; }
+  
+  .step { display: flex; gap: 12px; margin-bottom: 20px; position: relative; }
+  .step:not(:last-child)::before {
+    content: ''; position: absolute; right: 15px; top: 36px; bottom: -20px;
+    width: 2px; background: var(--line); z-index: 0;
+  }
+  .step-num {
+    width: 30px; height: 30px; border-radius: 50%; background: var(--primary);
+    color: white; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 14px; flex-shrink: 0;
+    z-index: 1; box-shadow: 0 0 0 4px var(--surface);
+  }
+  .step-content { flex: 1; padding-top: 4px; }
+  .step-content h3 { margin: 0 0 6px; font-size: 15px; font-weight: 700; }
+  .step-content > p { margin: 0 0 12px; font-size: 13px; color: var(--muted); line-height: 1.6; }
+  
+  /* Wallet Box */
+  .wallet-box {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    background: linear-gradient(135deg, #FFF5F5, #FEF0F0);
+    border: 2px solid var(--voda-red); border-radius: 12px; padding: 12px;
+  }
+  .wallet-box .number {
+    font-size: 18px; font-weight: 800; letter-spacing: 1px;
+    direction: ltr; text-align: right; color: var(--text); font-family: monospace;
+  }
+  .wallet-box .copy-btn {
+    background: var(--voda-red); color: white; border: none;
+    padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
+  }
+  
+  /* Form */
+  .form-row { margin-bottom: 12px; }
+  .form-row label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .form-row label span { color: var(--muted); font-weight: 400; font-size: 12px; }
+  .form-row input {
+    width: 100%; padding: 12px; border-radius: 10px; border: 1.5px solid var(--line);
+    background: #F8F8FD; font-size: 14px; font-family: inherit; outline: none; transition: 0.2s;
+  }
+  .form-row input:focus { border-color: var(--primary); background: white; box-shadow: 0 0 0 3px rgba(99,102,241,0.15); }
+  .field-error { display: none; font-size: 11px; color: var(--danger); margin-top: 4px; font-weight: 600; }
+  .field-error.show { display: block; }
+  
+  /* Info Box for Txn ID */
+  .info-box {
+    background: #EEF2FF; border: 1px solid #C7D2FE; border-radius: 10px;
+    padding: 12px; margin-bottom: 12px; font-size: 12.5px; color: #3730A3; line-height: 1.6;
+  }
+  .info-box strong { display: block; margin-bottom: 4px; color: var(--primary); }
+
+  /* Button */
+  .btn-confirm {
+    width: 100%; padding: 15px; border-radius: 12px; border: none;
+    background: linear-gradient(135deg, #25D366, #128C7E); color: white;
+    font-size: 16px; font-weight: 800; cursor: pointer; display: flex;
+    align-items: center; justify-content: center; gap: 8px;
+    box-shadow: 0 8px 20px rgba(37,211,102,0.3); transition: 0.2s; margin-top: 10px;
+  }
+  .btn-confirm:active { transform: scale(0.98); }
+  
+  /* Success */
+  .success-box { text-align: center; padding: 20px 0; }
+  .success-icon {
+    width: 70px; height: 70px; margin: 0 auto 16px;
+    background: var(--success); border-radius: 50%; display: flex;
+    align-items: center; justify-content: center; font-size: 36px; color: white;
+  }
+  .success-box h2 { margin: 0 0 8px; font-size: 20px; }
+  .success-box p { margin: 0 0 20px; font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- FORM VIEW -->
+<div class="container" id="form-view">
+  <div class="header">
+    <h1>إتمام الدفع</h1>
+    <div class="store">HERO Store</div>
+  </div>
+
+  <!-- Step 1: Transfer -->
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <h3>حوّل المبلغ إلى المحفظة</h3>
+      <p>افتح تطبيق <strong>فودافون كاش</strong> وحوّل المبلغ المطلوب إلى الرقم التالي:</p>
+      <div class="wallet-box">
+        <div class="number" id="wallet-number">01025156059</div>
+        <button class="copy-btn" onclick="copyWallet(event)">نسخ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2: Transaction ID Info -->
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <h3>أين أجد رقم العملية؟</h3>
+      <div class="info-box">
+        <strong>💡 ابحث في رسالة التأكيد من فودافون كاش:</strong>
+        ستصلك رسالة تقول: "تم تحويل مبلغ ...". ابحث في نهاية الرسالة عن كلمة <strong>"رقم العملية"</strong> أو <strong>"Transaction ID"</strong>، وستجد بجانبها رقمًا طويلًا. انسخه وضعه في الحقل أدناه.
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3: Form -->
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <h3>أدخل بياناتك</h3>
+      
+      <div class="form-row">
+        <label>اسم المنتج الذي تريد شراءه *</label>
+        <input type="text" id="f-product" placeholder="مثال: Trend Studio أو نبض التميز">
+        <div class="field-error" id="err-product">الرجاء كتابة اسم المنتج</div>
+      </div>
+
+      <div class="form-row">
+        <label>سعر المنتج *</label>
+        <input type="text" id="f-price" placeholder="مثال: 9 أو 100" inputmode="decimal">
+        <div class="field-error" id="err-price">الرجاء إدخال السعر</div>
+      </div>
+
+      <div class="form-row">
+        <label>الاسم الكامل *</label>
+        <input type="text" id="f-name" placeholder="مثال: أحمد محمد">
+        <div class="field-error" id="err-name">الرجاء إدخال الاسم</div>
+      </div>
+
+      <div class="form-row">
+        <label>رقم هاتفك *</label>
+        <input type="tel" id="f-phone" placeholder="01xxxxxxxxx" inputmode="numeric">
+        <div class="field-error" id="err-phone">الرجاء إدخال رقم هاتف صحيح (11 رقم)</div>
+      </div>
+
+      <div class="form-row">
+        <label>البريد الإلكتروني <span>(اختياري)</span></label>
+        <input type="email" id="f-email" placeholder="example@email.com">
+        <div class="field-error" id="err-email">البريد الإلكتروني غير صحيح</div>
+      </div>
+
+      <div class="form-row">
+        <label>رقم عملية التحويل *</label>
+        <input type="text" id="f-txn" placeholder="مثال: 1234567890" inputmode="numeric">
+        <div class="field-error" id="err-txn">الرجاء إدخال رقم العملية</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 4: Submit -->
+  <div class="step">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <h3>تأكيد الطلب</h3>
+      <p>بعد ملء البيانات، اضغط الزر أدناه لإرسال التفاصيل إلينا عبر واتساب.</p>
+      <button class="btn-confirm" onclick="submitForm()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        إرسال التفاصيل على واتساب
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS VIEW -->
+<div class="container" id="success-view" hidden>
+  <div class="success-box">
+    <div class="success-icon">✓</div>
+    <h2>تم استلام طلبك!</h2>
+    <p>تم فتح واتساب مع تفاصيل طلبك. يرجى إرسال الرسالة وسنقوم بتفعيل المنتج فور التحقق من التحويل.</p>
+    <button onclick="location.reload()" style="padding:12px 24px;border-radius:10px;border:1px solid var(--line);background:white;font-weight:700;cursor:pointer;">طلب جديد</button>
+  </div>
+</div>
+
+<script>
+  // الإعدادات
+  const CONFIG = {
+    walletNumber: '01025156059',
+    whatsappNumber: '201025156059' // رقمك بصيغة دولية (بدون +)
+  };
+
+  document.getElementById('wallet-number').textContent = CONFIG.walletNumber;
+
+  // نسخ رقم المحفظة
+  function copyWallet(e) {
+    e.preventDefault();
+    navigator.clipboard.writeText(CONFIG.walletNumber).then(() => {
+      const btn = e.target;
+      const original = btn.textContent;
+      btn.textContent = 'تم النسخ ✓';
+      setTimeout(() => btn.textContent = original, 2000);
+    });
+  }
+
+  // التحقق من الحقول
+  function validateForm() {
+    let valid = true;
+    const product = document.getElementById('f-product').value.trim();
+    const price = document.getElementById('f-price').value.trim();
+    const name = document.getElementById('f-name').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const txn = document.getElementById('f-txn').value.trim();
+
+    if (product.length < 2) { document.getElementById('err-product').classList.add('show'); valid = false; } else document.getElementById('err-product').classList.remove('show');
+    if (!price || isNaN(parseFloat(price))) { document.getElementById('err-price').classList.add('show'); valid = false; } else document.getElementById('err-price').classList.remove('show');
+    if (name.length < 3) { document.getElementById('err-name').classList.add('show'); valid = false; } else document.getElementById('err-name').classList.remove('show');
+    if (!/^01[0-2,5]\d{8}$/.test(phone)) { document.getElementById('err-phone').classList.add('show'); valid = false; } else document.getElementById('err-phone').classList.remove('show');
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('err-email').classList.add('show'); valid = false; } else document.getElementById('err-email').classList.remove('show');
+    if (txn.length < 4) { document.getElementById('err-txn').classList.add('show'); valid = false; } else document.getElementById('err-txn').classList.remove('show');
+
+    return valid;
+  }
+
+  // منع إدخال حروف في الهاتف ورقم العملية
+  ['f-phone', 'f-txn'].forEach(id => {
+    document.getElementById(id).addEventListener('input', function() {
+      this.value = this.value.replace(/[^0-9]/g, '');
+    });
+  });
+
+  // إرسال النموذج
+  function submitForm() {
+    if (!validateForm()) {
+      document.querySelector('.field-error.show').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    const data = {
+      product: document.getElementById('f-product').value.trim(),
+      price: document.getElementById('f-price').value.trim(),
+      name: document.getElementById('f-name').value.trim(),
+      phone: document.getElementById('f-phone').value.trim(),
+      email: document.getElementById('f-email').value.trim() || 'لا يوجد',
+      txn: document.getElementById('f-txn').value.trim()
+    };
+
+    const message = 
+`🛒 *طلب جديد — HERO Store*
+
+📦 *المنتج:* ${data.product}
+💰 *السعر:* ${data.price}
+👤 *الاسم:* ${data.name}
+📱 *الهاتف:* ${data.phone}
+✉️ *البريد:* ${data.email}
+🔢 *رقم العملية:* ${data.txn}
+
+✅ أرجو التحقق وتفعيل الطلب.`;
+
+    window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+    
+    // إظهار شاشة النجاح
+    document.getElementById('form-view').hidden = true;
+    document.getElementById('success-view').hidden = false;
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>
